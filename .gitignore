@@ -1,0 +1,49 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Xcode build output
+build/
+DerivedData/
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+
+# Xcode personal settings
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager build output
+.build/
+.swiftpm/
+
+# Local environment variables
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Local app configuration
+# Use Config.local.xcconfig for your local configuration.
+Config.local.xcconfig
+
+# Private credentials and signing files
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile
+
+# Supabase local state
+supabase/.temp/
+supabase/.branches/
+
+# Editor personal settings
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
