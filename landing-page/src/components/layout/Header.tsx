@@ -65,7 +65,7 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <SurveyButton showHint className="mt-2 w-full [&>button]:w-full" />
+            <SurveyButton className="mt-2 w-full" />
           </div>
         </div>
       )}

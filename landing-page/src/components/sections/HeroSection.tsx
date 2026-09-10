@@ -24,7 +24,7 @@ export function HeroSection() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="#idee">Projekt entdecken</Button>
-            <SurveyButton variant="secondary" showHint />
+            <SurveyButton variant="secondary" />
           </div>
         </div>
         <MapPreview />

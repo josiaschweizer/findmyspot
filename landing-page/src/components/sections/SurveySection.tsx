@@ -15,7 +15,7 @@ export function SurveySection() {
             Mit deiner Teilnahme an unserer Umfrage hilfst du uns herauszufinden, welche Anforderungen an
             öffentliche Aufenthaltsorte besonders wichtig sind.
           </p>
-          <SurveyButton variant="light" showHint className="mt-8 items-center" />
+          <SurveyButton variant="light" className="mt-8" />
         </div>
       </div>
     </section>

@@ -1,9 +1,10 @@
-import { Clock3 } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+
+import { siteLinks } from '@/data/site'
 
 type SurveyButtonProps = {
   className?: string
   compact?: boolean
-  showHint?: boolean
   variant?: 'primary' | 'secondary' | 'light'
 }
 
@@ -13,31 +14,16 @@ const variants = {
   light: 'bg-[var(--color-lime)] text-[var(--color-brand-950)]',
 } as const
 
-export function SurveyButton({
-  className = '',
-  compact = false,
-  showHint = false,
-  variant = 'primary',
-}: SurveyButtonProps) {
+export function SurveyButton({ className = '', compact = false, variant = 'primary' }: SurveyButtonProps) {
   return (
-    <span className={`inline-flex flex-col items-start ${className}`}>
-      <button
-        type="button"
-        disabled
-        title="Die Umfrage wird bald verfügbar sein"
-        aria-label="Umfrage – bald verfügbar"
-        className={`inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-xl font-bold opacity-70 ${variants[variant]} ${compact ? 'min-h-10 px-4 py-2 text-xs' : 'min-h-12 px-6 py-3 text-sm'}`}
-      >
-        <Clock3 aria-hidden="true" size={compact ? 14 : 16} />
-        {compact ? 'Umfrage · bald' : 'An Umfrage teilnehmen'}
-      </button>
-      {showHint && (
-        <span
-          className={`mt-2 px-1 text-xs font-medium ${variant === 'light' ? 'text-white/70' : 'text-[var(--color-muted)]'}`}
-        >
-          Die Umfrage wird bald verfügbar sein.
-        </span>
-      )}
-    </span>
+    <a
+      href={siteLinks.survey}
+      target="_blank"
+      rel="noreferrer"
+      className={`inline-flex items-center justify-center gap-2 rounded-xl font-bold transition hover:-translate-y-0.5 ${variants[variant]} ${compact ? 'min-h-10 px-4 py-2 text-xs' : 'min-h-12 px-6 py-3 text-sm'} ${className}`}
+    >
+      {compact ? 'Umfrage' : 'An Umfrage teilnehmen'}
+      <ArrowUpRight aria-hidden="true" size={compact ? 14 : 16} />
+    </a>
   )
 }

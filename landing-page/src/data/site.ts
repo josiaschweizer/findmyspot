@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 export const siteLinks = {
-  survey: 'https://example.com/findmyspot-umfrage',
+  survey: 'https://forms.gle/GVY7vUUNmqGB1npn6',
   contact: 'mailto:findmyspot@example.com',
   imprint: '#footer',
   privacy: '#footer',

@@ -18,4 +18,4 @@ pnpm build
 
 ## Inhalte
 
-Externe Links und Kontaktdaten werden zentral in `src/data/site.ts` verwaltet. Die Umfrage ist derzeit deaktiviert und wird freigeschaltet, sobald die definitive URL verfügbar ist.
+Externe Links und Kontaktdaten werden zentral in `src/data/site.ts` verwaltet.
