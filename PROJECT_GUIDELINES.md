@@ -114,32 +114,63 @@ Contain small reusable helpers that do not belong to a specific feature.
 
 ## 4. Git Workflow
 
-The `main`branche represents the stable state of the project.
+The `main` branch represents the stable state of the project. Direct development on `main` is not allowed.
 
-Direct development on `main`is not allowed!
+Every change must be implemented on a separate branch and merged through a pull request.
 
-Every change should be implemented on a seperate branch and merged via a pull request.
+### Branch Names
 
-Example workflow:
+Branch names must be short, written in lowercase and use hyphens between words.
+
+Use an appropriate prefix:
 
 ```text
-main
-  │
-  ├── feature/map
-  ├── feature/place-detail
-  ├── feature/authentication
-  └── fix/location-permission
+feat/map
+feat/place-detail
+fix/location-permission
+chore/update-dependencies
+refactor/map-service
+docs/project-documentation
+test/place-filter
 ```
+
+### Commits
+
+Every commit message must begin with an appropriate Conventional Commit type. The message after the colon should match the branch name without its prefix.
+
+For the branch `feat/place-detail`, valid commits include:
+
+```text
+feat: place-detail
+fix: place-detail
+test: place-detail
+```
+
+### Pull Requests
 
 After completing a change:
 
 1. Commit the changes.
 2. Push the branch.
-3. Create a Pull Request.
-4. Assign the review to @josia.schweizer.
-5. Merge the Pull Request into `main`.
+3. Create a pull request.
+4. Use the complete branch name as the pull-request title.
+5. Assign the review to `@josia.schweizer`.
+6. Merge the pull request into `main`.
+7. Delete the branch after it has been merged.
 
-Branches should be deleted after they have been merged.
+Example pull-request title:
+
+```text
+feat/place-detail
+```
+
+### Merge Commits
+
+Merge commits must begin with `merge:` followed by the complete branch name.
+
+```text
+merge: feat/place-detail
+```
 
 ---
 
