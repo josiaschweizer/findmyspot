@@ -1,6 +1,7 @@
 import { FlaskConical } from 'lucide-react'
-import { features } from '@/data/site'
+
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { features } from '@/data/site'
 
 export function FeaturesSection() {
   return (
@@ -20,7 +21,10 @@ export function FeaturesSection() {
         </div>
         <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {features.map(({ title, description, icon: Icon }) => (
-            <article key={title} className="border-t border-white/15 py-6 transition hover:border-[var(--color-lime)]/50">
+            <article
+              key={title}
+              className="border-t border-white/15 py-6 transition hover:border-[var(--color-lime)]/50"
+            >
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--color-lime)]/12 text-[var(--color-lime)]">
                 <Icon aria-hidden="true" size={21} />
               </div>

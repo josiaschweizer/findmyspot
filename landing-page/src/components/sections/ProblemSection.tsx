@@ -1,9 +1,9 @@
-import { questions } from '@/data/site'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { questions } from '@/data/site'
 
 export function ProblemSection() {
   return (
-    <section id="idee" className="section-padding bg-[var(--color-surface-alt)] scroll-mt-18">
+    <section id="idee" className="section-padding scroll-mt-18 bg-[var(--color-surface-alt)]">
       <div className="section-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <SectionHeading
           eyebrow="Die Idee"
@@ -19,7 +19,7 @@ export function ProblemSection() {
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-lime-soft)] text-[var(--color-brand-950)]">
                 <Icon aria-hidden="true" size={20} strokeWidth={2.25} />
               </div>
-              <p className="mt-4 font-bold leading-6 text-[var(--color-brand-950)]">{text}</p>
+              <p className="mt-4 leading-6 font-bold text-[var(--color-brand-950)]">{text}</p>
             </article>
           ))}
         </div>

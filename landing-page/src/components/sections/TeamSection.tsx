@@ -1,5 +1,5 @@
-import { team } from '@/data/site'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { team } from '@/data/site'
 
 export function TeamSection() {
   return (

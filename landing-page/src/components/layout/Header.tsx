@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+
 import appIcon from '@/assets/app-icon.png'
-import { navigation } from '@/data/site'
 import { SurveyButton } from '@/components/ui/SurveyButton'
+import { navigation } from '@/data/site'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,7 +26,11 @@ export function Header() {
 
         <div className="hidden items-center gap-7 md:flex">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-semibold text-[var(--color-muted)] transition hover:text-[var(--color-brand-900)]">
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-semibold text-[var(--color-muted)] transition hover:text-[var(--color-brand-900)]"
+            >
               {item.label}
             </a>
           ))}
@@ -45,10 +50,18 @@ export function Header() {
       </nav>
 
       {isOpen && (
-        <div id="mobile-navigation" className="border-t border-[var(--color-line)] bg-[var(--color-surface)] px-4 pb-5 pt-3 md:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-[var(--color-line)] bg-[var(--color-surface)] px-4 pt-3 pb-5 md:hidden"
+        >
           <div className="mx-auto flex max-w-2xl flex-col gap-1">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setIsOpen(false)} className="rounded-xl px-4 py-3 text-base font-semibold hover:bg-[var(--color-surface-alt)]">
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="rounded-xl px-4 py-3 text-base font-semibold hover:bg-[var(--color-surface-alt)]"
+              >
                 {item.label}
               </a>
             ))}

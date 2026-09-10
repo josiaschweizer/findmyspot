@@ -55,13 +55,41 @@ export const steps = [
 
 export const features = [
   { title: 'Interaktive Karte', description: 'Spots übersichtlich in der Umgebung entdecken.', icon: Map },
-  { title: 'Filter nach Bedürfnissen', description: 'Nur Orte sehen, die zur Situation passen.', icon: SlidersHorizontal },
-  { title: 'Ruhe & Sitzgelegenheiten', description: 'Geeignete Plätze zum Lernen oder Verweilen finden.', icon: Armchair },
-  { title: 'WLAN & Steckdosen', description: 'Digitale Infrastruktur auf einen Blick erkennen.', icon: PlugZap },
-  { title: 'WC & Wetterschutz', description: 'Praktische Ausstattungsmerkmale gezielt berücksichtigen.', icon: Toilet },
-  { title: 'Barrierefreiheit', description: 'Zugängliche Orte einfacher identifizieren.', icon: Accessibility },
-  { title: 'Orte melden', description: 'Neue öffentliche Spots für die Karte vorschlagen.', icon: MapPinPlus },
-  { title: 'Orte bewerten', description: 'Erfahrungen teilen und Informationen verbessern.', icon: MessageSquareHeart },
+  {
+    title: 'Filter nach Bedürfnissen',
+    description: 'Nur Orte sehen, die zur Situation passen.',
+    icon: SlidersHorizontal,
+  },
+  {
+    title: 'Ruhe & Sitzgelegenheiten',
+    description: 'Geeignete Plätze zum Lernen oder Verweilen finden.',
+    icon: Armchair,
+  },
+  {
+    title: 'WLAN & Steckdosen',
+    description: 'Digitale Infrastruktur auf einen Blick erkennen.',
+    icon: PlugZap,
+  },
+  {
+    title: 'WC & Wetterschutz',
+    description: 'Praktische Ausstattungsmerkmale gezielt berücksichtigen.',
+    icon: Toilet,
+  },
+  {
+    title: 'Barrierefreiheit',
+    description: 'Zugängliche Orte einfacher identifizieren.',
+    icon: Accessibility,
+  },
+  {
+    title: 'Orte melden',
+    description: 'Neue öffentliche Spots für die Karte vorschlagen.',
+    icon: MapPinPlus,
+  },
+  {
+    title: 'Orte bewerten',
+    description: 'Erfahrungen teilen und Informationen verbessern.',
+    icon: MessageSquareHeart,
+  },
 ] as const
 
 export const team = [

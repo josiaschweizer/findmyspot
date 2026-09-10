@@ -13,12 +13,25 @@ export function Footer() {
               <span className="text-sm text-white/55">Vertiefungsarbeit 2026</span>
             </div>
           </a>
-          <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-white/70" aria-label="Fussnavigation">
-            <a href="#projekt" className="hover:text-white">Projekt</a>
-            <a href="#team" className="hover:text-white">Team</a>
-            <a href={siteLinks.contact} className="hover:text-white">Kontakt</a>
-            <a href={siteLinks.imprint} className="hover:text-white">Impressum (folgt)</a>
-            <a href={siteLinks.privacy} className="hover:text-white">Datenschutz (folgt)</a>
+          <nav
+            className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-white/70"
+            aria-label="Fussnavigation"
+          >
+            <a href="#projekt" className="hover:text-white">
+              Projekt
+            </a>
+            <a href="#team" className="hover:text-white">
+              Team
+            </a>
+            <a href={siteLinks.contact} className="hover:text-white">
+              Kontakt
+            </a>
+            <a href={siteLinks.imprint} className="hover:text-white">
+              Impressum (folgt)
+            </a>
+            <a href={siteLinks.privacy} className="hover:text-white">
+              Datenschutz (folgt)
+            </a>
           </nav>
         </div>
         <div className="flex flex-col gap-2 pt-6 text-sm text-white/50 sm:flex-row sm:justify-between">

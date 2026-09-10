@@ -32,7 +32,9 @@ export function SurveyButton({
         {compact ? 'Umfrage · bald' : 'An Umfrage teilnehmen'}
       </button>
       {showHint && (
-        <span className={`mt-2 px-1 text-xs font-medium ${variant === 'light' ? 'text-white/70' : 'text-[var(--color-muted)]'}`}>
+        <span
+          className={`mt-2 px-1 text-xs font-medium ${variant === 'light' ? 'text-white/70' : 'text-[var(--color-muted)]'}`}
+        >
           Die Umfrage wird bald verfügbar sein.
         </span>
       )}
