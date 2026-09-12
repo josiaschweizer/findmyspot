@@ -15,7 +15,22 @@ struct ContentView: View {
                     DashboardView()
                 }
             }
+            Tab("Places", systemImage: "mappin.and.ellipse") {
+                NavigationStack {
+                    PlacesView()
+                }
+            }
+            Tab("Settings", systemImage: "gearshape.fill") {
+                NavigationStack {
+                    SettingView()
+                }
+            }
+
         }
     }
 
+}
+
+#Preview {
+    ContentView()
 }
