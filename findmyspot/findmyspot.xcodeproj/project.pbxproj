@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "FindMySpot" */;
+			buildConfigurationList = B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "findmyspot" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -404,7 +404,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J4RQGKMV3U;
+				DEVELOPMENT_TEAM = 839PD39AWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -436,7 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J4RQGKMV3U;
+				DEVELOPMENT_TEAM = 839PD39AWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -544,7 +544,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "FindMySpot" */ = {
+		B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "findmyspot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4C74E10304C057500EC0ED2 /* Debug */,

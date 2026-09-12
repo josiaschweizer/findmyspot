@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FindMySpotApp: App {
+    @State private var auth = AuthViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(auth)
         }
     }
 }
