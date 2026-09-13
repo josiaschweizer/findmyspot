@@ -42,6 +42,33 @@ struct SignUpView: View {
 
                 fields
 
+                if let message = validationMessage {
+                    Text(message)
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                if let errorMessage = auth.errorMessage {
+                    Text(errorMessage)
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                Button {
+                    handleSubmit()
+                } label: {
+                    HStack {
+                        if auth.isSubmitting {
+                            ProgressView()
+                        }
+                    }
+
+                    Text("Create Account")
+                }
+                .frame(maxWidth: .infinity)
+
             }
             .padding(.horizontal, 24)
             .padding(.top, 32)
@@ -120,7 +147,31 @@ struct SignUpView: View {
     }
 
     private func handleSubmit() {
+        validationMessage = nil
 
+        guard !normalizedEmail.isEmpty else {
+            validationMessage = "Please enter an email address."
+            focusedField = .email
+            return
+        }
+
+        guard password.count >= 8 else {
+            validationMessage = "Password must be at least 8 characters."
+            focusedField = .password
+            return
+        }
+
+        guard password == passwordConfirmation else {
+            validationMessage = "Passwords do not match."
+            focusedField = .passwordConfirmation
+            return
+        }
+
+        focusedField = nil
+
+        Task {
+            await auth.signUp(email: normalizedEmail, password: password)
+        }
     }
 
 }
