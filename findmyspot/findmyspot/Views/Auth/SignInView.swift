@@ -65,3 +65,10 @@ struct SignInView: View {
         .navigationTitle("Sign in")
     }
 }
+
+#Preview {
+    NavigationStack{
+        SignInView()
+    }
+    .environment(AuthViewModel())
+}
