@@ -172,6 +172,29 @@ Merge commits must begin with `merge:` followed by the complete branch name.
 merge: feat/place-detail
 ```
 
+### KI Usage Documentation 
+
+Screenshots used to document AI usage for the Vertiefungsarbeit are an exception for the regular git commit guidelines.
+
+These commits must always be commited and pushed directly to `main`.
+No separate branch or pull request is required for KI-usage screenshots.
+
+The commit message must use the following format:
+
+```text
+feat: doc
+- add KI-usage screenshots for Nr. <number>
+```
+
+Example:
+
+```text
+feat: doc
+- add KI-usage screenshots for Nr. 1
+```
+
+KI-usage screenshot commits are the only exception to the rule that direct development on `main`is not allowed.
+
 ---
 
 ## 5. Branch Naming
