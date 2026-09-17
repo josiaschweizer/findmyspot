@@ -22,7 +22,16 @@ struct AuthBrandHeader: View {
                         cornerRadius: 72,
                         style: .continuous
                     )
-                    .fill(Color.accentColor.gradient)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                AppColors.primary,
+                                AppColors.primaryDark,
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                 }
                 .shadow(
                     color: Color.accentColor.opacity(0.25),
@@ -45,6 +54,6 @@ struct AuthBrandHeader: View {
     }
 }
 
-#Preview{
+#Preview {
     AuthBrandHeader(title: "Title", subtitle: "Subtitle")
 }

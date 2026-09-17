@@ -19,7 +19,9 @@ struct AuthFooterLink<Destination: View>: View {
             NavigationLink {
                 destination
             } label: {
-                Text(linkText).fontWeight(.semibold)
+                Text(linkText)
+                    .foregroundStyle(AppColors.primary)
+                    .fontWeight(.semibold)
             }
         }
         .font(.subheadline)
