@@ -10,11 +10,14 @@ import SwiftUI
 @main
 struct FindMySpotApp: App {
     @State private var auth = AuthViewModel()
+    @State private var notifier = UserNotifier()
 
     var body: some Scene {
         WindowGroup {
             RootView()
+                .toastOverlay()
                 .environment(auth)
+                .environment(notifier)
         }
     }
 }

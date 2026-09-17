@@ -60,7 +60,7 @@ final class AuthViewModel {
         }
     }
 
-    func signUp(email: String, password: String) async {
+    func signUp(displayName: String, email: String, password: String) async {
         signUpMessage = nil
 
         await perform {

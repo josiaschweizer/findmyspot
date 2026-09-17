@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "findmyspot" */;
+			buildConfigurationList = B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "FindMySpot" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -544,7 +544,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "findmyspot" */ = {
+		B4C74DEC304C057300EC0ED2 /* Build configuration list for PBXProject "FindMySpot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4C74E10304C057500EC0ED2 /* Debug */,
