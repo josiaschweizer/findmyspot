@@ -13,62 +13,120 @@ struct SignInView: View {
     @State private var email = StringUtil.EMPTY
     @State private var password = StringUtil.EMPTY
 
+    @FocusState private var focusedField: Field?
+
+    private enum Field {
+        case email
+        case password
+    }
+
+    private var normalizedEmail: String {
+        email.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private var canSubmit: Bool {
+        !normalizedEmail.isEmpty && !password.isEmpty && !auth.isSubmitting
+    }
+
+    private func handleSubmit() {
+        guard canSubmit else {
+            return
+        }
+
+        focusedField = nil
+
+        Task {
+            await auth.signIn(
+                email: normalizedEmail,
+                password: password
+            )
+        }
+    }
+
     var body: some View {
-        Form {
-            Section {
-                TextField("Email address", text: $email)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
+        ZStack {
+            AuthBackground()
 
-                SecureField("Password", text: $password)
-                    .textContentType(.password)
-            }
+            ScrollView {
+                VStack(spacing: 32) {
+                    AuthBrandHeader(
+                        title: "Welcome back",
+                        subtitle:
+                            "Sign in to continue disovering places around you"
+                    )
 
-            if let errorMessage = auth.errorMessage {
-                Section {
-                    Text(errorMessage)
-                        .foregroundStyle(.red)
-                }
-            }
-
-            Section {
-                Button {
-                    Task {
-                        await auth.signIn(
-                            email: email,
-                            password: password
+                    AuthCard {
+                        AuthTextField(
+                            title: "Email address",
+                            systemImage: "envelope",
+                            text: $email
                         )
-                    }
-                } label: {
-                    HStack {
-                        if auth.isSubmitting {
-                            ProgressView()
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .focused($focusedField, equals: .email)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .password
                         }
 
-                        Text("Sign In")
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .disabled(
-                    email.isEmpty || password.isEmpty || auth.isSubmitting
-                )
-            }
+                        AuthSecureField(
+                            title: "Password",
+                            text: $password
+                        )
+                        .focused($focusedField, equals: .password)
+                        .submitLabel(.go)
+                        .onSubmit {
+                            handleSubmit()
+                        }
 
-            Section {
-                NavigationLink("Create an account") {
-                    SignUpView()
+                        if let errorMessage = auth.errorMessage {
+                            AuthErrorMessage(
+                                message: errorMessage
+                            )
+                        }
+
+                        HStack {
+                            Spacer()
+
+                            Button("Forgot password?") {
+                                // TODO redirect onto password forgot view
+                            }
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .disabled(true)
+                        }
+
+                        AuthPrimaryButton(
+                            title: "Sign In",
+                            isLoading: auth.isSubmitting,
+                            isEnabled: canSubmit
+                        ) {
+                            handleSubmit()
+                        }
+
+                        AuthFooterLink(
+                            text: "Don't have an account?",
+                            linkText: "Create account",
+                            destination: SignUpView()
+                        )
+                        .padding(.top, 4)
+                    }
                 }
+                .padding(.horizontal, 24)
+                .padding(.top, 48)
+                .padding(.bottom, 32)
             }
+            .scrollDismissesKeyboard(.interactively)
         }
-        .navigationTitle("Sign in")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    NavigationStack{
+    @Previewable @State var auth = AuthViewModel()
+
+    NavigationStack {
         SignInView()
     }
-    .environment(AuthViewModel())
+    .environment(auth)
 }
