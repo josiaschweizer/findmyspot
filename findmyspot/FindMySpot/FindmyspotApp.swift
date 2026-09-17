@@ -15,9 +15,9 @@ struct FindMySpotApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .toastOverlay()
                 .environment(auth)
                 .environment(notifier)
-                .toastOverlay()
         }
     }
 }
