@@ -19,7 +19,7 @@ struct AppButtonStyle: ButtonStyle {
         case .secondary:
             return AppColors.textPrimary
         case .destructive:
-            <#code#>
+            return AppColors.surfaceWhite
         }
     }
 
@@ -34,7 +34,7 @@ struct AppButtonStyle: ButtonStyle {
         case .secondary:
             return AppColors.surfaceSecondary
         case .destructive:
-            <#code#>
+            return AppColors.textDestructive
         }
     }
 
@@ -42,7 +42,7 @@ struct AppButtonStyle: ButtonStyle {
         configuration.label
             .font(AppTypography.bodyStrong)
             .frame(maxWidth: .infinity)
-            .frame(height: AppLayout.primaryButtonHeight)
+            .frame(height: AppLayout.controlHeight)
             .foregroundStyle(foregroundColor)
             .background(backgroundColor)
             .clipShape(

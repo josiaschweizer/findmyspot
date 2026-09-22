@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @Environment(AuthViewModel.self) private var auth
+    @Environment(\.dismiss) private var dismiss
 
     @State private var displayName = StringUtil.EMPTY
     @State private var email = StringUtil.EMPTY
@@ -34,6 +35,10 @@ struct SignUpView: View {
 
     private var passwordsMatch: Bool {
         password == confirmPassword
+    }
+
+    private var showPasswordMismatch: Bool {
+        !confirmPassword.isEmpty && !passwordsMatch
     }
 
     private var canSubmit: Bool {
@@ -73,87 +78,126 @@ struct SignUpView: View {
                             "Create your account and start discovering places around you"
                     )
 
-                    AuthCard {
-                        AuthTextField(
-                            title: "Display name",
-                            systemImage: "person",
-                            text: $displayName
-                        )
-                        .textContentType(.name)
-                        .focused($focusedField, equals: .displayName)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .email
-                        }
-
-                        AuthTextField(
-                            title: "Email address",
-                            systemImage: "envelope",
-                            text: $email
-                        )
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                        .focused($focusedField, equals: .email)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .password
-                        }
-
-                        AuthSecureField(
-                            title: "Password",
-                            text: $password
-                        )
-                        .textContentType(.newPassword)
-                        .focused($focusedField, equals: .password)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .confirmPassword
-                        }
-
-                        AuthSecureField(
-                            title: "Confirm password",
-                            text: $confirmPassword
-                        )
-                        .textContentType(.newPassword)
-                        .focused($focusedField, equals: .confirmPassword)
-                        .submitLabel(.go)
-                        .onSubmit {
-                            handleSubmit()
-                        }
-
-                        if !confirmPassword.isEmpty && !passwordsMatch {
-                            AuthErrorMessage(
-                                message: "passwords do not match."
-                            )
-                        }
-
-                        if let errorMessage = auth.errorMessage {
-                            AuthErrorMessage(message: errorMessage)
-                        }
-
-                        AuthPrimaryButton(
-                            title: "Create Account",
-                            isLoading: auth.isSubmitting,
-                            isEnabled: canSubmit
+                    AppCard {
+                        VStack(
+                            alignment: .leading,
+                            spacing: AppSpacing.lg
                         ) {
-                            handleSubmit()
-                        }
+                            displayNameField
+                            emailField
+                            passwordField
+                            confirmPasswordField
 
-                        AuthFooterLink(
-                            text: "Already have an account?",
-                            linkText: "Sign In",
-                            destination: SignInView()
-                        )
-                        .padding(.top, 4)
+                            if let errorMessage = auth.errorMessage {
+                                AppErrorMessage(message: errorMessage)
+                            }
+
+                            AppButton(
+                                "Create Account",
+                                isEnabled: canSubmit,
+                                isLoading: auth.isSubmitting,
+                                action: handleSubmit
+                            )
+
+                            footer
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 48)
-                .padding(.bottom, 32)
+                .padding(.horizontal, AppSpacing.lg)
+                .padding(.top, AppSpacing.xxl)
+                .frame(maxWidth: .infinity)
             }
             .scrollDismissesKeyboard(.interactively)
         }
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var displayNameField: some View {
+        AppTextField(
+            title: "Display name",
+            placeholder: "Your name",
+            text: $displayName
+        )
+        .focused($focusedField, equals: .displayName)
+        .textContentType(.nickname)
+        .textInputAutocapitalization(.words)
+        .autocorrectionDisabled()
+        .submitLabel(.next)
+        .onSubmit {
+            focusedField = .email
+        }
+        .disabled(auth.isSubmitting)
+    }
+
+    private var emailField: some View {
+        AppTextField(
+            title: "Email address",
+            placeholder: "name@example.com",
+            text: $email
+        )
+        .focused($focusedField, equals: .email)
+        .textContentType(.emailAddress)
+        .keyboardType(.emailAddress)
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled()
+        .submitLabel(.next)
+        .onSubmit {
+            focusedField = .password
+        }
+        .disabled(auth.isSubmitting)
+    }
+
+    private var passwordField: some View {
+        AppSecureField(
+            title: "Password",
+            placeholder: "Create a password",
+            text: $password
+        )
+        .focused($focusedField, equals: .password)
+        .textContentType(.newPassword)
+        .submitLabel(.next)
+        .onSubmit {
+            focusedField = .confirmPassword
+        }
+        .disabled(auth.isSubmitting)
+    }
+
+    private var confirmPasswordField: some View {
+        AppSecureField(
+            title: "Confirm password",
+            placeholder: "Enter you password again",
+            text: $confirmPassword,
+            state: showPasswordMismatch ? .error : .normal,
+            errorMessage: showPasswordMismatch ? "Passwords do not match." : nil
+        )
+        .focused($focusedField, equals: .confirmPassword)
+        .textContentType(.newPassword)
+        .submitLabel(.go)
+        .onSubmit {
+            handleSubmit()
+        }
+        .disabled(auth.isSubmitting)
+    }
+
+    private var footer: some View {
+        VStack(spacing: AppSpacing.sm) {
+            Text("Already have an account?")
+                .font(AppTypography.body)
+                .foregroundStyle(AppColors.textSecondary)
+
+            Button {
+                dismiss()
+            } label: {
+                Text("Sign In")
+                    .font(AppTypography.bodyStrong)
+                    .foregroundStyle(AppColors.primaryAction)
+                    .frame(minHeight: AppLayout.minimumControlHeight)
+            }
+            .buttonStyle(.plain)
+            .disabled(auth.isSubmitting)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 

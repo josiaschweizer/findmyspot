@@ -1,5 +1,5 @@
 //
-//  AppSecureField.swift
+//  AppTextField.swift
 //  findmyspot
 //
 //  Created by Josia Schweizer on 20.09.2026.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppSecureField: View {
+struct AppTextField: View {
     let title: String
     let placeholder: String
     @Binding var text: String
@@ -24,7 +24,7 @@ struct AppSecureField: View {
             errorMessage: errorMessage,
             isFocused: isFocused
         ) {
-            SecureField(
+            TextField(
                 placeholder,
                 text: $text
             )

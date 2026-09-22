@@ -25,6 +25,11 @@ struct ContentView: View {
                     SettingView()
                 }
             }
+            Tab("Design System", systemImage: "hammer") {
+                NavigationStack {
+                    DesignSystemPreview()
+                }
+            }
 
         }
     }

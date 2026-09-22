@@ -25,7 +25,9 @@ struct SignInView: View {
     }
 
     private var canSubmit: Bool {
-        !normalizedEmail.isEmpty && !password.isEmpty && !auth.isSubmitting
+        !normalizedEmail.isEmpty
+            && !password.isEmpty
+            && !auth.isSubmitting
     }
 
     private func handleSubmit() {
@@ -48,77 +50,92 @@ struct SignInView: View {
             AuthBackground()
 
             ScrollView {
-                VStack(spacing: 32) {
+                VStack(spacing: AppSpacing.xxl) {
                     AuthBrandHeader(
                         title: "Welcome back",
-                        subtitle:
-                            "Sign in to continue disovering places around you"
+                        subtitle: "Sign in to discover places around you."
                     )
 
-                    AuthCard {
-                        AuthTextField(
-                            title: "Email address",
-                            systemImage: "envelope",
-                            text: $email
-                        )
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                        .focused($focusedField, equals: .email)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .password
-                        }
-
-                        AuthSecureField(
-                            title: "Password",
-                            text: $password
-                        )
-                        .focused($focusedField, equals: .password)
-                        .submitLabel(.go)
-                        .onSubmit {
-                            handleSubmit()
-                        }
-
-                        if let errorMessage = auth.errorMessage {
-                            AuthErrorMessage(
-                                message: errorMessage
-                            )
-                        }
-
-                        HStack {
-                            Spacer()
-
-                            Button("Forgot password?") {
-                                // TODO redirect onto password forgot view
-                            }
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .disabled(true)
-                        }
-
-                        AuthPrimaryButton(
-                            title: "Sign In",
-                            isLoading: auth.isSubmitting,
-                            isEnabled: canSubmit
+                    AppCard {
+                        VStack(
+                            alignment: .leading,
+                            spacing: AppSpacing.lg
                         ) {
-                            handleSubmit()
-                        }
+                            emailField
+                            passwordField
 
-                        AuthFooterLink(
-                            text: "Don't have an account?",
-                            linkText: "Create account",
-                            destination: SignUpView()
-                        )
-                        .padding(.top, 4)
+                            if let errorMessage = auth.errorMessage {
+                                AppErrorMessage(message: errorMessage)
+                            }
+
+                            AppButton(
+                                "Sign In",
+                                isEnabled: canSubmit,
+                                isLoading: auth.isSubmitting,
+                                action: handleSubmit
+                            )
+
+                            footer
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 48)
-                .padding(.bottom, 32)
+                .padding(.horizontal, AppSpacing.lg)
+                .padding(.vertical, AppSpacing.xxl)
+                .frame(maxWidth: .infinity)
             }
             .scrollDismissesKeyboard(.interactively)
         }
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var emailField: some View {
+        AppTextField(
+            title: "Email address",
+            placeholder: "name@example.com",
+            text: $email
+        )
+        .focused($focusedField, equals: .email)
+        .textContentType(.username)
+        .keyboardType(.emailAddress)
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled()
+        .submitLabel(.next)
+        .onSubmit {
+            focusedField = .password
+        }
+        .disabled(auth.isSubmitting)
+    }
+
+    private var passwordField: some View {
+        AppSecureField(
+            title: "Password",
+            placeholder: "Enter you password",
+            text: $password
+        )
+        .focused($focusedField, equals: .password)
+        .submitLabel(.go)
+        .onSubmit(handleSubmit)
+        .disabled(auth.isSubmitting)
+    }
+
+    private var footer: some View {
+        VStack(spacing: AppSpacing.sm) {
+            Text("Don't have an account?")
+                .font(AppTypography.body)
+                .foregroundStyle(AppColors.textSecondary)
+
+            NavigationLink {
+                SignUpView()
+            } label: {
+                Text("Create account")
+                    .font(AppTypography.bodyStrong)
+                    .foregroundStyle(AppColors.primaryAction)
+                    .frame(minHeight: AppLayout.minimumControlHeight)
+            }
+            .disabled(auth.isSubmitting)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
