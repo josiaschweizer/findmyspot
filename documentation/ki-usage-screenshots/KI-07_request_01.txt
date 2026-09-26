@@ -1,0 +1,172 @@
+thats our DB Design for the VA - please create one sql script for supabase. group the code like that: 1. extensions & enums, 2. table incl. indexes, then triggers & functions and the rest. if you have questions first ask and then generate one copy-pastable sql script
+
+
+
+**profiles** - *Trigger onto auth.users which directly creates a profile Record*
+
+- Trigger&#x20;
+  - create record on auth.users record-creation
+  - delete profiles record on auth.users record-deletion
+
+| Field Type Constraints  |      |                                                   |
+| ----------------------- | ---- | ------------------------------------------------- |
+| id                      | uuid | PK, FK onto [auth.users.id](http://auth.users.id) |
+| display\_name           | text | required, default empty String                    |
+| avatar\_url             | text | nullable (Supabase Storage)                       |
+| created\_at             |      |                                                   |
+| updated\_at             |      |                                                   |
+
+**categories** - *Type of Place (i.e. Library, Park, School / Place to learn)*
+
+| Field Type Constraints  |         |                                              |
+| ----------------------- | ------- | -------------------------------------------- |
+| id                      | uuid    | PK                                           |
+| slug                    | text    | unique, required                             |
+| name                    | text    | required                                     |
+| icon                    | text    | nullable (SF Symbole name / Icon Identifier) |
+| sort\_order             | integer | default 0                                    |
+| created\_at             |         |                                              |
+| updated\_at             |         |                                              |
+
+**places** - *Table for Places*
+
+- Index&#x20;
+  - places\_location\_idx on places using GIST (location)
+  - places\_category\_idx on places(category\_id)
+  - places\_status\_idx on places(status)
+
+| Field Type Constraints          |                        |                                                                                                                                                                                         |
+| ------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                              | uuid                   | PK                                                                                                                                                                                      |
+| name                            | text                   | required                                                                                                                                                                                |
+| description                     | text                   | nullable                                                                                                                                                                                |
+| category\_id                    | uuid                   | required, FK onto [categories.id](http://categories.id)                                                                                                                                 |
+| location                        | geography(Point, 4326) | required, (PostGIS)                                                                                                                                                                     |
+| address (Street & Streetnumber) | text                   | nullable                                                                                                                                                                                |
+| postal\_code                    | text                   | nullable                                                                                                                                                                                |
+| city                            | text                   | nullable                                                                                                                                                                                |
+| created\_by                     | uuid                   | FK onto [profiles.id](http://profiles.id), nullable (can be nullable because if the creator of the place deletes his profiles-record should be also deleted but his places should stay) |
+| status                          | place\_status (enum)   | required, default for now: approved                                                                                                                                                     |
+| created\_at                     |                        |                                                                                                                                                                                         |
+| updated\_at                     |                        |                                                                                                                                                                                         |
+
+enum **place\_status**
+
+| pending  |
+| -------- |
+| approved |
+| rejected |
+
+**place\_images** - Mapping for Place to Image (0-n)
+
+- Trigger&#x20;
+  - delete Place ↔ Image Mapping if Place gets deleted
+
+| Field Type Constraints  |      |                                                     |
+| ----------------------- | ---- | --------------------------------------------------- |
+| id                      | uuid | PK                                                  |
+| place\_id               | uuid | FK onto [places.id](http://places.id)               |
+| storage\_path           | text | required, Path onto Supabase Storage                |
+| uploaded\_by            | uuid | FK onto [profiles.id](http://profiles.id), nullable |
+| sort\_order             | int  | default 0                                           |
+| created\_at             |      |                                                     |
+| updated\_at             |      |                                                     |
+
+**features** - *Filter option for features like WLAN , Toilet, Nature, Quiet*
+
+| Field Type Constraints  |                      |                  |
+| ----------------------- | -------------------- | ---------------- |
+| id                      | uuid                 | PK               |
+| slug                    | text                 | unique, required |
+| name                    | text                 | nullable         |
+| type                    | feature\_type (enum) | required         |
+| icon                    | text                 | nullable         |
+| sort\_order             | int                  | default 0        |
+| created\_at             |                      |                  |
+| updated\_at             |                      |                  |
+
+enum **feature\_type**
+
+| boolean  |
+| -------- |
+| rating   |
+
+**place\_features** - *Mapping between places & features*
+
+- Index&#x20;
+  - place\_features\_feature\_idx on place\_features(feature\_id)
+- Trigger&#x20;
+  - delete Mapping if place gets deleted
+
+| Field Type Constraints  |          |                                                                 |
+| ----------------------- | -------- | --------------------------------------------------------------- |
+| place\_id               | uuid     | PK, FK onto [places.id](http://places.id)                       |
+| feature\_id             | uuid     | PK, FK onto [features.id](http://features.id)                   |
+| boolean\_value          | boolean  | nullable, only for boolean features                             |
+| rating\_value           | smallint | nullable, only used if feature type = rating, value between 1-5 |
+| created\_at             |          |                                                                 |
+| updated\_at             |          |                                                                 |
+
+**purposes** - *Filter option for purpose like Walking. Work, Learn, Wait for someone*
+
+| Field Type Constraints  |      |                  |
+| ----------------------- | ---- | ---------------- |
+| id                      | uuid | PK               |
+| slug                    | text | unique, required |
+| name                    | text | nullable         |
+| icon                    | text | nullable         |
+| sort\_order             | int  |                  |
+| created\_at             |      |                  |
+| updated\_at             |      |                  |
+
+**place\_purposes** - *Mapping between place & purpose*
+
+- Index&#x20;
+  - place\_purposes\_purpose\_idx on place\_purposes(purpose\_id)
+- Trigger&#x20;
+  - delete Mapping if place gets deleted
+
+| Field Type Constraints  |      |                                               |
+| ----------------------- | ---- | --------------------------------------------- |
+| place\_id               | uuid | PK, FK onto [places.id](http://places.id)     |
+| purpose\_id             | uuid | PK, FK onto [purposes.id](http://purposes.id) |
+
+**favorites**
+
+| Field Type Constraints  |      |                                                   |
+| ----------------------- | ---- | ------------------------------------------------- |
+| user\_id                | uuid | PK, FK onto [auth.users.id](http://auth.users.id) |
+| place\_id               | uuid | PK, FK onto [places.id](http://places.id)         |
+| created\_at             |      |                                                   |
+| updated\_at             |      |                                                   |
+
+**bookmarks**
+
+| Field Type Constraints  |      |                                                   |
+| ----------------------- | ---- | ------------------------------------------------- |
+| user\_id                | uuid | PK, FK onto [auth.users.id](http://auth.users.id) |
+| place\_id               | uuid | PK, FK onto [places.id](http://places.id)         |
+| created\_at             |      |                                                   |
+| updated\_at             |      |                                                   |
+
+**audit\_logs** - *for Security Purpose → for every Create / Update / Delete a audit\_log is created via a Database Trigger*
+
+IMPORTANT: Is it possible to make them final → not editable?
+
+| Field Type Constraints  |                     |                                                                                          |
+| ----------------------- | ------------------- | ---------------------------------------------------------------------------------------- |
+| id                      | uuid                | PK, default generated                                                                    |
+| actor\_user\_id         | uuid                | nullable (cannot be FK bc else the log’s would have to be deleted after deleting a user) |
+| entity\_type            | text                | required                                                                                 |
+| entity\_id              | UUID                | nullable                                                                                 |
+| action                  | action\_type (enum) | required                                                                                 |
+| old\_data               | jsonb               | nullable                                                                                 |
+| new\_data               | jsonb               | nullable                                                                                 |
+| created\_at             |                     | required                                                                                 |
+
+enum **action\_type**
+
+| CREATED  |
+| -------- |
+| UPDATED  |
+| DELETED  |

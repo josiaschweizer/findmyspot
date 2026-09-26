@@ -1,0 +1,11 @@
+1. exactly as you said
+2. thats okaay
+3. yes, a category should only be able to be deleted after there is no mapping with that cateogry
+4. no - thats not relevant for now&#x20;
+5. yes, everything but itself
+6. thast perfect - only db owner / service role should be able to update them
+7. give me one script for the migration and then another file for rls and another file for the storage / bucket policies (also answer to quetsion 12)
+8. yes, tahts good
+9. good
+10. yes
+11. no, no case-intensive enforcement

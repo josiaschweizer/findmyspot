@@ -1,0 +1,150 @@
+lets review my db-design
+
+
+
+**profiles** - *Trigger onto auth.users which directly creates a profile Record*
+
+| Field Type Constraints  |      |                                                   |
+| ----------------------- | ---- | ------------------------------------------------- |
+| id                      | uuid | PK, FK onto [auth.users.id](http://auth.users.id) |
+| display\_name           | text | required                                          |
+| avatar\_url             | text | nullable (Supabase Storage)                       |
+| created\_at             |      |                                                   |
+| updated\_at             |      |                                                   |
+
+**categories** - *Type of Place (i.e. Library, Park, School / Place to learn)*
+
+| Field Type Constraints  |         |                                  |
+| ----------------------- | ------- | -------------------------------- |
+| id                      | uuid    | PK                               |
+| slug                    | text    | unique, required                 |
+| name                    | text    | nullable                         |
+| icon                    | text    | nullable (svg / SF Symbole name) |
+| sort\_order             | integer | default 0                        |
+| created\_at             |         |                                  |
+| updated\_at             |         |                                  |
+
+**places** - *Table for Places*
+
+| Field Type Constraints          |                      |                                               |
+| ------------------------------- | -------------------- | --------------------------------------------- |
+| id                              | uuid                 | PK                                            |
+| name                            | text                 | required                                      |
+| description                     | tex                  | nullable                                      |
+| category\_id                    | uuid                 | FK onto [categories.id](http://categories.id) |
+| x,y (GPS coordinates            | -                    | TBD                                           |
+| address (Street & Streetnumber) | text                 | nullable                                      |
+| zipcode                         | int                  | nullable                                      |
+| city                            | text                 | nullable                                      |
+| created\_by                     | uuid                 | required, FK onto [users.id](http://users.id) |
+| status                          | place\_status (enum) | default for now: approved                     |
+| created\_at                     |                      |                                               |
+| updated\_at                     |                      |                                               |
+
+enum **place\_status**
+
+| pending  |
+| -------- |
+| approved |
+| rejected |
+
+place\_images - Mapping for Place to Image (0-n)
+
+| Field Type Constraints  |      |                                               |
+| ----------------------- | ---- | --------------------------------------------- |
+| id                      | uuid | PK                                            |
+| place\_id               | uuid | FK onto [places.id](http://places.id)         |
+| storage\_path           | text | Path onto Supabase Storage                    |
+| uploaded\_by            | uuid | FK onto [auth.users.id](http://auth.users.id) |
+| created\_at             |      |                                               |
+| updated\_at             |      |                                               |
+
+**feaures** - *Filter option for features like WLAN , Toilet, Nature, Quiet*
+
+| Field Type Constraints  |                      |                  |
+| ----------------------- | -------------------- | ---------------- |
+| id                      | uuid                 | PK               |
+| slug                    | tex                  | unique, required |
+| name                    | text                 | nullable         |
+| type                    | feature\_type (enum) |                  |
+| icon                    | text                 | nullable         |
+| sort\_order             | int                  |                  |
+| created\_at             |                      |                  |
+| updated\_at             |                      |                  |
+
+enum **feature\_type**
+
+| boolean  |
+| -------- |
+| rating   |
+
+**place\_feature** - *Mapping between places & features*
+
+| Field Type Constraints  |         |                                           |
+| ----------------------- | ------- | ----------------------------------------- |
+| place\_id               | uuid    | FK onto [places.id](http://places.id)     |
+| feature\_id             | uuid    | FK onto [features.id](http://features.id) |
+| boolean\_value          | boolean | nullable                                  |
+| rating\_value           | double  | nullable                                  |
+| created\_at             |         |                                           |
+| updated\_at             |         |                                           |
+
+**purpose** - *Filter option for purpose like Walking. Work, Learn, Wait for someone*
+
+| Field Type Constraints  |      |                  |
+| ----------------------- | ---- | ---------------- |
+| id                      | uuid | PK               |
+| slug                    | text | unique, required |
+| name                    | tex  | nullable         |
+| icon                    | text | nullabel         |
+| sort\_order             | int  |                  |
+| created\_at             |      |                  |
+| updated\_at             |      |                  |
+
+**places\_purposes** - *Mapping between place & purpose*
+
+| Field Type Constraints  |      |                                           |
+| ----------------------- | ---- | ----------------------------------------- |
+| place\_id               | uuid | FK onto [places.id](http://places.id)     |
+| purpose\_id             | uuid | FK onto [purposes.id](http://purposes.id) |
+
+**favorites**
+
+| Field Type Constraints  |      |                                               |
+| ----------------------- | ---- | --------------------------------------------- |
+| user\_id                | uuid | FK onto [auth.users.id](http://auth.users.id) |
+| place\_id               | uuid | FK onto [places.id](http://places.id)         |
+| created\_at             |      |                                               |
+| updated\_at             |      |                                               |
+
+**bookmarks**
+
+| Field Type Constraints  |      |                                               |
+| ----------------------- | ---- | --------------------------------------------- |
+| user\_id                | uuid | FK onto [auth.users.id](http://auth.users.id) |
+| place\_id               | uuid | FK onto [places.id](http://places.id)         |
+| created\_at             |      |                                               |
+| updated\_at             |      |                                               |
+
+**audit\_logs** - *for Security Purpose → for every Create / Update / Delete a audit\_log is created via a Database Trigger*
+
+IMPORTANT: Is it possible to make them final → not editable?
+
+| Field Type Constraints  |                     |                                             |
+| ----------------------- | ------------------- | ------------------------------------------- |
+| id                      | uuid                | PK, default generated                       |
+| user\_id                | uuid                |                                             |
+| entity\_type            | text                |                                             |
+| entity\_id              | UUID                |                                             |
+| action                  | action\_type (enum) |                                             |
+| old\_data               | json                |                                             |
+| new\_data               | json                |                                             |
+| created\_at             |                     |                                             |
+| updated\_at             |                     | SHOULD ALWAYS be null / same as created\_at |
+
+enum **action\_type**
+
+| CREATED  |
+| -------- |
+| UPDATED  |
+| DELETED  |
