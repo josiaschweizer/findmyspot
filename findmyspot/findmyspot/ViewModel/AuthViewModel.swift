@@ -60,13 +60,14 @@ final class AuthViewModel {
         }
     }
 
-    func signUp(displayName: String, email: String, password: String) async {
+    func signUp(email: String, password: String, displayName: String) async {
         signUpMessage = nil
 
         await perform {
             let response = try await AuthService.signUp(
                 email: email.trimmingCharacters(in: .whitespacesAndNewlines),
-                password: password
+                password: password,
+                displayName: displayName
             )
 
             if response.session == nil {
