@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: Codable, Identifiable{
+struct Category: Codable, Identifiable {
     let id: UUID
     let slug: String
     let name: String
@@ -15,8 +15,8 @@ struct Category: Codable, Identifiable{
     let sortOrder: Int
     let createdAt: Date
     let udpatedAt: Date
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case id
         case slug
         case name

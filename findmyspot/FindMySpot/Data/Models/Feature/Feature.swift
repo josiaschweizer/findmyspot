@@ -13,7 +13,7 @@ struct Feature: Codable, Identifiable {
     let name: String?
     let type: FeatureType
     let icon: String?
-    let sortOrer: Int
+    let sortOrder: Int
     let createdAt: Date
     let updatedAt: Date
 
