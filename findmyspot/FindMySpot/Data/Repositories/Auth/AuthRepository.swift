@@ -15,12 +15,13 @@ enum AuthService {
         )
     }
 
-    static func signUp(email: String, password: String) async throws
+    static func signUp(email: String, password: String, displayName: String) async throws
         -> AuthResponse
     {
         try await SupabaseService.client.auth.signUp(
             email: email,
-            password: password
+            password: password,
+            data: ["display_name": .string(displayName)]
         )
     }
 

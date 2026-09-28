@@ -59,9 +59,9 @@ struct SignUpView: View {
 
         Task {
             await auth.signUp(
-                displayName: normalizedDisplayName,
                 email: normalizedEmail,
-                password: password
+                password: password,
+                displayName: normalizedDisplayName
             )
         }
     }
