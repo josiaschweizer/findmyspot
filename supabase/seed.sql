@@ -99,8 +99,8 @@ VALUES
 INSERT INTO public.place_features (
     place_id,
     feature_id,
-    value_boolean,
-    value_rating
+    boolean_value,
+    rating_value
 )
 VALUES
     -- Kaffeehaus
@@ -138,7 +138,7 @@ VALUES
     ),
     (
         'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb2',
-        'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaa3',
+        'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
         NULL,
         5
     );
