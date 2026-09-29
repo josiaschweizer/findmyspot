@@ -11,7 +11,7 @@ struct PlaceImage: Codable, Identifiable {
     let id: UUID
     let placeId: UUID
     let storagePath: String
-    let upladedBy: UUID
+    let uploadedBy: UUID
     let sortOrder: Int
     let createdAt: Date
     let updatedAt: Date
