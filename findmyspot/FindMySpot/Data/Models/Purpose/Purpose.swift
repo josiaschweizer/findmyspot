@@ -23,6 +23,6 @@ struct Purpose: Codable, Identifiable {
         case icon
         case sortOrder = "sort_order"
         case createdAt = "created_at"
-        case updateAt = "updated_at"
+        case updatedAt = "updated_at"
     }
 }

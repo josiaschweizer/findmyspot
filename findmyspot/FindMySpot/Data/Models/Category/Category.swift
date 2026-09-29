@@ -14,7 +14,7 @@ struct Category: Codable, Identifiable {
     let icon: String?
     let sortOrder: Int
     let createdAt: Date
-    let udpatedAt: Date
+    let updatedAt: Date
 
     enum CodingKeys: String, CodingKey {
         case id
