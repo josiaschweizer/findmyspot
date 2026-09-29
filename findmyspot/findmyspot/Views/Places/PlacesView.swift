@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct PlacesView: View {
+    private let placeRepository = PlaceRepository()
+    
     var body: some View {
-        Text("Places")
-            .navigationTitle("Places")
+        PlacesMapView {
+            try await placeRepository.getAll()
+        }
     }
 }
 
 #Preview {
-    PlacesView()
+    ContentView()
 }
