@@ -40,36 +40,8 @@ struct PlacesMapView: View {
             MapCompass()
             MapScaleView()
         }
-        .overlay(alignment: .top) {
-            statusOverlay
-                .padding(AppSpacing.lg)
-        }
         .task {
             await viewModel.loadIfNeeded()
-        }
-    }
-
-    @ViewBuilder
-    private var statusOverlay: some View {
-        if viewModel.isLoading {
-            loadingCard
-        } else if let message = viewModel.errorMessage {
-            errorCard(message: message)
-        } else if viewModel.places.isEmpty {
-            emptyCard
-        }
-    }
-
-    private var loadingCard: some View {
-        AppCard {
-            HStack(spacing: AppSpacing.sm2) {
-                ProgressView()
-                    .tint(AppColors.primary)
-
-                Text("Loading places...")
-                    .font(AppTypography.body)
-                    .foregroundStyle(AppColors.textPrimary)
-            }
         }
     }
 

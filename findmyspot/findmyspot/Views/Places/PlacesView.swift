@@ -46,35 +46,39 @@ struct PlacesView: View {
                 )
 
             HStack(spacing: AppSpacing.lg) {
-                AppCard {
-                    HStack(spacing: AppSpacing.lg) {
-                        Image(systemName: AppIcons.search)
-                            .foregroundStyle(AppColors.primary)
+                if viewModel.isLoading {
+                    loadingCard
+                } else {
+                    AppCard {
+                        HStack(spacing: AppSpacing.lg) {
+                            Image(systemName: AppIcons.search)
+                                .foregroundStyle(AppColors.primary)
 
-                        TextField(
-                            "Place or Properties...",
-                            text: $searchText
-                        )
-                        .font(AppTypography.body)
-                        .tint(AppColors.primary)
-                        .submitLabel(.search)
-                        .focused($isSearchFieldFocused)
-                        .onSubmit {
-                            isSearchFieldFocused = false
+                            TextField(
+                                "Place or Properties...",
+                                text: $searchText
+                            )
+                            .font(AppTypography.body)
+                            .tint(AppColors.primary)
+                            .submitLabel(.search)
+                            .focused($isSearchFieldFocused)
+                            .onSubmit {
+                                isSearchFieldFocused = false
+                            }
                         }
                     }
-                }
-                .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity)
 
-                AppIconButton(
-                    icon: AppIcons.filter,
-                    isEnabled: true
-                ) {
-                    isSearchFieldFocused = false
-                    showFilters = true
+                    AppIconButton(
+                        icon: AppIcons.filter,
+                        isEnabled: true
+                    ) {
+                        isSearchFieldFocused = false
+                        showFilters = true
+                    }
+                    .background(AppColors.elevatedBackground, in: Circle())
+                    .accessibilityLabel("Open Filters")
                 }
-                .background(AppColors.elevatedBackground, in: Circle())
-                .accessibilityLabel("Open Filters")
             }
             .padding(.horizontal, AppSpacing.lg)
             .padding(.top, AppSpacing.lg)
@@ -123,6 +127,19 @@ struct PlacesView: View {
             }
             .task {
                 await filterViewModel.loadIfNeeded()
+            }
+        }
+    }
+
+    private var loadingCard: some View {
+        AppCard {
+            HStack(spacing: AppSpacing.lg) {
+                ProgressView()
+                    .tint(AppColors.primary)
+
+                Text("Loading places...")
+                    .font(AppTypography.body)
+                    .foregroundStyle(AppColors.textPrimary)
             }
         }
     }
