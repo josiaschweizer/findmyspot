@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 struct PlacesMapView: View {
-    @StateObject private var viewModel: PlacesViewModel
+    @ObservedObject var viewModel: PlacesViewModel
 
     private static let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
@@ -22,16 +22,6 @@ struct PlacesMapView: View {
             longitudeDelta: 0.045
         )
     )
-
-    init(
-        fetchPlaces: @escaping @MainActor () async throws -> [Place]
-    ) {
-        _viewModel = StateObject(
-            wrappedValue: PlacesViewModel(
-                fetchPlaces: fetchPlaces
-            )
-        )
-    }
 
     var body: some View {
         Map(initialPosition: .region(Self.initialRegion)) {
@@ -110,5 +100,5 @@ struct PlacesMapView: View {
 }
 
 #Preview {
-    PlacesMapView(fetchPlaces: { [] })
+    PlacesMapView(viewModel: PlacesViewModel(fetchPlaces: { [] }))
 }

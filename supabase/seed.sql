@@ -142,3 +142,17 @@ VALUES
         NULL,
         5
     );
+
+-- features
+INSERT INTO purposes (name, slug, sort_order)
+VALUES
+    ('Study', 'study', 1),
+    ('Work remotely', 'work-remotely', 2),
+    ('Meet friends', 'meet-friends', 3),
+    ('Read', 'read', 4),
+    ('Relax', 'relax', 5),
+    ('Have a coffee', 'have-a-coffee', 6),
+    ('Eat', 'eat', 7),
+    ('Go on a date', 'go-on-a-date', 8),
+    ('Hold a meeting', 'hold-a-meeting', 9),
+    ('Play board games', 'play-board-games', 10);

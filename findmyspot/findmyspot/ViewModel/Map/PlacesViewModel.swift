@@ -31,6 +31,7 @@ final class PlacesViewModel: ObservableObject {
         guard !hasLoaded else {
             return
         }
+
         await loadPlaces()
     }
 
