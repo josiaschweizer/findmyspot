@@ -38,7 +38,7 @@ struct PlacesView: View {
     var body: some View {
         ZStack(alignment: .top) {
             PlacesMapView(viewModel: viewModel)
-                .ignoresSafeArea()
+                .ignoresSafeArea(.container, edges: .top)
                 .simultaneousGesture(
                     TapGesture().onEnded {
                         isSearchFieldFocused = false

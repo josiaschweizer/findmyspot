@@ -12,6 +12,8 @@ import SwiftUI
 struct PlacesMapView: View {
     @ObservedObject var viewModel: PlacesViewModel
 
+    @State private var selectedPlaceID: UUID?
+
     private static let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
             latitude: 47.4245,
@@ -23,8 +25,15 @@ struct PlacesMapView: View {
         )
     )
 
+    private var selectedPlace: Place? {
+        viewModel.places.first { $0.id == selectedPlaceID }
+    }
+
     var body: some View {
-        Map(initialPosition: .region(Self.initialRegion)) {
+        Map(
+            initialPosition: .region(Self.initialRegion),
+            selection: $selectedPlaceID
+        ) {
             ForEach(viewModel.places) { place in
                 Marker(
                     place.name,
@@ -33,12 +42,26 @@ struct PlacesMapView: View {
                         longitude: place.longitude
                     )
                 )
+                .tag(place.id)
+
             }
         }
         .mapStyle(.standard)
         .mapControls {
             MapCompass()
             MapScaleView()
+        }
+        .safeAreaInset(edge: .bottom) {
+            if let place = selectedPlace {
+                PlacePreviewContainer(
+                    place: place,
+                    onClose: {
+                        selectedPlaceID = nil
+                    }
+                )
+                .id(place.id)
+                .padding(AppSpacing.lg)
+            }
         }
         .task {
             await viewModel.loadIfNeeded()
