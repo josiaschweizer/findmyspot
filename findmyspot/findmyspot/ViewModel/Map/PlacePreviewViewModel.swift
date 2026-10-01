@@ -14,10 +14,12 @@ final class PlacePreviewViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
 
+    private let featureRepository: FeatureRepository
     private let placeImageRepository: PlaceImageRepository
     private let placeFeatureRepository: PlaceFeatureRepository
 
     init() {
+        self.featureRepository = FeatureRepository()
         self.placeImageRepository = PlaceImageRepository()
         self.placeFeatureRepository = PlaceFeatureRepository()
 
@@ -26,12 +28,9 @@ final class PlacePreviewViewModel: ObservableObject {
     }
 
     func load(placeID: UUID) async {
-        print("Before load")
         guard !isLoading else {
             return
         }
-        
-        print("start load")
 
         isLoading = true
         errorMessage = nil
@@ -42,12 +41,9 @@ final class PlacePreviewViewModel: ObservableObject {
             isLoading = false
         }
 
-        print("before load")
         do {
             imageURL = try await loadImageUrl(placeID: placeID)
-            print("after image load")
             featureNames = try await loadFeatureNames(placeID: placeID)
-            print("after load all")
         } catch {
             guard !Task.isCancelled else {
                 return
@@ -63,15 +59,29 @@ final class PlacePreviewViewModel: ObservableObject {
     }
 
     private func loadFeatureNames(placeID: UUID) async throws -> [String] {
-        let features = try await placeFeatureRepository.getFeaturesByPlace(
+        let placeFeatures = try await placeFeatureRepository.getFeaturesByPlace(
             placeID: placeID
         )
+
         try Task.checkCancellation()
 
-        let booleanFeatures = features.filter { $0.type == .boolean }
-        let sortedFeatures = booleanFeatures.sorted {
-            $0.sortOrder < $1.sortOrder
+        let selectedIDs = Set(
+            placeFeatures
+                .filter { $0.booleanValue == true }
+                .map { $0.featureId }
+        )
+
+        guard !selectedIDs.isEmpty else {
+            return []
         }
-        return sortedFeatures.map { $0.name ?? $0.slug }
+
+        let features = try await featureRepository.getAll()
+        try Task.checkCancellation()
+
+        return
+            features
+            .filter { selectedIDs.contains($0.id) && $0.type == .boolean }
+            .sorted { $0.sortOrder < $1.sortOrder }
+            .map { $0.name ?? $0.slug }
     }
 }
