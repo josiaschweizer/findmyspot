@@ -81,6 +81,12 @@ struct PlacesView: View {
                     showFilters = true
                 }
             )
+            .background {
+                if displayMode == .list {
+                    AppColors.background
+                        .ignoresSafeArea(.container, edges: .top)
+                }
+            }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomContent.padding(AppSpacing.lg)
