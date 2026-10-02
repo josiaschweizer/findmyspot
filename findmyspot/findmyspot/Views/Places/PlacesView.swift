@@ -77,6 +77,13 @@ struct PlacesView: View {
         .task {
             await viewModel.loadIfNeeded()
         }
+        .task(id: searchText){
+            try? await Task.sleep(for: .milliseconds(300))
+            guard !Task.isCancelled else {
+                return;
+            }
+            await viewModel.search(searchText)
+        }
         .sheet(isPresented: $showFilters) {
             Group {
                 if filterViewModel.isLoading {

@@ -11,10 +11,12 @@ import Supabase
 struct PlaceLocationParms: Encodable {
     let purposeIDs: [UUID]
     let featureIDs: [UUID]
+    let searchText: String?
 
     enum CodingKeys: String, CodingKey {
         case purposeIDs = "purpose_ids"
         case featureIDs = "feature_ids"
+        case searchText = "search_text"
     }
 }
 
@@ -33,7 +35,8 @@ final class PlaceRepository {
     func getAll(placeFilter: PlaceFilter) async throws -> [Place] {
         let params = PlaceLocationParms(
             purposeIDs: Array(placeFilter.purposeIDs),
-            featureIDs: Array(placeFilter.featureIDs)
+            featureIDs: Array(placeFilter.featureIDs),
+            searchText: placeFilter.searchText
         )
 
         return

@@ -27,10 +27,23 @@ final class PlacesViewModel: ObservableObject {
     }
 
     func apply(_ newFilter: PlaceFilter) async {
+        var updated = newFilter
+        updated.applySearchText(filter.searchText)
+        
         guard newFilter != filter else {
             return
         }
-        filter = newFilter
+        filter = updated
+        await loadPlaces()
+    }
+    
+    func search(_ text: String) async {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmed != filter.searchText else {
+            return;
+        }
+        
+        filter.applySearchText(text)
         await loadPlaces()
     }
 

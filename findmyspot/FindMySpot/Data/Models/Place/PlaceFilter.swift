@@ -10,9 +10,12 @@ import Foundation
 struct PlaceFilter: Equatable {
     private(set) var purposeIDs: Set<UUID> = []
     private(set) var featureIDs: Set<UUID> = []
+    private(set) var searchText: String = StringUtil.EMPTY
 
     var isEmpty: Bool {
-        return purposeIDs.isEmpty && featureIDs.isEmpty
+        return purposeIDs.isEmpty
+            && featureIDs.isEmpty
+            && searchText.isEmpty
     }
 
     func isSelected(purpose: Purpose) -> Bool {
@@ -33,6 +36,10 @@ struct PlaceFilter: Equatable {
         if !featureIDs.insert(feature.id).inserted {
             featureIDs.remove(feature.id)
         }
+    }
+
+    mutating func applySearchText(_ searchText: String) {
+        self.searchText = searchText
     }
 
     mutating func reset() {
