@@ -231,7 +231,7 @@ values
     ),
     (
         '6241c068-4e7d-5392-bd19-3ff08fc9641d',
-        '[Demo] Leseraum St. Gallen 01',
+        'Leseraum St. Gallen 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -249,7 +249,7 @@ values
     ),
     (
         'f6d71e37-9381-5834-8a06-310546e19859',
-        '[Demo] Parkwiese St. Gallen 01',
+        'Parkwiese St. Gallen 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -267,7 +267,7 @@ values
     ),
     (
         'a5ec7ed2-36bd-529d-927a-ad8f93df571e',
-        '[Demo] Quartierplatz St. Gallen 01',
+        'Quartierplatz St. Gallen 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -285,7 +285,7 @@ values
     ),
     (
         '7c4bda1a-49ec-578e-a631-8ee99218a581',
-        '[Demo] Überdachter Treffpunkt St. Gallen 01',
+        'Überdachter Treffpunkt St. Gallen 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -303,7 +303,7 @@ values
     ),
     (
         '3122da07-008e-5449-a1c9-3e7be87c83a1',
-        '[Demo] Aussichtsbank St. Gallen 01',
+        'Aussichtsbank St. Gallen 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -321,7 +321,7 @@ values
     ),
     (
         'b8a00a2b-fd75-53c1-8c77-e54e091e44dc',
-        '[Demo] Uferpause St. Gallen 01',
+        'Uferpause St. Gallen 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -339,7 +339,7 @@ values
     ),
     (
         '99faf78e-4744-53d9-8b91-76eada94d962',
-        '[Demo] Lesegarten St. Gallen 01',
+        'Lesegarten St. Gallen 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -357,7 +357,7 @@ values
     ),
     (
         '80dffcb4-e796-57ec-8b77-2116176521e4',
-        '[Demo] Öffentlicher Arbeitsbereich St. Gallen 01',
+        'Öffentlicher Arbeitsbereich St. Gallen 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -375,7 +375,7 @@ values
     ),
     (
         '9e5ed3f6-f955-56fc-a2b1-a3f7c3ab5b6b',
-        '[Demo] Picknickplatz St. Gallen 01',
+        'Picknickplatz St. Gallen 01',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -393,7 +393,7 @@ values
     ),
     (
         '022b309d-e799-5985-9ca7-66ca42519127',
-        '[Demo] Waldrandbank St. Gallen 01',
+        'Waldrandbank St. Gallen 01',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -411,7 +411,7 @@ values
     ),
     (
         'a893e9ab-e8f6-5d60-984b-64d28bc1c9d5',
-        '[Demo] Innenhof St. Gallen 01',
+        'Innenhof St. Gallen 01',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -429,7 +429,7 @@ values
     ),
     (
         '5b4b466f-b64b-5198-94da-9cd156cd4b18',
-        '[Demo] Spazierpunkt St. Gallen 01',
+        'Spazierpunkt St. Gallen 01',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -447,7 +447,7 @@ values
     ),
     (
         '6b13927d-6bb4-5e32-96da-b802ffe66253',
-        '[Demo] Leseraum St. Gallen 02',
+        'Leseraum St. Gallen 02',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -465,7 +465,7 @@ values
     ),
     (
         'c083c3b0-1d56-5da1-a25f-8c4874528074',
-        '[Demo] Parkwiese St. Gallen 02',
+        'Parkwiese St. Gallen 02',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -483,7 +483,7 @@ values
     ),
     (
         'c1037a86-8b56-5bd3-a0d1-293410b74185',
-        '[Demo] Quartierplatz St. Gallen 02',
+        'Quartierplatz St. Gallen 02',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -501,7 +501,7 @@ values
     ),
     (
         'f47983ba-d0d5-5bd6-9aac-b791625d84a3',
-        '[Demo] Überdachter Treffpunkt St. Gallen 02',
+        'Überdachter Treffpunkt St. Gallen 02',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -519,7 +519,7 @@ values
     ),
     (
         '0d61dfc9-ed58-5ad8-90ed-be71efc44660',
-        '[Demo] Aussichtsbank St. Gallen 02',
+        'Aussichtsbank St. Gallen 02',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -537,7 +537,7 @@ values
     ),
     (
         'a4de5538-dc3f-5b5d-982d-e0cdb6666552',
-        '[Demo] Uferpause St. Gallen 02',
+        'Uferpause St. Gallen 02',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -555,7 +555,7 @@ values
     ),
     (
         '5c252802-2d2a-5a2b-9497-6d5695d35c51',
-        '[Demo] Lesegarten St. Gallen 02',
+        'Lesegarten St. Gallen 02',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -573,7 +573,7 @@ values
     ),
     (
         'cead9cb3-ca08-5031-b85e-5ffb7083f40c',
-        '[Demo] Öffentlicher Arbeitsbereich St. Gallen 02',
+        'Öffentlicher Arbeitsbereich St. Gallen 02',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -591,7 +591,7 @@ values
     ),
     (
         '1c21393f-346f-5a14-bd84-910cd97bb9b1',
-        '[Demo] Picknickplatz St. Gallen 02',
+        'Picknickplatz St. Gallen 02',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -609,7 +609,7 @@ values
     ),
     (
         'a8589460-fd9f-5673-af45-7a145f14b835',
-        '[Demo] Waldrandbank St. Gallen 02',
+        'Waldrandbank St. Gallen 02',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -627,7 +627,7 @@ values
     ),
     (
         'bfabfdba-6f18-5cce-94c6-748282cbf6aa',
-        '[Demo] Innenhof St. Gallen 02',
+        'Innenhof St. Gallen 02',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -645,7 +645,7 @@ values
     ),
     (
         'f65c7e74-d43c-5ff3-bd80-463c6434e660',
-        '[Demo] Spazierpunkt St. Gallen 02',
+        'Spazierpunkt St. Gallen 02',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -663,7 +663,7 @@ values
     ),
     (
         '69e5b21c-82e3-5361-b910-8f84f3e64463',
-        '[Demo] Leseraum St. Gallen 03',
+        'Leseraum St. Gallen 03',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -681,7 +681,7 @@ values
     ),
     (
         'de504ccb-b036-5ef0-ac34-7e608a0ae60e',
-        '[Demo] Parkwiese St. Gallen 03',
+        'Parkwiese St. Gallen 03',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -699,7 +699,7 @@ values
     ),
     (
         '3452dd94-32f4-55ba-8ec6-b7258050b2b5',
-        '[Demo] Quartierplatz St. Gallen 03',
+        'Quartierplatz St. Gallen 03',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -717,7 +717,7 @@ values
     ),
     (
         '3ff74a40-f18e-5c0b-881f-c89df7fce868',
-        '[Demo] Überdachter Treffpunkt St. Gallen 03',
+        'Überdachter Treffpunkt St. Gallen 03',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -735,7 +735,7 @@ values
     ),
     (
         'ab6dd93b-e444-5650-bd89-812c0da67f91',
-        '[Demo] Aussichtsbank St. Gallen 03',
+        'Aussichtsbank St. Gallen 03',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -753,7 +753,7 @@ values
     ),
     (
         '71e84f3e-77ee-52bf-ae04-d044e458146d',
-        '[Demo] Uferpause St. Gallen 03',
+        'Uferpause St. Gallen 03',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -771,7 +771,7 @@ values
     ),
     (
         '0cf6803a-0847-519c-b430-e40fab1a1c6d',
-        '[Demo] Lesegarten St. Gallen 03',
+        'Lesegarten St. Gallen 03',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -789,7 +789,7 @@ values
     ),
     (
         '51b316e0-1b26-591f-aad8-f7b175119697',
-        '[Demo] Öffentlicher Arbeitsbereich St. Gallen 03',
+        'Öffentlicher Arbeitsbereich St. Gallen 03',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -807,7 +807,7 @@ values
     ),
     (
         'a2c8ebef-2171-5f67-8bd7-e98eb3dc8cf9',
-        '[Demo] Picknickplatz St. Gallen 03',
+        'Picknickplatz St. Gallen 03',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -825,7 +825,7 @@ values
     ),
     (
         '87bab896-a8c9-523c-8c94-5cc98cbedae6',
-        '[Demo] Waldrandbank St. Gallen 03',
+        'Waldrandbank St. Gallen 03',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -843,7 +843,7 @@ values
     ),
     (
         '5389e1da-62be-5383-aabe-cfe8ef4c3b2a',
-        '[Demo] Innenhof St. Gallen 03',
+        'Innenhof St. Gallen 03',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -861,7 +861,7 @@ values
     ),
     (
         'a7dcd5ea-c8df-55d7-870e-0b32ed0255fd',
-        '[Demo] Spazierpunkt St. Gallen 03',
+        'Spazierpunkt St. Gallen 03',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -879,7 +879,7 @@ values
     ),
     (
         '65a1937f-6b6e-579b-8790-48760fd95026',
-        '[Demo] Leseraum St. Gallen 04',
+        'Leseraum St. Gallen 04',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -897,7 +897,7 @@ values
     ),
     (
         'cd03ff06-1f13-5d99-ac69-bc508eb7f27e',
-        '[Demo] Parkwiese St. Gallen 04',
+        'Parkwiese St. Gallen 04',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -915,7 +915,7 @@ values
     ),
     (
         '61cd612f-d1ea-50c4-ba4e-c25329b37031',
-        '[Demo] Quartierplatz St. Gallen 04',
+        'Quartierplatz St. Gallen 04',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -933,7 +933,7 @@ values
     ),
     (
         '7a5f33ee-5baa-52e9-85d1-35353279d815',
-        '[Demo] Überdachter Treffpunkt St. Gallen 04',
+        'Überdachter Treffpunkt St. Gallen 04',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -951,7 +951,7 @@ values
     ),
     (
         '28371548-aa54-5267-ade9-bf329caaff70',
-        '[Demo] Aussichtsbank St. Gallen 04',
+        'Aussichtsbank St. Gallen 04',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -969,7 +969,7 @@ values
     ),
     (
         '832d3c2c-7c6c-5461-85d2-69f916f9be66',
-        '[Demo] Uferpause St. Gallen 04',
+        'Uferpause St. Gallen 04',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -987,7 +987,7 @@ values
     ),
     (
         'fe745c75-b291-5c07-980f-8fc7b7cab069',
-        '[Demo] Lesegarten St. Gallen 04',
+        'Lesegarten St. Gallen 04',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1005,7 +1005,7 @@ values
     ),
     (
         '139526f9-70f3-5c74-a266-71260771cb80',
-        '[Demo] Öffentlicher Arbeitsbereich St. Gallen 04',
+        'Öffentlicher Arbeitsbereich St. Gallen 04',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1023,7 +1023,7 @@ values
     ),
     (
         '31d12abc-cae3-5152-b87e-6c383f663aaf',
-        '[Demo] Picknickplatz St. Gallen 04',
+        'Picknickplatz St. Gallen 04',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1041,7 +1041,7 @@ values
     ),
     (
         '65a9a9a8-53b3-5969-8c73-300b3a97f865',
-        '[Demo] Waldrandbank St. Gallen 04',
+        'Waldrandbank St. Gallen 04',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1059,7 +1059,7 @@ values
     ),
     (
         '6d3e6f64-2fde-567c-a383-05031e65d686',
-        '[Demo] Innenhof St. Gallen 04',
+        'Innenhof St. Gallen 04',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1077,7 +1077,7 @@ values
     ),
     (
         '83a66488-3b1a-5c43-b387-aaf0468201c7',
-        '[Demo] Spazierpunkt St. Gallen 04',
+        'Spazierpunkt St. Gallen 04',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1095,7 +1095,7 @@ values
     ),
     (
         '6b98fe40-818e-511d-bbf6-7a9a09d68815',
-        '[Demo] Leseraum Gossau 01',
+        'Leseraum Gossau 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1113,7 +1113,7 @@ values
     ),
     (
         '6f288dd0-ed82-53a1-ba86-090a32ab3df2',
-        '[Demo] Parkwiese Gossau 01',
+        'Parkwiese Gossau 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1131,7 +1131,7 @@ values
     ),
     (
         'f00c95f0-9212-5166-9598-01074bc9bc99',
-        '[Demo] Quartierplatz Gossau 01',
+        'Quartierplatz Gossau 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1149,7 +1149,7 @@ values
     ),
     (
         '22182db7-1ef6-5ed2-83b4-f1d996170462',
-        '[Demo] Überdachter Treffpunkt Gossau 01',
+        'Überdachter Treffpunkt Gossau 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1167,7 +1167,7 @@ values
     ),
     (
         '63ce0879-7b5a-50c2-bfb1-3644c23a63c2',
-        '[Demo] Aussichtsbank Gossau 01',
+        'Aussichtsbank Gossau 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1185,7 +1185,7 @@ values
     ),
     (
         '90d4eb31-b3ec-56f1-a464-8afd5f0f1d2f',
-        '[Demo] Uferpause Gossau 01',
+        'Uferpause Gossau 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1203,7 +1203,7 @@ values
     ),
     (
         'ef6b39a5-221c-5980-bc19-0dcc8c218a68',
-        '[Demo] Lesegarten Gossau 01',
+        'Lesegarten Gossau 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1221,7 +1221,7 @@ values
     ),
     (
         '80cb07e6-a217-5ea5-882d-13131d1fc35c',
-        '[Demo] Öffentlicher Arbeitsbereich Gossau 01',
+        'Öffentlicher Arbeitsbereich Gossau 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1239,7 +1239,7 @@ values
     ),
     (
         '7bc43bcb-7a52-5a77-9acd-d916c2183ab5',
-        '[Demo] Picknickplatz Gossau 01',
+        'Picknickplatz Gossau 01',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1257,7 +1257,7 @@ values
     ),
     (
         'c961b0c5-4c89-5be4-97a6-64f7d9888413',
-        '[Demo] Waldrandbank Gossau 01',
+        'Waldrandbank Gossau 01',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1275,7 +1275,7 @@ values
     ),
     (
         '0f8ab0cd-90bc-54f5-a3a8-c88d642cd263',
-        '[Demo] Innenhof Gossau 01',
+        'Innenhof Gossau 01',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1293,7 +1293,7 @@ values
     ),
     (
         '7155f579-f414-59c0-8101-ddeb2cbf6b96',
-        '[Demo] Spazierpunkt Gossau 01',
+        'Spazierpunkt Gossau 01',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1311,7 +1311,7 @@ values
     ),
     (
         '564a7f01-c662-59f0-9b8b-1629777f7246',
-        '[Demo] Leseraum Herisau 01',
+        'Leseraum Herisau 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1329,7 +1329,7 @@ values
     ),
     (
         '9eb20e0e-45c0-5bbf-96a1-99b23447992a',
-        '[Demo] Parkwiese Herisau 01',
+        'Parkwiese Herisau 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1347,7 +1347,7 @@ values
     ),
     (
         '83dc2489-2a6e-51f2-91b0-45ad2b35ff9e',
-        '[Demo] Quartierplatz Herisau 01',
+        'Quartierplatz Herisau 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1365,7 +1365,7 @@ values
     ),
     (
         '2ea61d32-5de8-5691-b272-025aadffe87c',
-        '[Demo] Überdachter Treffpunkt Herisau 01',
+        'Überdachter Treffpunkt Herisau 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1383,7 +1383,7 @@ values
     ),
     (
         '12d6ffb3-6148-5beb-86f6-624a23672fa2',
-        '[Demo] Aussichtsbank Herisau 01',
+        'Aussichtsbank Herisau 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1401,7 +1401,7 @@ values
     ),
     (
         '1a79612a-70f8-54ba-830e-cd09651c2e5c',
-        '[Demo] Uferpause Herisau 01',
+        'Uferpause Herisau 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1419,7 +1419,7 @@ values
     ),
     (
         '59b93489-d7f4-5c5a-b8ed-5b637b6f0d6b',
-        '[Demo] Lesegarten Herisau 01',
+        'Lesegarten Herisau 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1437,7 +1437,7 @@ values
     ),
     (
         'cc1a2333-15f4-5d04-b8fb-d81ec1e4f739',
-        '[Demo] Öffentlicher Arbeitsbereich Herisau 01',
+        'Öffentlicher Arbeitsbereich Herisau 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1455,7 +1455,7 @@ values
     ),
     (
         '313fc394-0fa1-5440-a4d8-9af45da5e8f9',
-        '[Demo] Picknickplatz Herisau 01',
+        'Picknickplatz Herisau 01',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1473,7 +1473,7 @@ values
     ),
     (
         'd58ae2ba-6c3d-50bf-b42c-379f33d7b65a',
-        '[Demo] Waldrandbank Herisau 01',
+        'Waldrandbank Herisau 01',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1491,7 +1491,7 @@ values
     ),
     (
         '43faf806-65bd-55ac-847b-67dd4a432c27',
-        '[Demo] Innenhof Herisau 01',
+        'Innenhof Herisau 01',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1509,7 +1509,7 @@ values
     ),
     (
         'fb6826eb-7069-5fca-9071-044c5f02d712',
-        '[Demo] Spazierpunkt Herisau 01',
+        'Spazierpunkt Herisau 01',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1527,7 +1527,7 @@ values
     ),
     (
         '0125c1e3-2ecd-567e-94bc-19fbfefd81e7',
-        '[Demo] Leseraum Rorschach 01',
+        'Leseraum Rorschach 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1545,7 +1545,7 @@ values
     ),
     (
         'e865237b-0b3b-5eb5-a6e2-79e70a09b285',
-        '[Demo] Parkwiese Rorschach 01',
+        'Parkwiese Rorschach 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1563,7 +1563,7 @@ values
     ),
     (
         '61202edd-97e2-54f7-b808-ee600340525c',
-        '[Demo] Quartierplatz Rorschach 01',
+        'Quartierplatz Rorschach 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1581,7 +1581,7 @@ values
     ),
     (
         '7334a863-bb65-5e49-991f-c753386c9f02',
-        '[Demo] Überdachter Treffpunkt Rorschach 01',
+        'Überdachter Treffpunkt Rorschach 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1599,7 +1599,7 @@ values
     ),
     (
         '1ec19f3d-2553-54d8-bb7e-984f0ef62cef',
-        '[Demo] Aussichtsbank Rorschach 01',
+        'Aussichtsbank Rorschach 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1617,7 +1617,7 @@ values
     ),
     (
         '39987f65-b233-5d3a-82c5-61369279a713',
-        '[Demo] Uferpause Rorschach 01',
+        'Uferpause Rorschach 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1635,7 +1635,7 @@ values
     ),
     (
         '88f7340a-a0c8-5540-b2f2-708bcd2f9929',
-        '[Demo] Lesegarten Rorschach 01',
+        'Lesegarten Rorschach 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1653,7 +1653,7 @@ values
     ),
     (
         'e5341731-c9e8-5eb7-b540-acca5dd0128f',
-        '[Demo] Öffentlicher Arbeitsbereich Rorschach 01',
+        'Öffentlicher Arbeitsbereich Rorschach 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1671,7 +1671,7 @@ values
     ),
     (
         '4290e010-4cee-5deb-a203-9fb6ece92ba5',
-        '[Demo] Picknickplatz Rorschach 01',
+        'Picknickplatz Rorschach 01',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1689,7 +1689,7 @@ values
     ),
     (
         'd79baebf-f313-5f2c-9799-d43c92115f31',
-        '[Demo] Waldrandbank Rorschach 01',
+        'Waldrandbank Rorschach 01',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1707,7 +1707,7 @@ values
     ),
     (
         '8ece9f27-058d-52b7-989f-1cf6bf42d068',
-        '[Demo] Innenhof Rorschach 01',
+        'Innenhof Rorschach 01',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1725,7 +1725,7 @@ values
     ),
     (
         '29e3a3e3-696f-5cd2-aefe-a12071161264',
-        '[Demo] Spazierpunkt Rorschach 01',
+        'Spazierpunkt Rorschach 01',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1743,7 +1743,7 @@ values
     ),
     (
         '9c5fd532-4173-5e94-8bb5-83ba863ee64a',
-        '[Demo] Leseraum Wil 01',
+        'Leseraum Wil 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1761,7 +1761,7 @@ values
     ),
     (
         'bbee2dc1-d9f3-534b-9a4f-84268c1d4f2b',
-        '[Demo] Parkwiese Wil 01',
+        'Parkwiese Wil 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1779,7 +1779,7 @@ values
     ),
     (
         'abaaa3a4-8593-5930-839f-74ca43dbfe21',
-        '[Demo] Quartierplatz Wil 01',
+        'Quartierplatz Wil 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1797,7 +1797,7 @@ values
     ),
     (
         'c0a37baa-1356-570e-9ca4-396576e57248',
-        '[Demo] Überdachter Treffpunkt Wil 01',
+        'Überdachter Treffpunkt Wil 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1815,7 +1815,7 @@ values
     ),
     (
         '50d379e2-9f74-5990-862c-0037de6a149e',
-        '[Demo] Aussichtsbank Wil 01',
+        'Aussichtsbank Wil 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1833,7 +1833,7 @@ values
     ),
     (
         '7940dfd0-ca2b-55d9-afe0-930ce3d30586',
-        '[Demo] Uferpause Wil 01',
+        'Uferpause Wil 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1851,7 +1851,7 @@ values
     ),
     (
         '09c8c7ce-a4da-59f1-8dc9-cf7636756f31',
-        '[Demo] Lesegarten Wil 01',
+        'Lesegarten Wil 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1869,7 +1869,7 @@ values
     ),
     (
         'afc02e2a-7e3a-5445-a25d-9964eeda7bd3',
-        '[Demo] Öffentlicher Arbeitsbereich Wil 01',
+        'Öffentlicher Arbeitsbereich Wil 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1887,7 +1887,7 @@ values
     ),
     (
         '87582a2a-4633-5c98-9741-84ad22f1ec00',
-        '[Demo] Picknickplatz Wil 01',
+        'Picknickplatz Wil 01',
         'Fiktiver Demo-Ort. Eine Tischgruppe für mitgebrachte Verpflegung und gemeinsame Pausen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1905,7 +1905,7 @@ values
     ),
     (
         'f8c52e5e-8d6c-50ba-a1f2-66993a6b9631',
-        '[Demo] Waldrandbank Wil 01',
+        'Waldrandbank Wil 01',
         'Fiktiver Demo-Ort. Ein stiller Rastpunkt am beispielhaften Übergang zum Wald. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1923,7 +1923,7 @@ values
     ),
     (
         '16b59802-7189-53b6-9d31-7ebbed6d2f62',
-        '[Demo] Innenhof Wil 01',
+        'Innenhof Wil 01',
         'Fiktiver Demo-Ort. Ein geschützter Hof mit Platz für Gespräche und eine kurze Auszeit. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1941,7 +1941,7 @@ values
     ),
     (
         'bb2dbcca-cc80-5674-8df2-0061f5bbcfc0',
-        '[Demo] Spazierpunkt Wil 01',
+        'Spazierpunkt Wil 01',
         'Fiktiver Demo-Ort. Ein Haltepunkt entlang einer beispielhaften Spazierstrecke. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1959,7 +1959,7 @@ values
     ),
     (
         'e0b78514-48d0-5474-85bd-be7d4018c5da',
-        '[Demo] Leseraum Winterthur 01',
+        'Leseraum Winterthur 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1977,7 +1977,7 @@ values
     ),
     (
         '615b8380-3b6f-5942-8c70-6f19f10ef193',
-        '[Demo] Parkwiese Winterthur 01',
+        'Parkwiese Winterthur 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -1995,7 +1995,7 @@ values
     ),
     (
         '9e4c61e7-fca8-5d62-bf42-c1de4c4a8a9e',
-        '[Demo] Quartierplatz Winterthur 01',
+        'Quartierplatz Winterthur 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2013,7 +2013,7 @@ values
     ),
     (
         '36d7ff12-96bf-549e-95be-b7bbfa51fed2',
-        '[Demo] Überdachter Treffpunkt Winterthur 01',
+        'Überdachter Treffpunkt Winterthur 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2031,7 +2031,7 @@ values
     ),
     (
         'adc4081c-89e7-560b-a98c-d6d458c2648a',
-        '[Demo] Aussichtsbank Winterthur 01',
+        'Aussichtsbank Winterthur 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2049,7 +2049,7 @@ values
     ),
     (
         'a9a9e81a-668f-5dc5-bb77-4643668a4e93',
-        '[Demo] Uferpause Winterthur 01',
+        'Uferpause Winterthur 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2067,7 +2067,7 @@ values
     ),
     (
         '9281d399-4191-5d37-b279-da6e03d9949e',
-        '[Demo] Lesegarten Winterthur 01',
+        'Lesegarten Winterthur 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2085,7 +2085,7 @@ values
     ),
     (
         'b5472838-fd1c-5e7c-b622-1340bb785847',
-        '[Demo] Öffentlicher Arbeitsbereich Winterthur 01',
+        'Öffentlicher Arbeitsbereich Winterthur 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2103,7 +2103,7 @@ values
     ),
     (
         'bb58c52f-fc48-5359-885c-5321bfc3c759',
-        '[Demo] Leseraum Zürich 01',
+        'Leseraum Zürich 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2121,7 +2121,7 @@ values
     ),
     (
         'ee253472-67d6-5e49-8825-c92c1f8b67cd',
-        '[Demo] Parkwiese Zürich 01',
+        'Parkwiese Zürich 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2139,7 +2139,7 @@ values
     ),
     (
         '23dfde7a-3bb7-50bd-81dd-e402f89e14c3',
-        '[Demo] Quartierplatz Zürich 01',
+        'Quartierplatz Zürich 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2157,7 +2157,7 @@ values
     ),
     (
         '4b87b5b9-43ac-5d76-b530-f4a2cde9718e',
-        '[Demo] Überdachter Treffpunkt Zürich 01',
+        'Überdachter Treffpunkt Zürich 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2175,7 +2175,7 @@ values
     ),
     (
         'e720f269-b46e-54e6-b681-23b186403a80',
-        '[Demo] Aussichtsbank Zürich 01',
+        'Aussichtsbank Zürich 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2193,7 +2193,7 @@ values
     ),
     (
         '6f968f7f-3b24-56da-90bf-f6cecbe0d8d4',
-        '[Demo] Uferpause Zürich 01',
+        'Uferpause Zürich 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2211,7 +2211,7 @@ values
     ),
     (
         'b1fa6f26-8cb3-5f24-b0bb-3686c7878548',
-        '[Demo] Lesegarten Zürich 01',
+        'Lesegarten Zürich 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2229,7 +2229,7 @@ values
     ),
     (
         'e1f32235-e2a8-5929-b730-e60aad81cc9e',
-        '[Demo] Öffentlicher Arbeitsbereich Zürich 01',
+        'Öffentlicher Arbeitsbereich Zürich 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2247,7 +2247,7 @@ values
     ),
     (
         '47bde0e6-030d-5d35-ac67-6e8cd4343c41',
-        '[Demo] Leseraum Bern 01',
+        'Leseraum Bern 01',
         'Fiktiver Demo-Ort. Ein heller Raum mit Einzeltischen für konzentriertes Lesen und Lernen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2265,7 +2265,7 @@ values
     ),
     (
         '181babed-0c30-504d-9c5c-c234ecc99de4',
-        '[Demo] Parkwiese Bern 01',
+        'Parkwiese Bern 01',
         'Fiktiver Demo-Ort. Eine offene Wiese mit Sitzmöglichkeiten für eine Pause im Grünen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2283,7 +2283,7 @@ values
     ),
     (
         '8908fa73-032e-52af-9cb2-5c46ac8b97c4',
-        '[Demo] Quartierplatz Bern 01',
+        'Quartierplatz Bern 01',
         'Fiktiver Demo-Ort. Ein offener Treffpunkt zwischen kurzen Wegen durch das Quartier. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2301,7 +2301,7 @@ values
     ),
     (
         '563df79e-92e8-50b1-a9be-4f14d481f3ca',
-        '[Demo] Überdachter Treffpunkt Bern 01',
+        'Überdachter Treffpunkt Bern 01',
         'Fiktiver Demo-Ort. Ein geschützter Sitzbereich zum Warten und für kurze Treffen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2319,7 +2319,7 @@ values
     ),
     (
         'cb95a7d6-9c07-5daf-a9ab-33cf9b6ea7db',
-        '[Demo] Aussichtsbank Bern 01',
+        'Aussichtsbank Bern 01',
         'Fiktiver Demo-Ort. Eine ruhige Sitzbank mit weitem Blick über die beispielhafte Umgebung. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2337,7 +2337,7 @@ values
     ),
     (
         '7bf1fdcb-367d-570b-9dee-5db3c373c686',
-        '[Demo] Uferpause Bern 01',
+        'Uferpause Bern 01',
         'Fiktiver Demo-Ort. Ein Rastplatz an einem beispielhaften Wasserweg. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2355,7 +2355,7 @@ values
     ),
     (
         '0bb6574f-129f-5d1e-bd0f-1e70b93dce5f',
-        '[Demo] Lesegarten Bern 01',
+        'Lesegarten Bern 01',
         'Fiktiver Demo-Ort. Ein kleiner Gartenbereich für ruhige Pausen und gemeinsames Lesen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
@@ -2373,7 +2373,7 @@ values
     ),
     (
         '4fca1b8b-b8dd-5d18-a210-17902a76a85d',
-        '[Demo] Öffentlicher Arbeitsbereich Bern 01',
+        'Öffentlicher Arbeitsbereich Bern 01',
         'Fiktiver Demo-Ort. Ein beispielhafter Innenbereich mit Tischen für Laptop und Notizen. Lage und Ausstattung sind illustrative Testdaten.',
         (
             select
