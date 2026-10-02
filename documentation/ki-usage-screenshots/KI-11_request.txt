@@ -1,0 +1,82 @@
+can you find the compile errors why my app is not building 
+//
+//  PlacesView.swift
+//  FindMySpot
+//
+//  Created by josiaschweizer on 06.09.2026.
+//
+import SwiftUI
+@MainActor
+struct PlacesView: View {
+    @StateObject private var viewModel: PlacesViewModel
+    @StateObject private var filterViewModel: PlaceFilterViewModel
+    @State private var showFilters = false
+    @State private var appliedFilters = PlaceFilter()
+    init() {
+        let repository = PlaceRepository()
+        _viewModel = StateObject(
+            wrappedValue: PlacesViewModel(
+                fetchPlaces: {
+                    try await repository.getAll()
+                }
+            )
+        )
+        _filterViewModel = StateObject(
+            wrappedValue: PlaceFilterViewModel()
+        )
+    }
+    var body: some View {
+        PlacesMapView(viewModel: viewModel)
+            .overlay(alignment: .topTrailing) {
+                AppCard {
+                    AppIconButton(
+                        icon: AppIcons.filter,
+                        isEnabled: true
+                    ) {
+                        showFilters = true
+                    }
+                    .accessibilityLabel("Open Filters")
+                }
+                .padding(AppSpacing.lg)
+            }
+            .sheet(isPresented: $showFilters) {
+                Group {
+                    if filterViewModel.isLoading {
+                        ProgressView("Loading filter options...")
+                            .font(AppTypography.body)
+                            .tint(AppColors.primary)
+                    } else if let message = filterViewModel.errorMessage {
+                        AppCard {
+                            VStack(spacing: AppSpacing.lg) {
+                                AppErrorMessage(message: message)
+                                AppButton(
+                                    "Try again",
+                                    action: {
+                                        Task {
+                                            await filterViewModel.loadIfNeeded()
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                        .padding(AppSpacing.lg)
+                    } else {
+                        PlacesFilterView(
+                            purposes = filterViewModel.purposes,
+                            features = filterViewModel.features,
+                            selection: appliedFilters,
+                            onApply: { selection in
+                                appliedFilters = selection
+                            }
+                        )
+                    }
+                }
+                .task {
+                    await viewModel.loadIfNeeded()
+                }
+            }
+    }
+}
+#Preview {
+    PlacesView()
+}
