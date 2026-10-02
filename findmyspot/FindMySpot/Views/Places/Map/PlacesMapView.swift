@@ -11,8 +11,7 @@ import SwiftUI
 @MainActor
 struct PlacesMapView: View {
     @ObservedObject var viewModel: PlacesViewModel
-
-    @State private var selectedPlaceId: UUID?
+    @Binding var selectedPlaceId: UUID?
 
     private static let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
@@ -24,10 +23,6 @@ struct PlacesMapView: View {
             longitudeDelta: 0.045
         )
     )
-
-    private var selectedPlace: Place? {
-        viewModel.places.first { $0.id == selectedPlaceId }
-    }
 
     var body: some View {
         Map(
@@ -51,49 +46,12 @@ struct PlacesMapView: View {
             MapCompass()
             MapScaleView()
         }
-        .safeAreaInset(edge: .bottom) {
-            if let place = selectedPlace {
-                PlacePreviewContainer(
-                    place: place,
-                    onClose: {
-                        selectedPlaceId = nil
-                    }
-                )
-                .id(place.id)
-                .padding(AppSpacing.lg)
-            }
-        }
-        .task {
-            await viewModel.loadIfNeeded()
-        }
-    }
-
-    private func errorCard(message: String) -> some View {
-        AppCard {
-            VStack(
-                alignment: .leading,
-                spacing: AppSpacing.lg
-            ) {
-                AppErrorMessage(message: message)
-
-                AppButton("Try again") {
-                    Task {
-                        await viewModel.loadPlaces()
-                    }
-                }
-            }
-        }
-    }
-
-    private var emptyCard: some View {
-        AppCard {
-            Text("No locations available yet.")
-                .font(AppTypography.body)
-                .foregroundStyle(AppColors.textSecondary)
-        }
     }
 }
 
 #Preview {
-    PlacesMapView(viewModel: PlacesViewModel(fetchPlaces: { [] }))
+    PlacesMapView(
+        viewModel: PlacesViewModel(fetchPlaces: { [] }),
+        selectedPlaceId: .constant(nil)
+    )
 }

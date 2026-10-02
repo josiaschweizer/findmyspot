@@ -12,11 +12,17 @@ struct PlacesView: View {
     @StateObject private var viewModel: PlacesViewModel
     @StateObject private var filterViewModel: PlaceFilterViewModel
 
+    @State private var displayMode: PlaceDisplayMode = .map
+    @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
     @State private var appliedFilters = PlaceFilter()
 
     @State private var searchText: String
     @FocusState private var isSearchFieldFocused: Bool
+
+    private var selectedPlace: Place? {
+        viewModel.places.first { $0.id == selectedPlaceId }
+    }
 
     init() {
         let repository = PlaceRepository()
@@ -37,57 +43,48 @@ struct PlacesView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            PlacesMapView(viewModel: viewModel)
-                .ignoresSafeArea(.container, edges: .top)
-                .simultaneousGesture(
-                    TapGesture().onEnded {
+            PlacesMapView(
+                viewModel: viewModel,
+                selectedPlaceId: $selectedPlaceId
+            )
+            .ignoresSafeArea(.container, edges: .top)
+            .opacity(displayMode == .map ? 1 : 0)
+            .allowsHitTesting(displayMode == .map)
+            .accessibilityHidden(displayMode != .map)
+            .simultaneousGesture(
+                TapGesture().onEnded {
+                    isSearchFieldFocused = false
+                }
+            )
+
+            if displayMode == .list {
+                PlacesListView(
+                    places: viewModel.places,
+                    onSelect: { placeId in
                         isSearchFieldFocused = false
+                        selectedPlaceId = placeId
                     }
                 )
-
-            HStack(spacing: AppSpacing.lg) {
-                if viewModel.isLoading {
-                    loadingCard
-                } else {
-                    AppCard {
-                        HStack(spacing: AppSpacing.lg) {
-                            Image(systemName: AppIcons.search)
-                                .foregroundStyle(AppColors.primary)
-
-                            TextField(
-                                "Place or Properties...",
-                                text: $searchText
-                            )
-                            .font(AppTypography.body)
-                            .tint(AppColors.primary)
-                            .submitLabel(.search)
-                            .focused($isSearchFieldFocused)
-                            .onSubmit {
-                                isSearchFieldFocused = false
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-
-                    AppIconButton(
-                        icon: AppIcons.filter,
-                        isEnabled: true
-                    ) {
-                        isSearchFieldFocused = false
-                        showFilters = true
-                    }
-                    .background(AppColors.elevatedBackground, in: Circle())
-                    .accessibilityLabel("Open Filters")
-                }
             }
-            .padding(.horizontal, AppSpacing.lg)
-            .padding(.top, AppSpacing.lg)
         }
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
             alignment: .top
         )
+        .safeAreaInset(edge: .top, spacing: 0) {
+            PlaceFilterBar(
+                isLoading: viewModel.isLoading,
+                searchText: $searchText,
+                isSearchFieldFocused: $isSearchFieldFocused,
+                onOpenFilters: {
+                    showFilters = true
+                }
+            )
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            bottomContent.padding(AppSpacing.lg)
+        }
         .toolbar(.hidden, for: .navigationBar)
         .task {
             await viewModel.loadIfNeeded()
@@ -131,16 +128,18 @@ struct PlacesView: View {
         }
     }
 
-    private var loadingCard: some View {
-        AppCard {
-            HStack(spacing: AppSpacing.lg) {
-                ProgressView()
-                    .tint(AppColors.primary)
-
-                Text("Loading places...")
-                    .font(AppTypography.body)
-                    .foregroundStyle(AppColors.textPrimary)
-            }
+    @ViewBuilder  // TBD what is view builder
+    private var bottomContent: some View {
+        if let place = selectedPlace {
+            PlacePreviewContainer(
+                place: place,
+                onClose: {
+                    selectedPlaceId = nil
+                }
+            )
+            .id(place.id)
+        } else {
+            PlaceDisplaySwitcher(selection: $displayMode)
         }
     }
 }
