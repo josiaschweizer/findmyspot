@@ -56,4 +56,11 @@ final class PlaceFilterViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+
+    func getPlaceFilter() -> PlaceFilter {
+        return PlaceFilter(
+            purposeIDs: Set(purposes.map(\.id)),
+            featureIDs: Set(features.map(\.id))
+        )
+    }
 }

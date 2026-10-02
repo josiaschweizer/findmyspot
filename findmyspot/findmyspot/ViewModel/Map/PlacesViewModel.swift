@@ -14,17 +14,24 @@ final class PlacesViewModel: ObservableObject {
     @Published private(set) var places: [Place] = []
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
-
-    private let fetchPlaces: @MainActor () async throws -> [Place]
-    private var hasLoaded = false
+    @Published private(set) var filter = PlaceFilter()
 
     private let logger: Logger
+    private let placeRepository: PlaceRepository
 
-    init(
-        fetchPlaces: @escaping @MainActor () async throws -> [Place]
-    ) {
-        self.fetchPlaces = fetchPlaces
+    private var hasLoaded = false
+
+    init() {
+        self.placeRepository = PlaceRepository()
         self.logger = Logger(subsystem: "FindMySpot", category: "Places")
+    }
+
+    func apply(_ newFilter: PlaceFilter) async {
+        guard newFilter != filter else {
+            return
+        }
+        filter = newFilter
+        await loadPlaces()
     }
 
     func loadIfNeeded() async {
@@ -64,6 +71,10 @@ final class PlacesViewModel: ObservableObject {
 
             errorMessage = "The Places couldn't be loaded."
         }
+    }
+
+    private func fetchPlaces() async throws -> [Place] {
+        return try await placeRepository.getAll(placeFilter: filter)
     }
 
 }

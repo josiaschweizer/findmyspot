@@ -51,7 +51,7 @@ struct PlacesMapView: View {
 
 #Preview {
     PlacesMapView(
-        viewModel: PlacesViewModel(fetchPlaces: { [] }),
+        viewModel: PlacesViewModel(),
         selectedPlaceId: .constant(nil)
     )
 }

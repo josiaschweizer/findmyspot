@@ -82,13 +82,9 @@ struct PlacesFilterView: View {
                     ForEach(purposes) { purpose in
                         AppChoice(
                             title: purpose.name ?? purpose.slug,
-                            isSelected: draft.purposeIDs.contains(purpose.id)
+                            isSelected: draft.isSelected(purpose: purpose)
                         ) {
-                            if draft.purposeIDs.contains(purpose.id) {
-                                draft.purposeIDs.remove(purpose.id)
-                            } else {
-                                draft.purposeIDs.insert(purpose.id)
-                            }
+                            draft.toggle(purpose: purpose)
                         }
                         .accessibilityAddTraits(
                             draft.purposeIDs.contains(purpose.id)
@@ -125,16 +121,12 @@ struct PlacesFilterView: View {
                     ForEach(features) { feature in
                         AppChoice(
                             title: feature.name ?? feature.slug,
-                            isSelected: draft.featureIDs.contains(feature.id)
+                            isSelected: draft.isSelected(feature: feature)
                         ) {
-                            if draft.featureIDs.contains(feature.id) {
-                                draft.featureIDs.remove(feature.id)
-                            } else {
-                                draft.featureIDs.insert(feature.id)
-                            }
+                            draft.toggle(feature: feature)
                         }
                         .accessibilityAddTraits(
-                            draft.featureIDs.contains(feature.id)
+                            draft.isSelected(feature: feature)
                                 ? .isSelected : []
                         )
                     }

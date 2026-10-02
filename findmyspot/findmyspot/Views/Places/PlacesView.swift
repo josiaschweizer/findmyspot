@@ -9,36 +9,18 @@ import SwiftUI
 
 @MainActor
 struct PlacesView: View {
-    @StateObject private var viewModel: PlacesViewModel
-    @StateObject private var filterViewModel: PlaceFilterViewModel
+    @StateObject private var viewModel = PlacesViewModel()
+    @StateObject private var filterViewModel = PlaceFilterViewModel()
 
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
-    @State private var appliedFilters = PlaceFilter()
 
-    @State private var searchText: String
+    @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
 
     private var selectedPlace: Place? {
         viewModel.places.first { $0.id == selectedPlaceId }
-    }
-
-    init() {
-        let repository = PlaceRepository()
-
-        _viewModel = StateObject(
-            wrappedValue: PlacesViewModel(
-                fetchPlaces: {
-                    try await repository.getAll()
-                }
-            )
-        )
-        _filterViewModel = StateObject(
-            wrappedValue: PlaceFilterViewModel()
-        )
-
-        searchText = StringUtil.EMPTY
     }
 
     var body: some View {
@@ -121,9 +103,11 @@ struct PlacesView: View {
                     PlacesFilterView(
                         purposes: filterViewModel.purposes,
                         features: filterViewModel.features,
-                        selection: appliedFilters,
-                        onApply: { selection in
-                            appliedFilters = selection
+                        selection: viewModel.filter,
+                        onApply: { newFilter in
+                            Task {
+                                await viewModel.apply(newFilter)
+                            }
                         }
                     )
                 }
@@ -134,7 +118,7 @@ struct PlacesView: View {
         }
     }
 
-    @ViewBuilder  // TBD what is view builder
+    @ViewBuilder
     private var bottomContent: some View {
         if let place = selectedPlace {
             PlacePreviewContainer(
