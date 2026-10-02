@@ -14,11 +14,11 @@ struct PlaceFeatureRepository {
         self.supabase = supabase
     }
 
-    func getFeaturesByPlace(placeID: UUID) async throws -> [PlaceFeature] {
+    func getFeaturesByPlace(placeId: UUID) async throws -> [PlaceFeature] {
         try await supabase
             .from(FindMySpotEntities.PlaceFeature.rawValue)
             .select()
-            .eq("place_id", value: placeID.uuidString)
+            .eq("place_id", value: placeId.uuidString)
             .order("feature_id", ascending: true)
             .select()
             .execute()

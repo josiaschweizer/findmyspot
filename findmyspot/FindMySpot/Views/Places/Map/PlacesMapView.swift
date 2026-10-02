@@ -12,7 +12,7 @@ import SwiftUI
 struct PlacesMapView: View {
     @ObservedObject var viewModel: PlacesViewModel
 
-    @State private var selectedPlaceID: UUID?
+    @State private var selectedPlaceId: UUID?
 
     private static let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
@@ -26,13 +26,13 @@ struct PlacesMapView: View {
     )
 
     private var selectedPlace: Place? {
-        viewModel.places.first { $0.id == selectedPlaceID }
+        viewModel.places.first { $0.id == selectedPlaceId }
     }
 
     var body: some View {
         Map(
             initialPosition: .region(Self.initialRegion),
-            selection: $selectedPlaceID
+            selection: $selectedPlaceId
         ) {
             ForEach(viewModel.places) { place in
                 Marker(
@@ -56,7 +56,7 @@ struct PlacesMapView: View {
                 PlacePreviewContainer(
                     place: place,
                     onClose: {
-                        selectedPlaceID = nil
+                        selectedPlaceId = nil
                     }
                 )
                 .id(place.id)

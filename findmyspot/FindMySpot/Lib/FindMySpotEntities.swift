@@ -6,9 +6,9 @@
 //
 
 enum FindMySpotEntities: String {
-    case Bookmark = "bookmark"
-    case Category = "category"
-    case Favorite = "favorite"
+    case Bookmark = "bookmarks"
+    case Category = "categories"
+    case Favorite = "favorites"
     case Feature = "features"
     case Place = "places"
     case PlaceFeature = "place_features"

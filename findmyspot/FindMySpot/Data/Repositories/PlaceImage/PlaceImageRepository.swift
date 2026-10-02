@@ -22,12 +22,12 @@ struct PlaceImageRepository {
         self.supabase = supabase
     }
 
-    func getPreviewUrl(placeID: UUID) async throws -> URL? {
+    func getPreviewUrl(placeId: UUID) async throws -> URL? {
         let images: [ImageRow] =
             try await supabase
             .from(FindMySpotEntities.PlaceImage.rawValue)
             .select("storage_path")
-            .eq("place_id", value: placeID.uuidString)
+            .eq("place_id", value: placeId.uuidString)
             .order("sort_order", ascending: true)
             .order("id", ascending: true)
             .limit(1)
@@ -39,7 +39,7 @@ struct PlaceImageRepository {
         }
 
         return try await supabase.storage
-            .from(FindMySpotEntities.PlaceImage.rawValue)
+            .from("place-images")
             .createSignedURL(
                 path: image.storagePath,
                 expiresIn: 3600

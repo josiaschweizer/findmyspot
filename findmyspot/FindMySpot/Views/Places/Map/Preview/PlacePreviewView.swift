@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct PlacePreviewView: View {
+    @Environment(UserNotifier.self) private var userNotifier
+
     let place: Place
 
     var imageURL: URL? = nil
@@ -14,10 +16,12 @@ struct PlacePreviewView: View {
     var featureNames: [String] = []
 
     var isFavorite = false
+    var isFavoriteSaving = false
+    var onFavorite: ((UUID, UserNotifier) -> Void)? = nil
     var isBookmark = false
+    var isBookmarkSaving = false
+    var onBookmark: ((UUID, UserNotifier) -> Void)? = nil
 
-    var onFavorite: (() -> Void)? = nil
-    var onBookmark: (() -> Void)? = nil
     var onClose: () -> Void
 
     var body: some View {
@@ -64,9 +68,9 @@ struct PlacePreviewView: View {
                 AppIconButton(
                     icon: isFavorite
                         ? AppIcons.favoriteSelected : AppIcons.favorite,
-                    isEnabled: onFavorite != nil,
+                    isEnabled: onFavorite != nil && !isFavoriteSaving,
                     action: {
-                        onFavorite?()
+                        onFavorite?(place.id, userNotifier)
                     }
                 )
                 .accessibilityLabel(
@@ -76,9 +80,9 @@ struct PlacePreviewView: View {
                 AppIconButton(
                     icon: isBookmark
                         ? AppIcons.bookmarkSelected : AppIcons.bookmark,
-                    isEnabled: onBookmark != nil,
+                    isEnabled: onBookmark != nil && !isBookmarkSaving,
                     action: {
-                        onBookmark?()
+                        onBookmark?(place.id, userNotifier)
                     }
                 )
                 .accessibilityLabel(

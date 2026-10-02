@@ -32,7 +32,7 @@ struct PlacePreviewContainer: View {
                                 "Try again",
                                 action: {
                                     Task {
-                                        await viewModel.load(placeID: place.id)
+                                        await viewModel.load(placeId: place.id)
                                     }
                                 }
                             )
@@ -44,12 +44,16 @@ struct PlacePreviewContainer: View {
                     place: place,
                     imageURL: viewModel.imageURL,
                     featureNames: viewModel.featureNames,
+                    isFavorite: viewModel.isFavorite,
+                    onFavorite: viewModel.toggleFavorite,
+                    isBookmark: viewModel.isBookmark,
+                    onBookmark: viewModel.toggleBookmark,
                     onClose: onClose
                 )
             }
         }
         .task {
-            await viewModel.load(placeID: place.id)
+            await viewModel.load(placeId: place.id)
         }
     }
 }

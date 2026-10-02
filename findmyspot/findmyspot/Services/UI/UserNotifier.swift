@@ -13,20 +13,15 @@ final class UserNotifier {
     var toast: Toast?
 
     func success(_ message: String) {
-        show(
-            Toast(
-                message: message,
-                type: .success
-            )
-        )
+        show(message, type: .success)
     }
 
     func error(_ message: String) {
-
+        show(message, type: .error)
     }
 
     func info(_ message: String) {
-
+        show(message, type: .info)
     }
 
     func dismiss() {
