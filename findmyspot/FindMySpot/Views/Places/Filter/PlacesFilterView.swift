@@ -78,20 +78,23 @@ struct PlacesFilterView: View {
                     .font(AppTypography.caption)
                     .foregroundStyle(AppColors.textSecondary)
 
-                ForEach(purposes) { purpose in
-                    AppChoice(
-                        title: purpose.name ?? purpose.slug,
-                        isSelected: draft.purposeIDs.contains(purpose.id)
-                    ) {
-                        if draft.purposeIDs.contains(purpose.id) {
-                            draft.purposeIDs.remove(purpose.id)
-                        } else {
-                            draft.purposeIDs.insert(purpose.id)
+                FlowLayout(spacing: AppSpacing.sm) {
+                    ForEach(purposes) { purpose in
+                        AppChoice(
+                            title: purpose.name ?? purpose.slug,
+                            isSelected: draft.purposeIDs.contains(purpose.id)
+                        ) {
+                            if draft.purposeIDs.contains(purpose.id) {
+                                draft.purposeIDs.remove(purpose.id)
+                            } else {
+                                draft.purposeIDs.insert(purpose.id)
+                            }
                         }
+                        .accessibilityAddTraits(
+                            draft.purposeIDs.contains(purpose.id)
+                                ? .isSelected : []
+                        )
                     }
-                    .accessibilityAddTraits(
-                        draft.purposeIDs.contains(purpose.id) ? .isSelected : []
-                    )
                 }
 
                 if purposes.isEmpty {
@@ -118,20 +121,23 @@ struct PlacesFilterView: View {
                     .font(AppTypography.caption)
                     .foregroundStyle(AppColors.textSecondary)
 
-                ForEach(features) { feature in
-                    AppChoice(
-                        title: feature.name ?? feature.slug,
-                        isSelected: draft.featureIDs.contains(feature.id)
-                    ) {
-                        if draft.featureIDs.contains(feature.id) {
-                            draft.featureIDs.remove(feature.id)
-                        } else {
-                            draft.featureIDs.insert(feature.id)
+                FlowLayout(spacing: AppSpacing.sm) {
+                    ForEach(features) { feature in
+                        AppChoice(
+                            title: feature.name ?? feature.slug,
+                            isSelected: draft.featureIDs.contains(feature.id)
+                        ) {
+                            if draft.featureIDs.contains(feature.id) {
+                                draft.featureIDs.remove(feature.id)
+                            } else {
+                                draft.featureIDs.insert(feature.id)
+                            }
                         }
+                        .accessibilityAddTraits(
+                            draft.featureIDs.contains(feature.id)
+                                ? .isSelected : []
+                        )
                     }
-                    .accessibilityAddTraits(
-                        draft.featureIDs.contains(feature.id) ? .isSelected : []
-                    )
                 }
 
                 if features.isEmpty {
