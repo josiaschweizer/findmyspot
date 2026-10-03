@@ -1,3 +1,4 @@
+import Foundation
 //
 //  FavoriteRepository.swift
 //  FindMySpot
@@ -5,7 +6,6 @@
 //  Created by josiaschweizer on 01.10.2026.
 //
 import Supabase
-import Foundation
 
 struct FavoriteRepository {
     private var supabase: SupabaseClient
@@ -30,6 +30,22 @@ struct FavoriteRepository {
         return favorites.first
     }
 
+    func getAll() async throws -> [Favorite] {
+        let user = try await supabase.auth.user()
+        
+        return try await getAll(user.id)
+    }
+
+    func getAll(_ userId: UUID) async throws -> [Favorite] {
+        return
+            try await supabase
+            .from(FindMySpotEntities.Bookmark.rawValue)
+            .select()
+            .eq("user_id", value: userId.uuidString)
+            .execute()
+            .value
+    }
+
     func create(placeId: UUID) async throws {
         let user = try await supabase.auth.user()
 
@@ -41,10 +57,10 @@ struct FavoriteRepository {
             ])
             .execute()
     }
-    
+
     func deleteByPlaceId(placeId: UUID) async throws {
         let user = try await supabase.auth.user()
-        
+
         try await supabase
             .from(FindMySpotEntities.Favorite.rawValue)
             .delete()

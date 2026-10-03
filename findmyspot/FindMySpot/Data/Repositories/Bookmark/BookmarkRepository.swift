@@ -30,6 +30,22 @@ struct BookmarkRepository {
         return bookmarks.first
     }
 
+    func getAll() async throws -> [Bookmark] {
+        let user = try await supabase.auth.user()
+        
+        return try await getAll(user.id)
+    }
+
+    func getAll(_ userId: UUID) async throws -> [Bookmark] {
+        return
+            try await supabase
+            .from(FindMySpotEntities.Bookmark.rawValue)
+            .select()
+            .eq("user_id", value: userId.uuidString)
+            .execute()
+            .value
+    }
+
     func create(placeId: UUID) async throws {
         let user = try await supabase.auth.user()
 

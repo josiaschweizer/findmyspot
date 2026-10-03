@@ -24,6 +24,9 @@ struct Place: Codable, Identifiable {
     let createdBy: UUID?  // has to be nullabel bc when a user gets deleted we don't also have to delete the places he created -> so we just set the ID null
     let status: PlaceStatus
 
+    var isBookmark: Bool
+    var isFavorite: Bool
+
     let createdAt: Date
     let updatedAt: Date
 
@@ -49,6 +52,9 @@ struct Place: Codable, Identifiable {
 
         case createdBy = "created_by"
         case status
+
+        case isBookmark = "is_bookmark"
+        case isFavorite = "is_favorite"
 
         case createdAt = "created_at"
         case updatedAt = "updated_at"

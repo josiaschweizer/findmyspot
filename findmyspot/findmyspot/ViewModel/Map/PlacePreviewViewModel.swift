@@ -107,7 +107,11 @@ final class PlacePreviewViewModel: ObservableObject {
             != nil
     }
 
-    func toggleFavorite(placeId: UUID, userNotifier: UserNotifier) {
+    func toggleFavorite(
+        placeId: UUID,
+        userNotifier: UserNotifier,
+        onChange: @escaping (Bool) -> Void
+    ) {
         guard !isFavoritesSaving else {
             return
         }
@@ -129,6 +133,7 @@ final class PlacePreviewViewModel: ObservableObject {
                     try await favoriteRepository.create(placeId: placeId)
                     isFavorite = true
                 }
+                onChange(isFavorite)
             } catch {
                 print("request failed:", String(reflecting: error))
                 userNotifier.error("The favorite could not be updated.")
@@ -136,7 +141,11 @@ final class PlacePreviewViewModel: ObservableObject {
         }
     }
 
-    func toggleBookmark(placeId: UUID, userNotifier: UserNotifier) {
+    func toggleBookmark(
+        placeId: UUID,
+        userNotifier: UserNotifier,
+        onChange: @escaping (Bool) -> Void
+    ) {
         guard !isBookmarksSaving else {
             return
         }
@@ -158,6 +167,7 @@ final class PlacePreviewViewModel: ObservableObject {
                     try await bookmarkRepository.create(placeId: placeId)
                     isBookmark = true
                 }
+                onChange(isBookmark)
             } catch {
                 print("request failed:", String(reflecting: error))
                 userNotifier.error("The bookmark could not be updated.")

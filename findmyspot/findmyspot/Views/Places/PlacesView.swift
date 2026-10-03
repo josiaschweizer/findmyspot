@@ -77,10 +77,10 @@ struct PlacesView: View {
         .task {
             await viewModel.loadIfNeeded()
         }
-        .task(id: searchText){
+        .task(id: searchText) {
             try? await Task.sleep(for: .milliseconds(300))
             guard !Task.isCancelled else {
-                return;
+                return
             }
             await viewModel.search(searchText)
         }
@@ -132,6 +132,12 @@ struct PlacesView: View {
                 place: place,
                 onClose: {
                     selectedPlaceId = nil
+                },
+                onBookmarkChanged: {
+                    viewModel.setBookmark($0, for: place.id)
+                },
+                onFavoriteChanged: {
+                    viewModel.setFavorite($0, for: place.id)
                 }
             )
             .id(place.id)

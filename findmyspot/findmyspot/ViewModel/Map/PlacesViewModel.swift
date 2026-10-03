@@ -29,20 +29,20 @@ final class PlacesViewModel: ObservableObject {
     func apply(_ newFilter: PlaceFilter) async {
         var updated = newFilter
         updated.applySearchText(filter.searchText)
-        
+
         guard newFilter != filter else {
             return
         }
         filter = updated
         await loadPlaces()
     }
-    
+
     func search(_ text: String) async {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard trimmed != filter.searchText else {
-            return;
+            return
         }
-        
+
         filter.applySearchText(text)
         await loadPlaces()
     }
@@ -88,6 +88,20 @@ final class PlacesViewModel: ObservableObject {
 
     private func fetchPlaces() async throws -> [Place] {
         return try await placeRepository.getAll(placeFilter: filter)
+    }
+
+    func setBookmark(_ value: Bool, for placeId: UUID) {
+        guard let index = places.firstIndex(where: { $0.id == placeId }) else {
+            return
+        }
+        places[index].isBookmark = value
+    }
+
+    func setFavorite(_ value: Bool, for placeId: UUID) {
+        guard let index = places.firstIndex(where: { $0.id == placeId }) else {
+            return
+        }
+        places[index].isFavorite = value
     }
 
 }

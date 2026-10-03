@@ -30,15 +30,23 @@ struct PlacesMapView: View {
             selection: $selectedPlaceId
         ) {
             ForEach(viewModel.places) { place in
-                Marker(
+                Annotation(
                     place.name,
                     coordinate: CLLocationCoordinate2D(
                         latitude: place.latitude,
                         longitude: place.longitude
+                    ),
+                    anchor: .center
+                ) {
+                    PlacePinView(
+                        style: PlacePinStyle(
+                            isFavorite: place.isFavorite,
+                            isBookmark: place.isBookmark
+                        ),
+                        isSelected: selectedPlaceId == place.id
                     )
-                )
+                }
                 .tag(place.id)
-
             }
         }
         .mapStyle(.standard)

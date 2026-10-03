@@ -25,8 +25,8 @@ enum AppLayout {
     static let compactCardMinHeight: CGFloat = 76
 
     // Map
-    static let mapPinSize: CGFloat = 40
-    static let selectedMapPinSize: CGFloat = 46
+    static let mapPinSize: CGFloat = 30
+    static let selectedMapPinSize: CGFloat = 36
     
     // Components
     static let textAreaMinHeight: CGFloat = 100

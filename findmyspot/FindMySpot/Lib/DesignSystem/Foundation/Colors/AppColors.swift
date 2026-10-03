@@ -45,6 +45,8 @@ enum AppColors {
 
     static let statusErrorBackground = Color("StatusErrorBackground")
 
+    static let actionPinBookmark = Color("PinBookmark")
+
 }
 
 extension AppColors {
@@ -77,5 +79,11 @@ extension AppColors {
 
     static let error = textDestructive
     static let errorBackground = statusErrorBackground
+
+    static let pin = statusSuccess
+    static let pinIcon = surfaceWhite
+    static let pinFavorite = textDestructive
+    static let pinBookmark = actionPinBookmark
+    static let pinBookmarkIcon = brand950
 
 }

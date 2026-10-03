@@ -11,6 +11,8 @@ import SwiftUI
 struct PlacePreviewContainer: View {
     let place: Place
     let onClose: () -> Void
+    let onBookmarkChanged: (Bool) -> Void
+    let onFavoriteChanged: (Bool) -> Void
 
     @StateObject private var viewModel = PlacePreviewViewModel()
 
@@ -45,9 +47,21 @@ struct PlacePreviewContainer: View {
                     imageURL: viewModel.imageURL,
                     featureNames: viewModel.featureNames,
                     isFavorite: viewModel.isFavorite,
-                    onFavorite: viewModel.toggleFavorite,
+                    onFavorite: { placeId, notifier in
+                        viewModel.toggleFavorite(
+                            placeId: placeId,
+                            userNotifier: notifier,
+                            onChange: onFavoriteChanged
+                        )
+                    },
                     isBookmark: viewModel.isBookmark,
-                    onBookmark: viewModel.toggleBookmark,
+                    onBookmark: { placeId, notifier in
+                        viewModel.toggleBookmark(
+                            placeId: placeId,
+                            userNotifier: notifier,
+                            onChange: onBookmarkChanged
+                        )
+                    },
                     onClose: onClose
                 )
             }
