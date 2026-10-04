@@ -27,8 +27,8 @@ as $$
         p.description,
         p.category_id,
 
-        st_y(p.location::geometry) as latitude,
-        st_x(p.location::geometry) as longitude,
+        extensions.st_y(p.location::extensions.geometry) as latitude,
+        extensions.st_x(p.location::extensions.geometry) as longitude,
 
         p.address,
         p.postal_code,

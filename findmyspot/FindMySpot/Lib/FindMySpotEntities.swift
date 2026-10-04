@@ -6,14 +6,14 @@
 //
 
 enum FindMySpotEntities: String {
-    case Bookmark = "Bookmark"
-    case Category = "Category"
-    case Favorite = "Favorite"
-    case Feature = "Feature"
-    case Place = "Place"
-    case PlaceFeature = "PlaceFeature"
-    case PlaceImage = "PlaceImage"
-    case PlacePurpose = "PlacePurpose"
-    case Profile = "Profile"
-    case Purpose = "Purpose"
+    case Bookmark = "bookmarks"
+    case Category = "categories"
+    case Favorite = "favorites"
+    case Feature = "features"
+    case Place = "places"
+    case PlaceFeature = "place_features"
+    case PlaceImage = "place_images"
+    case PlacePurpose = "place_purposes"
+    case Profile = "profile"
+    case Purpose = "purposes"
 }
