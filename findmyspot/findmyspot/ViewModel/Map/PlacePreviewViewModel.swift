@@ -20,6 +20,8 @@ final class PlacePreviewViewModel: ObservableObject {
     @Published private(set) var isBookmark = false
     @Published private(set) var isBookmarksSaving = false
 
+    private var currentPlaceId: UUID?
+
     private let featureRepository: FeatureRepository
     private let bookmarkRepository: BookmarkRepository
     private let favoriteRepository: FavoriteRepository
@@ -46,6 +48,8 @@ final class PlacePreviewViewModel: ObservableObject {
         errorMessage = nil
         imageURL = nil
         featureNames = []
+
+        currentPlaceId = placeId
 
         defer {
             isLoading = false
@@ -116,6 +120,11 @@ final class PlacePreviewViewModel: ObservableObject {
             return
         }
 
+        let previous = isFavorite
+        let target = !previous
+
+        isFavorite = target
+        onChange(target)
         isFavoritesSaving = true
 
         Task {
@@ -124,18 +133,22 @@ final class PlacePreviewViewModel: ObservableObject {
             }
 
             do {
-                if isFavorite {
+                if target {
+                    try await favoriteRepository.create(placeId: placeId)
+                } else {
                     try await favoriteRepository.deleteByPlaceId(
                         placeId: placeId
                     )
-                    isFavorite = false
-                } else {
-                    try await favoriteRepository.create(placeId: placeId)
-                    isFavorite = true
                 }
-                onChange(isFavorite)
             } catch {
-                print("request failed:", String(reflecting: error))
+                guard currentPlaceId == placeId else {
+                    return
+                }
+                // revert ui state to db state
+                isFavorite = previous
+                onChange(previous)
+                
+                // show user information
                 userNotifier.error("The favorite could not be updated.")
             }
         }
@@ -150,6 +163,11 @@ final class PlacePreviewViewModel: ObservableObject {
             return
         }
 
+        let previous = isBookmark
+        let target = !previous
+
+        isBookmark = target
+        onChange(target)
         isBookmarksSaving = true
 
         Task {
@@ -158,18 +176,23 @@ final class PlacePreviewViewModel: ObservableObject {
             }
 
             do {
-                if isBookmark {
+                if target {
+                    try await bookmarkRepository.create(placeId: placeId)
+                } else {
                     try await bookmarkRepository.deleteByPlaceId(
                         placeId: placeId
                     )
-                    isBookmark = false
-                } else {
-                    try await bookmarkRepository.create(placeId: placeId)
-                    isBookmark = true
                 }
-                onChange(isBookmark)
             } catch {
-                print("request failed:", String(reflecting: error))
+                guard currentPlaceId == placeId else {
+                    return
+                }
+                
+                // revert ui state to db state
+                isBookmark = previous
+                onChange(previous)
+                
+                // show user information
                 userNotifier.error("The bookmark could not be updated.")
             }
         }

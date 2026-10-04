@@ -44,6 +44,7 @@ struct PlacesView: View {
                     places: viewModel.places,
                     onSelect: { placeId in
                         isSearchFieldFocused = false
+                        // TBD replace with direct redirect onto detail page (no preview)
                         selectedPlaceId = placeId
                     }
                 )

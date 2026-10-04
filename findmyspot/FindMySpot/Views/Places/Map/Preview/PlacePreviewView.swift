@@ -65,9 +65,10 @@ struct PlacePreviewView: View {
             HStack(spacing: AppSpacing.sm) {
                 Spacer()
 
-                AppIconButton(
-                    icon: isFavorite
-                        ? AppIcons.favoriteSelected : AppIcons.favorite,
+                AppToggleIconButton(
+                    icon: AppIcons.favorite,
+                    selectedIcon: AppIcons.favoriteSelected,
+                    isSelected: isFavorite,
                     isEnabled: onFavorite != nil && !isFavoriteSaving,
                     action: {
                         onFavorite?(place.id, userNotifier)
@@ -77,9 +78,10 @@ struct PlacePreviewView: View {
                     isFavorite ? "Remove favorite" : "Add favorite"
                 )
 
-                AppIconButton(
-                    icon: isBookmark
-                        ? AppIcons.bookmarkSelected : AppIcons.bookmark,
+                AppToggleIconButton(
+                    icon: AppIcons.bookmark,
+                    selectedIcon: AppIcons.bookmarkSelected,
+                    isSelected: isBookmark,
                     isEnabled: onBookmark != nil && !isBookmarkSaving,
                     action: {
                         onBookmark?(place.id, userNotifier)
@@ -89,6 +91,7 @@ struct PlacePreviewView: View {
                     isBookmark ? "Remove bookmark" : "Add bookmark"
                 )
             }
+            .id(place.id)
         }
         .padding(AppSpacing.lg)
         .background(
