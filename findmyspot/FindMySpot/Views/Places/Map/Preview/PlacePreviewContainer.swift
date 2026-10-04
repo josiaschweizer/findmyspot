@@ -11,6 +11,7 @@ import SwiftUI
 struct PlacePreviewContainer: View {
     let place: Place
     let onClose: () -> Void
+    let onOpenDetail: () -> Void
     let onBookmarkChanged: (Bool) -> Void
     let onFavoriteChanged: (Bool) -> Void
 
@@ -62,7 +63,8 @@ struct PlacePreviewContainer: View {
                             onChange: onBookmarkChanged
                         )
                     },
-                    onClose: onClose
+                    onClose: onClose,
+                    onOpenDetail: onOpenDetail
                 )
             }
         }
