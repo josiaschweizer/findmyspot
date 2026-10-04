@@ -14,6 +14,7 @@ struct PlacesView: View {
 
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
+    @State private var detailPlaceId: UUID?
     @State private var showFilters = false
 
     @State private var searchText = StringUtil.EMPTY
@@ -85,6 +86,11 @@ struct PlacesView: View {
             }
             await viewModel.search(searchText)
         }
+        .navigationDestination(item: $detailPlaceId) { placeId in
+            if let place = viewModel.places.first(where: { $0.id == placeId }) {
+                PlaceDetailView(place: place)
+            }
+        }
         .sheet(isPresented: $showFilters) {
             Group {
                 if filterViewModel.isLoading {
@@ -133,6 +139,9 @@ struct PlacesView: View {
                 place: place,
                 onClose: {
                     selectedPlaceId = nil
+                },
+                onOpenDetail: {
+                    detailPlaceId = place.id
                 },
                 onBookmarkChanged: {
                     viewModel.setBookmark($0, for: place.id)

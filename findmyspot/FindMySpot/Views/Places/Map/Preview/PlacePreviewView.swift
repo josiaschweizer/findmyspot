@@ -23,6 +23,7 @@ struct PlacePreviewView: View {
     var onBookmark: ((UUID, UserNotifier) -> Void)? = nil
 
     var onClose: () -> Void
+    var onOpenDetail: () -> Void
 
     var body: some View {
         VStack(spacing: AppSpacing.md) {
@@ -60,6 +61,9 @@ struct PlacePreviewView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .contentShape(Rectangle())
+            .onTapGesture(perform: onOpenDetail)
+            .accessibilityAddTraits(.isButton)
             .padding(.trailing, AppSpacing.lg)
 
             HStack(spacing: AppSpacing.sm) {
