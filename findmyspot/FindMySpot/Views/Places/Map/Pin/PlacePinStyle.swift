@@ -11,37 +11,47 @@ enum PlacePinStyle {
     case standard
     case favorite
     case bookmark
-    case both
 
     init(isFavorite: Bool, isBookmark: Bool) {
-        switch (isFavorite, isBookmark) {
-        case (true, true): self = .both
-        case (true, false): self = .favorite
-        case (false, true): self = .bookmark
-        case (false, false): self = .standard
+        if isFavorite {
+            self = .favorite
+        } else if isBookmark {
+            self = .bookmark
+        } else {
+            self = .standard
         }
     }
 
     var color: Color {
         switch self {
         case .standard: AppColors.pin
-        case .favorite, .both: AppColors.pinFavorite
+        case .favorite: AppColors.pinFavorite
         case .bookmark: AppColors.pinBookmark
         }
     }
 
     var iconColor: Color {
-        switch self {
-        case .bookmark: AppColors.pinBookmarkIcon
-        default: AppColors.pinIcon
-        }
+        AppColors.pinIcon
     }
 
-    var icon: String {
+    enum PinIcon {
+        case asset(String)
+        case system(String)
+    }
+
+    var icon: PinIcon {
         switch self {
-        case .standard: AppIcons.pin
-        case .favorite, .both: AppIcons.favoriteSelected
-        case .bookmark: AppIcons.bookmarkSelected
+        case .standard: .asset(AppIcons.locationDto)
+        case .favorite: .system(AppIcons.favoriteSelected)
+        case .bookmark: .system(AppIcons.bookmarkSelected)
+        }
+    }
+    
+    var iconScale: CGFloat {
+        switch self {
+        case .standard: 0.5
+        case .favorite: 0.45
+        case .bookmark: 0.5
         }
     }
 
@@ -50,7 +60,6 @@ enum PlacePinStyle {
         case .standard: "Place"
         case .bookmark: "Bookmarked place"
         case .favorite: "Favorite place"
-        case .both: "Favorite and bookmarked place"
         }
     }
 }
