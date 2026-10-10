@@ -8,4 +8,5 @@
 enum AppIconButtonVariant {
     case plain
     case filled
+    case circle
 }

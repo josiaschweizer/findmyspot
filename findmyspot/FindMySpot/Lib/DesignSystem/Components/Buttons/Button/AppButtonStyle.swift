@@ -50,6 +50,6 @@ struct AppButtonStyle: ButtonStyle {
                     cornerRadius: AppRadius.md
                 )
             )
-            .opacity(configuration.isPressed ? 0.85 : 1)
+            .appPressedEffect(configuration.isPressed)
     }
 }
