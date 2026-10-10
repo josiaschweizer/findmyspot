@@ -1,3 +1,4 @@
+import CoreLocation
 //
 //  PlacesListView.swift
 //  FindMySpot
@@ -8,12 +9,14 @@ import SwiftUI
 
 struct PlacesListView: View {
     let places: [Place]
+    let userLocation: CLLocation?
+    let sortOrder: PlaceSortOrder
     let onSelect: (UUID) -> Void
 
     var body: some View {
         ScrollView {
             LazyVStack(spacing: AppSpacing.md) {
-                ForEach(places) { place in
+                ForEach(sortedPlaces) { place in
                     Button(
                         action: {
                             onSelect(place.id)
@@ -65,5 +68,58 @@ struct PlacesListView: View {
         }
         .scrollDismissesKeyboard(.interactively)
         .background(AppColors.background)
+    }
+
+    private func alphabetical(_ lhs: Place, _ rhs: Place) -> Bool {
+        let comparison = lhs.name.localizedStandardCompare(rhs.name)
+
+        if comparison == .orderedSame {
+            return lhs.id.uuidString < rhs.id.uuidString
+        }
+
+        return comparison == .orderedAscending
+    }
+
+    private var sortedPlaces: [Place] {
+        switch sortOrder {
+        case .nameAscending:
+            return places.sorted { alphabetical($0, $1) }
+        case .nameDescending:
+            return places.sorted { alphabetical($1, $0) }
+        case .favoritesFirst:
+            return places.sorted { lhs, rhs in
+                if lhs.isFavorite != rhs.isFavorite {
+                    return lhs.isFavorite
+                }
+
+                return alphabetical(lhs, rhs)
+            }
+        case .nearest:
+            guard let userLocation else {
+                return places.sorted { alphabetical($0, $1) }
+            }
+
+            return
+                places
+                .map { place in
+                    (
+                        place: place,
+                        distance: userLocation.distance(
+                            from: CLLocation(
+                                latitude: place.latitude,
+                                longitude: place.longitude
+                            )
+                        )
+                    )
+                }
+                .sorted { lhs, rhs in
+                    if lhs.distance == rhs.distance {
+                        return alphabetical(lhs.place, rhs.place)
+                    }
+
+                    return lhs.distance < rhs.distance
+                }
+                .map(\.place)
+        }
     }
 }

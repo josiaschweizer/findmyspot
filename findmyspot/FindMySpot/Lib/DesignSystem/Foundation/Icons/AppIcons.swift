@@ -30,6 +30,7 @@ enum AppIcons {
     static let bookmark = "bookmark"
     static let bookmarkSelected = "bookmark.fill"
     static let location = "location"
+    static let arrowUpArrowDown = "arrow.up.arrow.down"
 
     // FAW
     static let locationDto = "location-dot-solid-full"

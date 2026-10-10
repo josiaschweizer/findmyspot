@@ -15,6 +15,10 @@ struct PlaceFilterBar: View {
 
     let onOpenFilters: () -> Void
 
+    @Binding var sortOrder: PlaceSortOrder
+    let showsSortButton: Bool
+    let canSortByDistance: Bool
+
     var body: some View {
         HStack(spacing: AppSpacing.lg) {
             AppCard {
@@ -29,6 +33,7 @@ struct PlaceFilterBar: View {
                     .font(AppTypography.body)
                     .tint(AppColors.primary)
                     .submitLabel(.search)
+                    .focused(isSearchFieldFocused)
                     .onSubmit {
                         isSearchFieldFocused.wrappedValue = false
                     }
@@ -55,6 +60,33 @@ struct PlaceFilterBar: View {
                 in: Circle()
             )
             .accessibilityLabel("Open Filters")
+
+            if showsSortButton {
+                Menu {
+                    Picker("Sort by", selection: $sortOrder) {
+                        ForEach(PlaceSortOrder.allCases) { option in
+                            Text(option.title)
+                                .tag(option)
+                                .disabled(
+                                    option == .nearest && !canSortByDistance
+                                )
+                        }
+                    }
+                } label: {
+                    Image(systemName: AppIcons.arrowUpArrowDown)
+                        .font(AppTypography.label)
+                        .foregroundStyle(AppColors.primary)
+                        .frame(width: 44, height: 44)
+                        .background(
+                            AppColors.elevatedBackground,
+                            in: Circle()
+                        )
+                        .contentShape(Circle())
+                }
+                .menuStyle(.borderlessButton)
+                .accessibilityLabel("Sort places")
+                .accessibilityValue(sortOrder.title)
+            }
         }
         .padding(.horizontal, AppSpacing.lg)
         .padding(.top, AppSpacing.lg)

@@ -41,9 +41,4 @@ struct PlaceFilter: Equatable {
     mutating func applySearchText(_ searchText: String) {
         self.searchText = searchText
     }
-
-    mutating func reset() {
-        purposeIDs.removeAll()
-        featureIDs.removeAll()
-    }
 }
