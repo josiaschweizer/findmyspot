@@ -24,6 +24,8 @@ struct PlacesView: View {
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
 
+    @State private var showCreatePlaceHolder = false
+
     private var selectedPlace: Place? {
         viewModel.places.first { $0.id == selectedPlaceId }
     }
@@ -177,18 +179,44 @@ struct PlacesView: View {
         } else {
             PlaceDisplaySwitcher(selection: $displayMode)
                 .frame(maxWidth: .infinity)
-                .overlay(alignment: .trailing) {
-                    if displayMode == .map {
-                        MapUserLocationButton(scope: mapScope)
-                            .frame(width: 44, height: 44)
-                            .tint(AppColors.primary)
-                            .background(
-                                AppColors.elevatedBackground,
-                                in: Circle()
+                .overlay(alignment: .bottomTrailing) {
+                    VStack(spacing: AppSpacing.md) {
+                        if displayMode == .map {
+
+                            MapUserLocationButton(scope: mapScope)
+                                .frame(width: 44, height: 44)
+                                .tint(AppColors.primary)
+                                .background(
+                                    AppColors.elevatedBackground,
+                                    in: Circle()
+                                )
+                                .appPressEffect()
+
+                            AppIconButton(
+                                icon: AppIcons.add,
+                                variant: .circle,
+                                isEnabled: true,
+                                action: openCreatePlace
                             )
+                            .tint(AppColors.primary)
+                            .accessibilityLabel("Create new place")
+                        }
                     }
                 }
         }
+    }
+
+    // TODO @janik pls delete
+    @Environment(UserNotifier.self) private var notifier
+
+    private func openCreatePlace() {
+        isSearchFieldFocused = false
+
+        // TODO @janik - call the place create form here & delete notifier call
+        notifier.info(
+            "Create Place no available for now - feature will come soon."
+        )
+
     }
 }
 
