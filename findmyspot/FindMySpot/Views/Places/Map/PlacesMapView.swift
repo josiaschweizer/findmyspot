@@ -11,6 +11,9 @@ import SwiftUI
 @MainActor
 struct PlacesMapView: View {
     @ObservedObject var viewModel: PlacesViewModel
+    @StateObject private var locationPermission = LocationPermissionManager()
+
+    let mapScope: Namespace.ID
     @Binding var selectedPlaceId: UUID?
 
     private static let initialRegion = MKCoordinateRegion(
@@ -27,8 +30,11 @@ struct PlacesMapView: View {
     var body: some View {
         Map(
             initialPosition: .region(Self.initialRegion),
-            selection: $selectedPlaceId
+            selection: $selectedPlaceId,
+            scope: mapScope
         ) {
+            UserAnnotation()
+
             ForEach(viewModel.places) { place in
                 Annotation(
                     place.name,
@@ -54,12 +60,19 @@ struct PlacesMapView: View {
             MapCompass()
             MapScaleView()
         }
+        .task {
+            locationPermission.requestIfNeeded()
+        }
     }
 }
 
 #Preview {
+    @Previewable @Namespace var mapScope
+
     PlacesMapView(
         viewModel: PlacesViewModel(),
+        mapScope: mapScope,
         selectedPlaceId: .constant(nil)
     )
+    .mapScope(mapScope)
 }

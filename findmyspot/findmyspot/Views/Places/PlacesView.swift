@@ -5,12 +5,15 @@
 //  Created by josiaschweizer on 06.09.2026.
 //
 
+import MapKit
 import SwiftUI
 
 @MainActor
 struct PlacesView: View {
     @StateObject private var viewModel = PlacesViewModel()
     @StateObject private var filterViewModel = PlaceFilterViewModel()
+
+    @Namespace private var mapScope
 
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
@@ -27,6 +30,7 @@ struct PlacesView: View {
         ZStack(alignment: .top) {
             PlacesMapView(
                 viewModel: viewModel,
+                mapScope: mapScope,
                 selectedPlaceId: $selectedPlaceId
             )
             .ignoresSafeArea(.container, edges: .top)
@@ -83,6 +87,7 @@ struct PlacesView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomContent.padding(AppSpacing.lg)
         }
+        .mapScope(mapScope)
         .toolbar(.hidden, for: .navigationBar)
         .task {
             await viewModel.loadIfNeeded()
@@ -153,6 +158,18 @@ struct PlacesView: View {
             .id(place.id)
         } else {
             PlaceDisplaySwitcher(selection: $displayMode)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    if displayMode == .map {
+                        MapUserLocationButton(scope: mapScope)
+                            .frame(width: 44, height: 44)
+                            .tint(AppColors.primary)
+                            .background(
+                                AppColors.elevatedBackground,
+                                in: Circle()
+                            )
+                    }
+                }
         }
     }
 }
