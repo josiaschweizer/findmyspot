@@ -48,8 +48,17 @@ struct PlacesView: View {
                         selectedPlaceId = placeId
                     }
                 )
+                .transition(
+                    .move(edge: .trailing)
+                        .combined(with: .opacity)
+                )
+                .zIndex(1)
             }
         }
+        .animation(
+            .easeInOut(duration: 0.2),
+            value: displayMode
+        )
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
