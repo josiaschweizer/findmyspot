@@ -11,7 +11,6 @@ import SwiftUI
 @MainActor
 struct PlacesMapView: View {
     @ObservedObject var viewModel: PlacesViewModel
-    @StateObject private var locationPermission = LocationPermissionManager()
 
     let mapScope: Namespace.ID
     @Binding var selectedPlaceId: UUID?
@@ -59,9 +58,6 @@ struct PlacesMapView: View {
         .mapControls {
             MapCompass()
             MapScaleView()
-        }
-        .task {
-            locationPermission.requestIfNeeded()
         }
     }
 }

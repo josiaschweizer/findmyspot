@@ -12,9 +12,11 @@ import SwiftUI
 struct PlacesView: View {
     @StateObject private var viewModel = PlacesViewModel()
     @StateObject private var filterViewModel = PlaceFilterViewModel()
+    @StateObject private var locationPermission = LocationPermissionManager()
 
     @Namespace private var mapScope
 
+    @State private var sortOrder: PlaceSortOrder = .nameAscending
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
@@ -46,6 +48,8 @@ struct PlacesView: View {
             if displayMode == .list {
                 PlacesListView(
                     places: viewModel.places,
+                    userLocation: locationPermission.location,
+                    sortOrder: sortOrder,
                     onSelect: { placeId in
                         isSearchFieldFocused = false
                         // TBD replace with direct redirect onto detail page (no preview)
@@ -75,7 +79,10 @@ struct PlacesView: View {
                 isSearchFieldFocused: $isSearchFieldFocused,
                 onOpenFilters: {
                     showFilters = true
-                }
+                },
+                sortOrder: $sortOrder,
+                showsSortButton: displayMode == .list,
+                canSortByDistance: locationPermission.location != nil
             )
             .background {
                 if displayMode == .list {
@@ -88,6 +95,17 @@ struct PlacesView: View {
             bottomContent.padding(AppSpacing.lg)
         }
         .mapScope(mapScope)
+        .onAppear {
+            locationPermission.requestIfNeeded()
+        }
+        .onDisappear {
+            locationPermission.stop()
+        }
+        .onChange(of: locationPermission.location == nil) { _, unavailable in
+            if unavailable && sortOrder == .nearest {
+                sortOrder = .nameAscending
+            }
+        }
         .toolbar(.hidden, for: .navigationBar)
         .task {
             await viewModel.loadIfNeeded()
