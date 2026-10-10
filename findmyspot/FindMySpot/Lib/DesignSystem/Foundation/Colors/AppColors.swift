@@ -84,6 +84,5 @@ extension AppColors {
     static let pinIcon = surfaceWhite
     static let pinFavorite = textDestructive
     static let pinBookmark = actionPinBookmark
-    static let pinBookmarkIcon = brand950
 
 }

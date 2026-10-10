@@ -25,11 +25,12 @@ enum AppIcons {
     static let list = "list.bullet"
 
     // Actions
-    static let pin = "pin"
     static let favorite = "heart"
     static let favoriteSelected = "heart.fill"
     static let bookmark = "bookmark"
     static let bookmarkSelected = "bookmark.fill"
     static let location = "location"
 
+    // FAW
+    static let locationDto = "location-dot-solid-full"
 }
