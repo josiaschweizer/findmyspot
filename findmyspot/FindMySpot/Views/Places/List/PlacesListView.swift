@@ -1,11 +1,12 @@
-import CoreLocation
 //
 //  PlacesListView.swift
 //  FindMySpot
 //
 //  Created by josiaschweizer on 06.09.2026.
 //
+
 import SwiftUI
+import CoreLocation
 
 struct PlacesListView: View {
     let places: [Place]

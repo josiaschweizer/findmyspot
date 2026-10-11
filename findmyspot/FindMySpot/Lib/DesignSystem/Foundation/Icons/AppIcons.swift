@@ -13,6 +13,7 @@ enum AppIcons {
     static let checkmark = "checkmark"
     static let chevronRight = "chevron.right"
     static let chevronLeft = "chevron.left"
+    static let person = "person"
 
     // Search & Filter
     static let search = "magnifyingglass"
