@@ -47,6 +47,7 @@ struct PlacePreviewContainer: View {
                     imageURL: viewModel.imageURL,
                     featureNames: viewModel.featureNames,
                     isFavorite: viewModel.isFavorite,
+                    isFavoriteSaving: viewModel.isFavoritesSaving,
                     onFavorite: { placeId, notifier in
                         viewModel.toggleFavorite(
                             placeId: placeId,
@@ -55,6 +56,7 @@ struct PlacePreviewContainer: View {
                         )
                     },
                     isBookmark: viewModel.isBookmark,
+                    isBookmarkSaving: viewModel.isBookmarksSaving,
                     onBookmark: { placeId, notifier in
                         viewModel.toggleBookmark(
                             placeId: placeId,
