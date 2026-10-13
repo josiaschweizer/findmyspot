@@ -9,7 +9,7 @@ import CoreLocation
 import SwiftUI
 
 struct DashboardView: View {
-    @EnvironmentObject private var interactions: PlaceInteractionStore
+    @EnvironmentObject private var interactions: PlaceStore
     @Environment(UserNotifier.self) private var notifier
 
     @StateObject private var viewModel = DashboardViewModel()

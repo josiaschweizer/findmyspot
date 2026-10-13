@@ -9,13 +9,8 @@ import Foundation
 
 @MainActor
 final class DashboardViewModel: ObservableObject {
-    struct CardDetails {
-        var imageURL: URL?
-        var featureNames: [String] = []
-    }
-
     @Published private(set) var places: [Place] = []
-    @Published private(set) var details: [UUID: CardDetails] = [:]
+    @Published private(set) var details: [UUID: PlaceCardDetails] = [:]
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
 
@@ -110,7 +105,10 @@ final class DashboardViewModel: ObservableObject {
             .sorted { $0.sortOrder < $1.sortOrder }
             .map { $0.name ?? $0.slug }
 
-        details[placeID] = CardDetails(imageURL: imageURL, featureNames: names)
+        details[placeID] = PlaceCardDetails(
+            imageURL: imageURL,
+            featureNames: names
+        )
     }
 
     private func sorted(_ places: [Place]) -> [Place] {

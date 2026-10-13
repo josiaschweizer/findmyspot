@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 struct PlacePreviewContainer: View {
-    @EnvironmentObject private var interactions: PlaceInteractionStore
+    @EnvironmentObject private var interactions: PlaceStore
     @StateObject private var viewModel = PlacePreviewViewModel()
 
     let place: Place

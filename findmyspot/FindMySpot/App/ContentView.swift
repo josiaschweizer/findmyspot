@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var interactions = PlaceInteractionStore()
+    @StateObject private var interactions = PlaceStore()
 
     var body: some View {
         TabView {

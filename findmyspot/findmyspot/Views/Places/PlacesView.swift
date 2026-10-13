@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 struct PlacesView: View {
-    @EnvironmentObject private var interactions: PlaceInteractionStore
+    @EnvironmentObject private var interactions: PlaceStore
 
     @StateObject private var viewModel = PlacesViewModel()
     @StateObject private var filterViewModel = PlaceFilterViewModel()
@@ -21,10 +21,13 @@ struct PlacesView: View {
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
-    
+
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
-    
+
+    @AppStorage("places.listLayout")
+    private var listLayout: PlaceListLayout = .compact
+
     @State private var sortOrder: PlaceSortOrder = .nameAscending
 
     private var displayedPlaces: [Place] {
@@ -59,7 +62,8 @@ struct PlacesView: View {
                     places: displayedPlaces,
                     userLocation: locationPermission.location,
                     sortOrder: sortOrder,
-                    
+                    listLayout: $listLayout,
+
                     onSelect: { placeId in
                         isSearchFieldFocused = false
                         // TBD replace with direct redirect onto detail page (no preview)
@@ -91,8 +95,9 @@ struct PlacesView: View {
                     showFilters = true
                 },
                 sortOrder: $sortOrder,
-                showsSortButton: displayMode == .list,
-                canSortByDistance: locationPermission.location != nil
+                showViewSettingMenu: displayMode == .list,
+                canSortByDistance: locationPermission.location != nil,
+                listLayout: $listLayout
             )
             .background {
                 if displayMode == .list {
@@ -199,5 +204,5 @@ struct PlacesView: View {
 #Preview {
     PlacesView()
         .environment(UserNotifier())
-        .environmentObject(PlaceInteractionStore())
+        .environmentObject(PlaceStore())
 }
