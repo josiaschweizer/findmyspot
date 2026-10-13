@@ -10,8 +10,8 @@ import SwiftUI
 
 @MainActor
 struct PlacesMapView: View {
-    @ObservedObject var viewModel: PlacesViewModel
 
+    let places: [Place]
     let mapScope: Namespace.ID
     @Binding var selectedPlaceId: UUID?
 
@@ -34,7 +34,7 @@ struct PlacesMapView: View {
         ) {
             UserAnnotation()
 
-            ForEach(viewModel.places) { place in
+            ForEach(places) { place in
                 Annotation(
                     place.name,
                     coordinate: CLLocationCoordinate2D(
@@ -66,7 +66,7 @@ struct PlacesMapView: View {
     @Previewable @Namespace var mapScope
 
     PlacesMapView(
-        viewModel: PlacesViewModel(),
+        places: [],
         mapScope: mapScope,
         selectedPlaceId: .constant(nil)
     )

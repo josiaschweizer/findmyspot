@@ -16,8 +16,10 @@ struct PlaceFilterBar: View {
     let onOpenFilters: () -> Void
 
     @Binding var sortOrder: PlaceSortOrder
-    let showsSortButton: Bool
+    let showViewSettingMenu: Bool
     let canSortByDistance: Bool
+
+    @Binding var listLayout: PlaceListLayout
 
     var body: some View {
         HStack(spacing: AppSpacing.lg) {
@@ -61,7 +63,7 @@ struct PlaceFilterBar: View {
             )
             .accessibilityLabel("Open Filters")
 
-            if showsSortButton {
+            if showViewSettingMenu {
                 Menu {
                     Picker("Sort by", selection: $sortOrder) {
                         ForEach(PlaceSortOrder.allCases) { option in
@@ -72,10 +74,19 @@ struct PlaceFilterBar: View {
                                 )
                         }
                     }
+
+                    Divider()
+
+                    Picker("View", selection: $listLayout) {
+                        ForEach(PlaceListLayout.allCases) { layout in
+                            Text(layout.title)
+                                .tag(layout)
+                        }
+                    }
                 } label: {
-                    Image(systemName: AppIcons.arrowUpArrowDown)
+                    Image(systemName: AppIcons.viewSettings)
                         .font(AppTypography.label)
-                        .foregroundStyle(AppColors.primary)
+                        .foregroundStyle(AppColors.textPrimary)
                         .frame(width: 44, height: 44)
                         .background(
                             AppColors.elevatedBackground,
@@ -84,8 +95,10 @@ struct PlaceFilterBar: View {
                         .contentShape(Circle())
                 }
                 .menuStyle(.borderlessButton)
-                .accessibilityLabel("Sort places")
-                .accessibilityValue(sortOrder.title)
+                .accessibilityLabel("View Settings")
+                .accessibilityValue(
+                    sortOrder.title + StringUtil.SPACE + listLayout.title
+                )
             }
         }
         .padding(.horizontal, AppSpacing.lg)

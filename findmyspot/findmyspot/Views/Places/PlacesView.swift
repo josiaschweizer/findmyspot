@@ -10,13 +10,14 @@ import SwiftUI
 
 @MainActor
 struct PlacesView: View {
+    @EnvironmentObject private var interactions: PlaceStore
+
     @StateObject private var viewModel = PlacesViewModel()
     @StateObject private var filterViewModel = PlaceFilterViewModel()
     @StateObject private var locationPermission = LocationPermissionManager()
 
     @Namespace private var mapScope
 
-    @State private var sortOrder: PlaceSortOrder = .nameAscending
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
@@ -24,14 +25,25 @@ struct PlacesView: View {
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
 
+    @AppStorage("places.listLayout")
+    private var listLayout: PlaceListLayout = .compact
+
+    @State private var sortOrder: PlaceSortOrder = .nameAscending
+
+    private var displayedPlaces: [Place] {
+        viewModel.places.map {
+            interactions.applyingState(to: $0)
+        }
+    }
+
     private var selectedPlace: Place? {
-        viewModel.places.first { $0.id == selectedPlaceId }
+        displayedPlaces.first { $0.id == selectedPlaceId }
     }
 
     var body: some View {
         ZStack(alignment: .top) {
             PlacesMapView(
-                viewModel: viewModel,
+                places: displayedPlaces,
                 mapScope: mapScope,
                 selectedPlaceId: $selectedPlaceId
             )
@@ -47,9 +59,11 @@ struct PlacesView: View {
 
             if displayMode == .list {
                 PlacesListView(
-                    places: viewModel.places,
+                    places: displayedPlaces,
                     userLocation: locationPermission.location,
                     sortOrder: sortOrder,
+                    listLayout: $listLayout,
+
                     onSelect: { placeId in
                         isSearchFieldFocused = false
                         // TBD replace with direct redirect onto detail page (no preview)
@@ -81,8 +95,9 @@ struct PlacesView: View {
                     showFilters = true
                 },
                 sortOrder: $sortOrder,
-                showsSortButton: displayMode == .list,
-                canSortByDistance: locationPermission.location != nil
+                showViewSettingMenu: displayMode == .list,
+                canSortByDistance: locationPermission.location != nil,
+                listLayout: $listLayout
             )
             .background {
                 if displayMode == .list {
@@ -165,12 +180,6 @@ struct PlacesView: View {
                 place: place,
                 onClose: {
                     selectedPlaceId = nil
-                },
-                onBookmarkChanged: {
-                    viewModel.setBookmark($0, for: place.id)
-                },
-                onFavoriteChanged: {
-                    viewModel.setFavorite($0, for: place.id)
                 }
             )
             .id(place.id)
@@ -194,4 +203,6 @@ struct PlacesView: View {
 
 #Preview {
     PlacesView()
+        .environment(UserNotifier())
+        .environmentObject(PlaceStore())
 }
