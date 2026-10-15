@@ -21,11 +21,10 @@ struct PlacesView: View {
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
     @State private var showFilters = false
+    @State private var isAddingPlace = false
 
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
-
-    @State private var showCreatePlaceHolder = false
 
     @AppStorage("places.listLayout")
     private var listLayout: PlaceListLayout = .compact
@@ -173,6 +172,9 @@ struct PlacesView: View {
                 await filterViewModel.loadIfNeeded()
             }
         }
+        .fullScreenCover(isPresented: $isAddingPlace) {
+            AddPlaceFlowView()
+        }
     }
 
     @ViewBuilder
@@ -215,17 +217,9 @@ struct PlacesView: View {
         }
     }
 
-    // TODO @janik pls delete
-    @Environment(UserNotifier.self) private var notifier
-
     private func openCreatePlace() {
         isSearchFieldFocused = false
-
-        // TODO @janik - call the place create form here & delete notifier call
-        notifier.info(
-            "Create Place no available for now - feature will come soon."
-        )
-
+        isAddingPlace = true
     }
 }
 
