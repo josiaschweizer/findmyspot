@@ -60,7 +60,6 @@ struct PlaceDraft: Encodable {
     let location: String
     let address: String
     let createdBy: UUID
-    let status: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -69,7 +68,6 @@ struct PlaceDraft: Encodable {
         case location
         case address
         case createdBy = "created_by"
-        case status
     }
 }
 

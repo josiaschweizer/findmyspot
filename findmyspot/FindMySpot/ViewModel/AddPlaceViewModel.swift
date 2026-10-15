@@ -69,8 +69,7 @@ final class AddPlaceViewModel {
                 categoryId: inferredCategoryId,
                 location: "POINT(\(longitude) \(latitude))",
                 address: addressDescription.trimmingCharacters(in: .whitespacesAndNewlines),
-                createdBy: user.id,
-                status: "pending"
+                createdBy: user.id
             )
 
             try await PlaceService.create(draft, features: selectedFeatures)
