@@ -27,6 +27,17 @@ struct PlacesView: View {
 
     @State private var showCreatePlaceHolder = false
 
+    @AppStorage("places.listLayout")
+    private var listLayout: PlaceListLayout = .compact
+
+    @State private var sortOrder: PlaceSortOrder = .nameAscending
+
+    private var displayedPlaces: [Place] {
+        viewModel.places.map {
+            interactions.applyingState(to: $0)
+        }
+    }
+
     private var selectedPlace: Place? {
         displayedPlaces.first { $0.id == selectedPlaceId }
     }
