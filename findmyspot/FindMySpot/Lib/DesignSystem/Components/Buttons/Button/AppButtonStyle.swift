@@ -15,11 +15,11 @@ struct AppButtonStyle: ButtonStyle {
     private var foregroundColor: Color {
         switch variant {
         case .primary:
-            return AppColors.surfaceWhite
+            return AppColors.textOnPrimary
         case .secondary:
             return AppColors.textPrimary
         case .destructive:
-            return AppColors.surfaceWhite
+            return AppColors.textOnPrimary
         }
     }
 

@@ -21,6 +21,7 @@ enum AppColors {
 
     // Text
     static let textPrimary = Color("TextPrimary")
+    static let textOnPrimary = Color("TextOnPrimary")
     static let textSecondary = Color("TextSecondary")
     static let textDestructive = Color("TextDestructive")
 
