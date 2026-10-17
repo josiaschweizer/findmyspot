@@ -53,7 +53,7 @@ final class AuthViewModel {
 
     func signIn(email: String, password: String) async {
         await perform {
-            try await AuthService.signIn(
+            try await AuthRepository.signIn(
                 email: email.trimmingCharacters(in: .whitespacesAndNewlines),
                 password: password
             )
@@ -64,7 +64,7 @@ final class AuthViewModel {
         signUpMessage = nil
 
         await perform {
-            let response = try await AuthService.signUp(
+            let response = try await AuthRepository.signUp(
                 email: email.trimmingCharacters(in: .whitespacesAndNewlines),
                 password: password,
                 displayName: displayName
@@ -79,7 +79,7 @@ final class AuthViewModel {
 
     func signOut() async {
         await perform {
-            try await AuthService.signOut()
+            try await AuthRepository.signOut()
         }
     }
 

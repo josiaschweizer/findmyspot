@@ -14,6 +14,6 @@ enum FindMySpotEntities: String {
     case PlaceFeature = "place_features"
     case PlaceImage = "place_images"
     case PlacePurpose = "place_purposes"
-    case Profile = "profile"
+    case Profile = "profiles"
     case Purpose = "purposes"
 }
