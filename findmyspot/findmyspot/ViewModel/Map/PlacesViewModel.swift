@@ -54,6 +54,11 @@ final class PlacesViewModel: ObservableObject {
         await loadPlaces()
     }
 
+    func refresh() async {
+        lastLoadedFilter = nil
+        await loadPlaces()
+    }
+
     func loadPlaces() async {
         guard !Task.isCancelled else {
             return

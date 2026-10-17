@@ -173,7 +173,9 @@ struct PlacesView: View {
             }
         }
         .fullScreenCover(isPresented: $isAddingPlace) {
-            AddPlaceFlowView()
+            AddPlaceFlowView {
+                await viewModel.refresh()
+            }
         }
     }
 
