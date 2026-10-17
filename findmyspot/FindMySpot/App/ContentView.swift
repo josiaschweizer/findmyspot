@@ -27,11 +27,6 @@ struct ContentView: View {
                     SettingsView()
                 }
             }
-            Tab("Design System", systemImage: "hammer") {
-                NavigationStack {
-                    DesignSystemPreview()
-                }
-            }
         }
         .environmentObject(interactions)
     }
