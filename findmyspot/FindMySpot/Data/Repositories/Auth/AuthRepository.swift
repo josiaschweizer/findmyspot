@@ -7,7 +7,12 @@
 
 import Supabase
 
-enum AuthService {
+struct AuthRepository {
+
+    static func currentUser() async throws -> User {
+        try await SupabaseService.client.auth.user()
+    }
+
     static func signIn(email: String, password: String) async throws {
         try await SupabaseService.client.auth.signIn(
             email: email,
@@ -15,8 +20,8 @@ enum AuthService {
         )
     }
 
-    static func signUp(email: String, password: String, displayName: String) async throws
-        -> AuthResponse
+    static func signUp(email: String, password: String, displayName: String)
+        async throws -> AuthResponse
     {
         try await SupabaseService.client.auth.signUp(
             email: email,
@@ -28,4 +33,11 @@ enum AuthService {
     static func signOut() async throws {
         try await SupabaseService.client.auth.signOut()
     }
+
+    static func updateEmail(_ email: String) async throws {
+        try await SupabaseService.client.auth.update(
+            user: UserAttributes(email: email)
+        )
+    }
+
 }

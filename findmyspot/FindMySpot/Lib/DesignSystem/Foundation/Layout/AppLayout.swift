@@ -29,5 +29,8 @@ enum AppLayout {
     
     // Components
     static let textAreaMinHeight: CGFloat = 100
+    
+    // Setings
+    static let avatarSize: CGFloat = 88
 
 }

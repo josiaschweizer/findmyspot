@@ -24,7 +24,7 @@ struct ContentView: View {
             }
             Tab("Settings", systemImage: "gearshape.fill") {
                 NavigationStack {
-                    SettingView()
+                    SettingsView()
                 }
             }
             Tab("Design System", systemImage: "hammer") {
