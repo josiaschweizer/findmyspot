@@ -38,7 +38,7 @@ struct PlaceDetailView: View {
 
                     HStack(spacing: AppSpacing.md) {
                         actionButton(
-                            "Lieblingsort",
+                            "Favorite",
                             icon: viewModel.isFavorite
                                 ? AppIcons.favoriteSelected : AppIcons.favorite,
                             isSelected: viewModel.isFavorite
@@ -51,7 +51,7 @@ struct PlaceDetailView: View {
                         }
 
                         actionButton(
-                            "Für später",
+                            "Save for later",
                             icon: viewModel.isBookmark
                                 ? AppIcons.bookmarkSelected : AppIcons.bookmark,
                             isSelected: viewModel.isBookmark
@@ -66,7 +66,7 @@ struct PlaceDetailView: View {
 
                     if !viewModel.featureNames.isEmpty {
                         VStack(alignment: .leading, spacing: AppSpacing.md) {
-                            sectionTitle("Ausstattung")
+                            sectionTitle("Amenities")
 
                             FlowLayout {
                                 ForEach(viewModel.featureNames, id: \.self) {
@@ -97,7 +97,7 @@ struct PlaceDetailView: View {
                         !description.isEmpty
                     {
                         VStack(alignment: .leading, spacing: AppSpacing.md) {
-                            sectionTitle("Über den Ort")
+                            sectionTitle("About this place")
 
                             Text(description)
                                 .font(AppTypography.body)
