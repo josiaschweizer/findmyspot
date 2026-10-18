@@ -15,7 +15,7 @@ struct AuthBrandHeader: View {
         VStack(spacing: 14) {
             Image(systemName: "mapping")
                 .font(.system(size: 30, weight: .semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColors.textOnPrimary)
                 .frame(width: 72, height: 72)
                 .background {
                     RoundedRectangle(

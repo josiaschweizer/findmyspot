@@ -5,12 +5,18 @@
 //  Created by josiaschweizer on 06.09.2026.
 //
 
+import MapKit
 import SwiftUI
 
 @MainActor
 struct PlacesView: View {
+    @EnvironmentObject private var interactions: PlaceStore
+
     @StateObject private var viewModel = PlacesViewModel()
     @StateObject private var filterViewModel = PlaceFilterViewModel()
+    @StateObject private var locationPermission = LocationPermissionManager()
+
+    @Namespace private var mapScope
 
     @State private var displayMode: PlaceDisplayMode = .map
     @State private var selectedPlaceId: UUID?
@@ -20,14 +26,26 @@ struct PlacesView: View {
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
 
+    @AppStorage("places.listLayout")
+    private var listLayout: PlaceListLayout = .compact
+
+    @State private var sortOrder: PlaceSortOrder = .nameAscending
+
+    private var displayedPlaces: [Place] {
+        viewModel.places.map {
+            interactions.applyingState(to: $0)
+        }
+    }
+
     private var selectedPlace: Place? {
-        viewModel.places.first { $0.id == selectedPlaceId }
+        displayedPlaces.first { $0.id == selectedPlaceId }
     }
 
     var body: some View {
         ZStack(alignment: .top) {
             PlacesMapView(
-                viewModel: viewModel,
+                places: displayedPlaces,
+                mapScope: mapScope,
                 selectedPlaceId: $selectedPlaceId
             )
             .ignoresSafeArea(.container, edges: .top)
@@ -42,15 +60,28 @@ struct PlacesView: View {
 
             if displayMode == .list {
                 PlacesListView(
-                    places: viewModel.places,
+                    places: displayedPlaces,
+                    userLocation: locationPermission.location,
+                    sortOrder: sortOrder,
+                    listLayout: $listLayout,
+
                     onSelect: { placeId in
                         isSearchFieldFocused = false
                         // TBD replace with direct redirect onto detail page (no preview)
                         selectedPlaceId = placeId
                     }
                 )
+                .transition(
+                    .move(edge: .trailing)
+                        .combined(with: .opacity)
+                )
+                .zIndex(1)
             }
         }
+        .animation(
+            .easeInOut(duration: 0.2),
+            value: displayMode
+        )
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
@@ -63,7 +94,11 @@ struct PlacesView: View {
                 isSearchFieldFocused: $isSearchFieldFocused,
                 onOpenFilters: {
                     showFilters = true
-                }
+                },
+                sortOrder: $sortOrder,
+                showViewSettingMenu: displayMode == .list,
+                canSortByDistance: locationPermission.location != nil,
+                listLayout: $listLayout
             )
             .background {
                 if displayMode == .list {
@@ -74,6 +109,18 @@ struct PlacesView: View {
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomContent.padding(AppSpacing.lg)
+        }
+        .mapScope(mapScope)
+        .onAppear {
+            locationPermission.requestIfNeeded()
+        }
+        .onDisappear {
+            locationPermission.stop()
+        }
+        .onChange(of: locationPermission.location == nil) { _, unavailable in
+            if unavailable && sortOrder == .nearest {
+                sortOrder = .nameAscending
+            }
         }
         .toolbar(.hidden, for: .navigationBar)
         .task {
@@ -153,10 +200,24 @@ struct PlacesView: View {
             .id(place.id)
         } else {
             PlaceDisplaySwitcher(selection: $displayMode)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    if displayMode == .map {
+                        MapUserLocationButton(scope: mapScope)
+                            .frame(width: 44, height: 44)
+                            .tint(AppColors.primary)
+                            .background(
+                                AppColors.elevatedBackground,
+                                in: Circle()
+                            )
+                    }
+                }
         }
     }
 }
 
 #Preview {
     PlacesView()
+        .environment(UserNotifier())
+        .environmentObject(PlaceStore())
 }

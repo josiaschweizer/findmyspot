@@ -7,7 +7,7 @@
 
 enum StringUtil {
     static var EMPTY = ""
-    
+    static var SPACE = " "
 
     static var SPACE_STRITCH_SPACE = " - "
 

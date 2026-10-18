@@ -15,24 +15,23 @@ struct AppIconButtonStyle: ButtonStyle {
         isEnabled ? AppColors.textPrimary : AppColors.textSecondary
     }
 
-    private var backgroundColor: Color {
+    @ViewBuilder
+    private var background: some View {
         switch variant {
         case .plain:
-            .clear
+            Color.clear
         case .filled:
-            AppColors.surfaceSecondary
+            RoundedRectangle(cornerRadius: AppRadius.md)
+                .fill(AppColors.surfaceSecondary)
+        case .circle:
+            Circle().fill(AppColors.elevatedBackground)
         }
     }
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundStyle(foregroundColor)
-            .background(backgroundColor)
-            .clipShape(
-                RoundedRectangle(
-                    cornerRadius: AppRadius.md
-                )
-            )
-            .opacity(configuration.isPressed ? 0.8 : 1)
+            .background(background)
+            .appPressedEffect(configuration.isPressed)
     }
 }

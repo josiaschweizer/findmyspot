@@ -16,6 +16,9 @@ final class PlacesViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published private(set) var filter = PlaceFilter()
 
+    private var latestRequestID: UUID?
+    private var lastLoadedFilter: PlaceFilter?
+
     private let logger: Logger
     private let placeRepository: PlaceRepository
 
@@ -30,20 +33,16 @@ final class PlacesViewModel: ObservableObject {
         var updated = newFilter
         updated.applySearchText(filter.searchText)
 
-        guard newFilter != filter else {
-            return
-        }
         filter = updated
         await loadPlaces()
     }
 
     func search(_ text: String) async {
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard trimmed != filter.searchText else {
-            return
-        }
+        let trimmed = text.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
 
-        filter.applySearchText(text)
+        filter.applySearchText(trimmed)
         await loadPlaces()
     }
 
@@ -56,25 +55,46 @@ final class PlacesViewModel: ObservableObject {
     }
 
     func loadPlaces() async {
-        guard !isLoading else {
+        guard !Task.isCancelled else {
             return
         }
 
+        // skip only if the displayed resultst already match and no other request could still replace them
+        if !isLoading && lastLoadedFilter == filter {
+            return
+        }
+
+        let requestID = UUID()
+        let requestedFilter = filter
+
+        latestRequestID = requestID
         isLoading = true
         errorMessage = nil
 
         defer {
-            isLoading = false
+            // an older request must not stop the current loading indicator
+            if latestRequestID == requestID {
+                isLoading = false
+            }
         }
 
         do {
-            let loadedPlaces = try await fetchPlaces()
+            let loadedPlaces = try await placeRepository.getAll(
+                placeFilter: requestedFilter
+            )
+
             try Task.checkCancellation()
 
+            // in case while we were fetching another laodPlaces() got called, we return
+            guard latestRequestID == requestID else {
+                return
+            }
+
             places = loadedPlaces
+            lastLoadedFilter = requestedFilter
             hasLoaded = true
         } catch {
-            guard !Task.isCancelled else {
+            guard latestRequestID == requestID && !Task.isCancelled else {
                 return
             }
 
@@ -86,14 +106,11 @@ final class PlacesViewModel: ObservableObject {
         }
     }
 
-    private func fetchPlaces() async throws -> [Place] {
-        return try await placeRepository.getAll(placeFilter: filter)
-    }
-
     func setBookmark(_ value: Bool, for placeId: UUID) {
         guard let index = places.firstIndex(where: { $0.id == placeId }) else {
             return
         }
+
         places[index].isBookmark = value
     }
 
@@ -101,6 +118,7 @@ final class PlacesViewModel: ObservableObject {
         guard let index = places.firstIndex(where: { $0.id == placeId }) else {
             return
         }
+
         places[index].isFavorite = value
     }
 

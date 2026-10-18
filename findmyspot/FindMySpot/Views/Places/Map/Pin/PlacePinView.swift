@@ -14,22 +14,19 @@ struct PlacePinView: View {
     private var size: CGFloat {
         AppLayout.mapPinSize
     }
-    private var doubleIconSize: CGFloat {
-        AppLayout.mapPinSize * 1.2
-    }
-    
+
     private var iconSize: CGFloat {
-        AppLayout.mapPinSize * 0.8
+        AppLayout.mapPinSize * 0.5
     }
 
     var body: some View {
         ZStack {
-            background
-            icons
+            style.color
+            iconView
         }
         .frame(
-            width: style == .both ? doubleIconSize : size,
-            height: style == .both ? doubleIconSize : size
+            width: size,
+            height: size
         )
         .clipShape(Circle())
         .overlay(
@@ -49,34 +46,25 @@ struct PlacePinView: View {
     }
 
     @ViewBuilder
-    private var background: some View {
-        if style == .both {
-            HStack(spacing: 0) {
-                PlacePinStyle.favorite.color
-                PlacePinStyle.bookmark.color
-            }
-        } else {
-            style.color
+    private var iconView: some View {
+        switch style.icon {
+        case .system(let name):
+            Image(systemName: name)
+                .font(
+                    .system(
+                        size: size * style.iconScale,
+                        weight: .semibold
+                    )
+                )
+                .foregroundStyle(style.iconColor)
+        case .asset(let name):
+            Image(name)
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(style.iconColor)
+                .frame(height: size * style.iconScale)
         }
     }
 
-    @ViewBuilder
-    private var icons: some View {
-        if style == .both {
-            HStack(spacing: 0) {
-                Image(systemName: AppIcons.favoriteSelected)
-                    .foregroundStyle(PlacePinStyle.favorite.iconColor)
-                    .frame(width: size / 2)
-                Image(systemName: AppIcons.bookmarkSelected)
-                    .foregroundStyle(PlacePinStyle.bookmark.iconColor)
-                    .frame(width: size / 2)
-            }
-            .font(PlacePinConstants.splitIconFont)
-        } else {
-            Image(systemName: style.icon)
-                .font(PlacePinConstants.iconFont)
-                .foregroundStyle(style.iconColor)
-                .frame(width: iconSize, height: iconSize)
-        }
-    }
 }

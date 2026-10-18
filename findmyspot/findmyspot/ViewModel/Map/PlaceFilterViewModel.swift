@@ -52,15 +52,9 @@ final class PlaceFilterViewModel: ObservableObject {
 
             purposes = loadedPurposes
             features = loadedFeatures
+            hasLoaded = true
         } catch {
             errorMessage = error.localizedDescription
         }
-    }
-
-    func getPlaceFilter() -> PlaceFilter {
-        return PlaceFilter(
-            purposeIDs: Set(purposes.map(\.id)),
-            featureIDs: Set(features.map(\.id))
-        )
     }
 }

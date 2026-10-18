@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var interactions = PlaceStore()
+
     var body: some View {
         TabView {
             Tab("Dashboard", systemImage: "house") {
@@ -22,16 +24,11 @@ struct ContentView: View {
             }
             Tab("Settings", systemImage: "gearshape.fill") {
                 NavigationStack {
-                    SettingView()
+                    SettingsView()
                 }
             }
-            Tab("Design System", systemImage: "hammer") {
-                NavigationStack {
-                    DesignSystemPreview()
-                }
-            }
-
         }
+        .environmentObject(interactions)
     }
 
 }

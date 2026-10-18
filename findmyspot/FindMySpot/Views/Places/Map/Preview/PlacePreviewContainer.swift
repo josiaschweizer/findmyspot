@@ -9,6 +9,9 @@ import SwiftUI
 
 @MainActor
 struct PlacePreviewContainer: View {
+    @EnvironmentObject private var interactions: PlaceStore
+    @StateObject private var viewModel = PlacePreviewViewModel()
+
     let place: Place
     let onClose: () -> Void
     let onOpenDetail: () -> Void
@@ -47,20 +50,22 @@ struct PlacePreviewContainer: View {
                     place: place,
                     imageURL: viewModel.imageURL,
                     featureNames: viewModel.featureNames,
-                    isFavorite: viewModel.isFavorite,
+                    isFavorite: interactions.state(for: place).isFavorite,
+                    isFavoriteSaving: interactions.state(for: place)
+                        .isFavoritesSaving,
                     onFavorite: { placeId, notifier in
-                        viewModel.toggleFavorite(
+                        interactions.toggleFavorite(
                             placeId: placeId,
-                            userNotifier: notifier,
-                            onChange: onFavoriteChanged
+                            userNotifier: notifier
                         )
                     },
-                    isBookmark: viewModel.isBookmark,
+                    isBookmark: interactions.state(for: place).isBookmark,
+                    isBookmarkSaving: interactions.state(for: place)
+                        .isBookmarksSaving,
                     onBookmark: { placeId, notifier in
-                        viewModel.toggleBookmark(
+                        interactions.toggleBookmark(
                             placeId: placeId,
-                            userNotifier: notifier,
-                            onChange: onBookmarkChanged
+                            userNotifier: notifier
                         )
                     },
                     onClose: onClose,
@@ -69,6 +74,7 @@ struct PlacePreviewContainer: View {
             }
         }
         .task {
+            interactions.register([place])
             await viewModel.load(placeId: place.id)
         }
     }
