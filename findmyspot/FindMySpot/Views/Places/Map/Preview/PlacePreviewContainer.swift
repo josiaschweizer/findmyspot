@@ -18,8 +18,6 @@ struct PlacePreviewContainer: View {
     let onBookmarkChanged: (Bool) -> Void
     let onFavoriteChanged: (Bool) -> Void
 
-    @StateObject private var viewModel = PlacePreviewViewModel()
-
     var body: some View {
         Group {
             if viewModel.isLoading {

@@ -32,23 +32,10 @@ struct PlacePreviewView: View {
         return result
     }
 
-                    if !featureNames.isEmpty {
-                        Text(
-                            featureNames.prefix(3).joined(
-                                separator: StringUtil.SPACE_STRITCH_SPACE
-                            )
-                        )
-                        .font(AppTypography.caption)
-                        .foregroundStyle(AppColors.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .contentShape(Rectangle())
-            .onTapGesture(perform: onOpenDetail)
-            .accessibilityAddTraits(.isButton)
-            .padding(.trailing, AppSpacing.lg)
+    private var favoriteAction: (() -> Void)? {
+        guard let onFavorite else {
+            return nil
+        }
 
         return {
             onFavorite(place.id, userNotifier)
@@ -73,6 +60,7 @@ struct PlacePreviewView: View {
             featureNames: featureNames,
             isFavoriteSaving: isFavoriteSaving,
             isBookmarkSaving: isBookmarkSaving,
+            onSelect: onOpenDetail,
             onFavorite: favoriteAction,
             onBookmark: bookmarkAction
         )

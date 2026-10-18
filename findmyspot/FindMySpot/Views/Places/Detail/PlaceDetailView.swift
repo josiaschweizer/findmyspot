@@ -10,10 +10,13 @@ import SwiftUI
 @MainActor
 struct PlaceDetailView: View {
     @Environment(UserNotifier.self) private var userNotifier
+    @EnvironmentObject private var interactions: PlaceStore
 
     let place: Place
 
-    @StateObject private var viewModel = PlacePreviewViewModel()
+    private var state: PlaceStore.State {
+        interactions.state(for: place)
+    }
 
     var body: some View {
         ScrollView {
@@ -39,37 +42,37 @@ struct PlaceDetailView: View {
                     HStack(spacing: AppSpacing.md) {
                         actionButton(
                             "Favorite",
-                            icon: viewModel.isFavorite
+                            icon: state.isFavorite
                                 ? AppIcons.favoriteSelected : AppIcons.favorite,
-                            isSelected: viewModel.isFavorite
+                            isSelected: state.isFavorite,
+                            isEnabled: !state.isFavoritesSaving
                         ) {
-                            viewModel.toggleFavorite(
+                            interactions.toggleFavorite(
                                 placeId: place.id,
-                                userNotifier: userNotifier,
-                                onChange: { _ in }
+                                userNotifier: userNotifier
                             )
                         }
 
                         actionButton(
                             "Save for later",
-                            icon: viewModel.isBookmark
+                            icon: state.isBookmark
                                 ? AppIcons.bookmarkSelected : AppIcons.bookmark,
-                            isSelected: viewModel.isBookmark
+                            isSelected: state.isBookmark,
+                            isEnabled: !state.isBookmarksSaving
                         ) {
-                            viewModel.toggleBookmark(
+                            interactions.toggleBookmark(
                                 placeId: place.id,
-                                userNotifier: userNotifier,
-                                onChange: { _ in }
+                                userNotifier: userNotifier
                             )
                         }
                     }
 
-                    if !viewModel.featureNames.isEmpty {
+                    if !state.featureNames.isEmpty {
                         VStack(alignment: .leading, spacing: AppSpacing.md) {
                             sectionTitle("Amenities")
 
                             FlowLayout {
-                                ForEach(viewModel.featureNames, id: \.self) {
+                                ForEach(state.featureNames, id: \.self) {
                                     name in
                                     Text(name)
                                         .font(AppTypography.label)
@@ -105,6 +108,10 @@ struct PlaceDetailView: View {
                                 .lineSpacing(AppSpacing.xxs)
                         }
                     }
+
+                    if let message = state.detailsError {
+                        AppErrorMessage(message: message)
+                    }
                 }
                 .padding(.horizontal, AppSpacing.xl)
             }
@@ -114,7 +121,7 @@ struct PlaceDetailView: View {
         .background(AppColors.background)
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            await viewModel.load(placeId: place.id)
+            await interactions.loadDetails(for: place)
         }
     }
 
@@ -129,6 +136,7 @@ struct PlaceDetailView: View {
         _ title: String,
         icon: String,
         isSelected: Bool,
+        isEnabled: Bool,
         action: @escaping () -> Void
     ) -> some View {
         Button(action: action) {
@@ -157,11 +165,12 @@ struct PlaceDetailView: View {
             }
         }
         .buttonStyle(.plain)
+        .disabled(!isEnabled)
     }
 
     private var image: some View {
         Group {
-            if let imageURL = viewModel.imageURL {
+            if let imageURL = state.imageURL {
                 AsyncImage(url: imageURL) { phase in
                     switch phase {
                     case .success(let image):
@@ -189,7 +198,7 @@ struct PlaceDetailView: View {
         ZStack {
             AppColors.surfaceSecondary
 
-            if viewModel.isLoading {
+            if state.isLoadingDetails {
                 ProgressView()
                     .tint(AppColors.primary)
             } else {
