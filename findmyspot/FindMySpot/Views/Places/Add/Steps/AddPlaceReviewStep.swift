@@ -9,7 +9,7 @@ struct AddPlaceReviewStep: View {
     let viewModel: AddPlaceViewModel
 
     private var tags: [String] {
-        viewModel.selectedActivities.map(\.title).sorted()
+        viewModel.selectedActivities.map(viewModel.activityTitle).sorted()
             + viewModel.selectedFeatures.map(\.title).sorted()
     }
 

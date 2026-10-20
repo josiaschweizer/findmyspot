@@ -28,32 +28,11 @@ struct AddPlaceIdeaStep: View {
                 text: $viewModel.addressDescription
             )
 
-            VStack(alignment: .leading, spacing: AppSpacing.sm) {
-                Text("Was macht den Ort besonders?")
-                    .font(AppTypography.label)
-
-                ZStack(alignment: .topLeading) {
-                    if viewModel.details.isEmpty {
-                        Text("Beschreibe deinen Spot …")
-                            .foregroundStyle(AppColors.textSecondary)
-                            .padding(.horizontal, 13)
-                            .padding(.vertical, 15)
-                    }
-
-                    TextEditor(text: $viewModel.details)
-                        .scrollContentBackground(.hidden)
-                        .padding(.horizontal, AppSpacing.sm)
-                        .padding(.vertical, AppSpacing.sm)
-                        .frame(minHeight: 112)
-                        .foregroundStyle(AppColors.textPrimary)
-                }
-                .background(AppColors.elevatedBackground)
-                .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
-                .overlay {
-                    RoundedRectangle(cornerRadius: AppRadius.md)
-                        .stroke(AppColors.borderDefault)
-                }
-            }
+            AppTextArea(
+                title: "Was macht den Ort besonders?",
+                placeholder: "Beschreibe deinen Spot …",
+                text: $viewModel.details
+            )
         }
     }
 }

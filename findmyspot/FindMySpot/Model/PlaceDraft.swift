@@ -5,26 +5,6 @@
 
 import Foundation
 
-enum PlaceActivity: String, CaseIterable, Codable, Identifiable {
-    case studying
-    case relaxing
-    case meeting
-    case waiting
-    case walking
-
-    var id: Self { self }
-
-    var title: String {
-        switch self {
-        case .studying: "Lernen"
-        case .relaxing: "Entspannen"
-        case .meeting: "Treffen"
-        case .waiting: "Warten"
-        case .walking: "Spazieren"
-        }
-    }
-}
-
 enum AddPlaceFeature: String, CaseIterable, Codable, Identifiable {
     case quiet
     case seating

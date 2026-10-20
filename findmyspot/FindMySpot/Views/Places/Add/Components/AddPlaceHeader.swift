@@ -14,9 +14,12 @@ struct AddPlaceHeader: View {
         VStack(spacing: AppSpacing.lg) {
             HStack(spacing: AppSpacing.md) {
                 Button(action: onBack) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 16, weight: .semibold))
-                        .frame(width: 42, height: 42)
+                    Image(systemName: AppIcons.chevronLeft)
+                        .font(AppTypography.bodyStrong)
+                        .frame(
+                            width: AppLayout.minimumControlHeight,
+                            height: AppLayout.minimumControlHeight
+                        )
                         .background(AppColors.elevatedBackground)
                         .clipShape(
                             RoundedRectangle(cornerRadius: AppRadius.md)

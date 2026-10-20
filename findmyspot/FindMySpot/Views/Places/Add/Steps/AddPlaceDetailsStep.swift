@@ -37,14 +37,24 @@ struct AddPlaceDetailsStep: View {
             )
 
             AddPlaceChipSection(title: "Aktivitäten") {
-                ForEach(PlaceActivity.allCases) { activity in
-                    SelectableChip(
-                        title: activity.title,
-                        isSelected: viewModel.selectedActivities.contains(
-                            activity
-                        )
-                    ) {
-                        viewModel.toggle(activity)
+                if viewModel.isLoadingActivities {
+                    ProgressView()
+                } else if let message = viewModel.activitiesErrorMessage {
+                    AppErrorMessage(message: message)
+                } else if viewModel.activities.isEmpty {
+                    Text("Keine Aktivitäten verfügbar.")
+                        .font(AppTypography.body)
+                        .foregroundStyle(AppColors.textSecondary)
+                } else {
+                    ForEach(viewModel.activities) { activity in
+                        SelectableChip(
+                            title: viewModel.activityTitle(activity),
+                            isSelected: viewModel.selectedActivityIDs.contains(
+                                activity.id
+                            )
+                        ) {
+                            viewModel.toggle(activity)
+                        }
                     }
                 }
             }
@@ -67,6 +77,9 @@ struct AddPlaceDetailsStep: View {
                 coordinate: coordinate,
                 onSelect: viewModel.updatePosition
             )
+        }
+        .task {
+            await viewModel.loadActivitiesIfNeeded()
         }
     }
 }

@@ -18,7 +18,7 @@ struct AddPlaceSectionTitle: View {
                 .foregroundStyle(AppColors.textSecondary)
 
             Text(title)
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .font(AppTypography.titleLarge)
 
             if let subtitle {
                 Text(subtitle)

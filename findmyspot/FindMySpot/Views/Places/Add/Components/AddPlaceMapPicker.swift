@@ -38,7 +38,7 @@ struct AddPlaceMapPicker: View {
                     onSelect(coordinate.latitude, coordinate.longitude)
                 }
             }
-            .frame(height: 230)
+            .frame(height: AppLayout.mapPickerHeight)
             .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
 
             Text(positionText)

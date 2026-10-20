@@ -14,13 +14,18 @@ final class AddPlaceViewModel {
     var name = ""
     var addressDescription = ""
     var details = ""
-    var selectedActivities: Set<PlaceActivity> = []
+    var activities: [Purpose] = []
+    var selectedActivityIDs: Set<UUID> = []
     var selectedFeatures: Set<AddPlaceFeature> = []
     var latitude = 47.4250
     var longitude = 9.3770
 
+    private(set) var isLoadingActivities = false
+    private(set) var activitiesErrorMessage: String?
     private(set) var isSubmitting = false
     private(set) var errorMessage: String?
+
+    private let purposeRepository = PurposeRepository()
 
     var canContinueFromIdea: Bool {
         !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -28,11 +33,34 @@ final class AddPlaceViewModel {
             && !details.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
-    func toggle(_ activity: PlaceActivity) {
-        if selectedActivities.contains(activity) {
-            selectedActivities.remove(activity)
+    var selectedActivities: [Purpose] {
+        activities.filter { selectedActivityIDs.contains($0.id) }
+    }
+
+    func loadActivitiesIfNeeded() async {
+        guard activities.isEmpty, !isLoadingActivities else {
+            return
+        }
+
+        isLoadingActivities = true
+        activitiesErrorMessage = nil
+
+        defer {
+            isLoadingActivities = false
+        }
+
+        do {
+            activities = try await purposeRepository.getAll()
+        } catch {
+            activitiesErrorMessage = error.localizedDescription
+        }
+    }
+
+    func toggle(_ activity: Purpose) {
+        if selectedActivityIDs.contains(activity.id) {
+            selectedActivityIDs.remove(activity.id)
         } else {
-            selectedActivities.insert(activity)
+            selectedActivityIDs.insert(activity.id)
         }
     }
 
@@ -72,7 +100,11 @@ final class AddPlaceViewModel {
                 createdBy: user.id
             )
 
-            try await PlaceService.create(draft, features: selectedFeatures)
+            try await PlaceService.create(
+                draft,
+                activities: selectedActivityIDs,
+                features: selectedFeatures
+            )
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -82,7 +114,7 @@ final class AddPlaceViewModel {
 
     private var databaseDescription: String {
         let trimmedDetails = details.trimmingCharacters(in: .whitespacesAndNewlines)
-        let activities = selectedActivities.map(\.title).sorted()
+        let activities = selectedActivities.map(activityTitle).sorted()
 
         guard !activities.isEmpty else {
             return trimmedDetails
@@ -92,15 +124,21 @@ final class AddPlaceViewModel {
     }
 
     private var inferredCategoryId: String {
-        if selectedActivities.contains(.studying) {
+        let selectedSlugs = Set(selectedActivities.map(\.slug))
+
+        if selectedSlugs.contains("study") {
             return "0ab89bc0-8c52-5e82-bbb0-9f96475dfde5"
         }
-        if selectedActivities.contains(.walking) {
+        if selectedSlugs.contains("walk") {
             return "017b0e72-33c1-5429-a9ab-99524ba8b6bc"
         }
         if selectedFeatures.contains(.greenery) {
             return "22222222-2222-2222-2222-222222222222"
         }
         return "1c5d788b-031e-5a92-b954-c388d372b2b6"
+    }
+
+    func activityTitle(_ activity: Purpose) -> String {
+        activity.name ?? activity.slug
     }
 }

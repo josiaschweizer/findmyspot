@@ -12,25 +12,11 @@ struct AddPlacePrimaryButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            Group {
-                if isLoading {
-                    ProgressView()
-                        .tint(.white)
-                } else {
-                    Text(title)
-                        .font(AppTypography.label)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 54)
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(.white)
-        .background(
-            AddPlaceStyle.accent.opacity(isDisabled ? 0.45 : 1)
+        AppButton(
+            title,
+            isEnabled: !isDisabled,
+            isLoading: isLoading,
+            action: action
         )
-        .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
-        .disabled(isDisabled || isLoading)
     }
 }
