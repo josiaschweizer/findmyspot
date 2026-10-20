@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 struct PlacePreviewContainer: View {
     @EnvironmentObject private var interactions: PlaceStore
-    @StateObject private var viewModel = PlacePreviewViewModel()
+    @StateObject private var viewModel = PlaceDetailsViewModel()
 
     let place: Place
     let onClose: () -> Void

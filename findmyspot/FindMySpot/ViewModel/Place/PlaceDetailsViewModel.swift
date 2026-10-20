@@ -1,5 +1,5 @@
 //
-//  PlacePreviewViewModel.swift
+//  PlaceDetailsViewModel.swift
 //  FindMySpot
 //
 //  Created by josiaschweizer on 01.10.2026.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-final class PlacePreviewViewModel: ObservableObject {
+final class PlaceDetailsViewModel: ObservableObject {
     @Published private(set) var imageURL: URL?
     @Published private(set) var featureNames: [String]
     @Published private(set) var isLoading = false
