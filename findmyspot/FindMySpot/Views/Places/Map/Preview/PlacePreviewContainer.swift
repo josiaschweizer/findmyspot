@@ -10,10 +10,13 @@ import SwiftUI
 @MainActor
 struct PlacePreviewContainer: View {
     @EnvironmentObject private var interactions: PlaceStore
-    @StateObject private var viewModel = PlacePreviewViewModel()
+    @StateObject private var viewModel = PlaceDetailsViewModel()
 
     let place: Place
     let onClose: () -> Void
+    let onOpenDetail: () -> Void
+    let onBookmarkChanged: (Bool) -> Void
+    let onFavoriteChanged: (Bool) -> Void
 
     var body: some View {
         Group {
@@ -63,7 +66,8 @@ struct PlacePreviewContainer: View {
                             userNotifier: notifier
                         )
                     },
-                    onClose: onClose
+                    onClose: onClose,
+                    onOpenDetail: onOpenDetail
                 )
             }
         }

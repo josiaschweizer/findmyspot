@@ -23,6 +23,7 @@ struct PlacePreviewView: View {
     var onBookmark: ((UUID, UserNotifier) -> Void)? = nil
 
     var onClose: () -> Void
+    var onOpenDetail: () -> Void
 
     private var displayedPlace: Place {
         var result = place
@@ -59,6 +60,7 @@ struct PlacePreviewView: View {
             featureNames: featureNames,
             isFavoriteSaving: isFavoriteSaving,
             isBookmarkSaving: isBookmarkSaving,
+            onSelect: onOpenDetail,
             onFavorite: favoriteAction,
             onBookmark: bookmarkAction
         )
