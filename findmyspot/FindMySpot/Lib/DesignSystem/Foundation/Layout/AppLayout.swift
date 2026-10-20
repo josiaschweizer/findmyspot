@@ -26,6 +26,7 @@ enum AppLayout {
 
     // Map
     static let mapPinSize: CGFloat = 25
+    static let mapPickerHeight: CGFloat = 232
     
     // Components
     static let textAreaMinHeight: CGFloat = 100

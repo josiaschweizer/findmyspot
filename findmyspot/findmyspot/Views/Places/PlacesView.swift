@@ -22,6 +22,7 @@ struct PlacesView: View {
     @State private var selectedPlaceId: UUID?
     @State private var detailPlaceId: UUID?
     @State private var showFilters = false
+    @State private var isAddingPlace = false
 
     @State private var searchText = StringUtil.EMPTY
     @FocusState private var isSearchFieldFocused: Bool
@@ -177,6 +178,11 @@ struct PlacesView: View {
                 await filterViewModel.loadIfNeeded()
             }
         }
+        .fullScreenCover(isPresented: $isAddingPlace) {
+            AddPlaceFlowView {
+                await viewModel.refresh()
+            }
+        }
     }
 
     @ViewBuilder
@@ -201,18 +207,36 @@ struct PlacesView: View {
         } else {
             PlaceDisplaySwitcher(selection: $displayMode)
                 .frame(maxWidth: .infinity)
-                .overlay(alignment: .trailing) {
-                    if displayMode == .map {
-                        MapUserLocationButton(scope: mapScope)
-                            .frame(width: 44, height: 44)
-                            .tint(AppColors.primary)
-                            .background(
-                                AppColors.elevatedBackground,
-                                in: Circle()
+                .overlay(alignment: .bottomTrailing) {
+                    VStack(spacing: AppSpacing.md) {
+                        if displayMode == .map {
+
+                            MapUserLocationButton(scope: mapScope)
+                                .frame(width: 44, height: 44)
+                                .tint(AppColors.primary)
+                                .background(
+                                    AppColors.elevatedBackground,
+                                    in: Circle()
+                                )
+                                .appPressEffect()
+
+                            AppIconButton(
+                                icon: AppIcons.add,
+                                variant: .circle,
+                                isEnabled: true,
+                                action: openCreatePlace
                             )
+                            .tint(AppColors.primary)
+                            .accessibilityLabel("Create new place")
+                        }
                     }
                 }
         }
+    }
+
+    private func openCreatePlace() {
+        isSearchFieldFocused = false
+        isAddingPlace = true
     }
 }
 
