@@ -37,19 +37,19 @@ struct PlacesListView: View {
     }
 
     private func compactRow(for place: Place) -> some View {
-        Button(
+        let state = interactions.state(for: place)
+
+        return Button(
             action: {
                 onSelect(place.id)
             },
             label: {
                 HStack(spacing: AppSpacing.lg) {
-                    Image(systemName: AppIcons.places)
-                        .font(AppTypography.titleMedium)
-                        .foregroundStyle(AppColors.primary)
-                        .frame(
-                            width: AppLayout.compactThumbnailSize,
-                            height: AppLayout.compactThumbnailSize
-                        )
+                    PlaceThumbnail(
+                        imageURL: state.imageURL,
+                        size: AppLayout.compactThumbnailSize,
+                        cornerRadius: AppRadius.md
+                    )
 
                     VStack(
                         alignment: .leading,
@@ -79,9 +79,11 @@ struct PlacesListView: View {
 
                 }
             }
-
         )
         .buttonStyle(.plain)
+        .task(id: place.id) {
+            await interactions.loadDetails(for: place)
+        }
     }
 
     private func cardRow(for place: Place) -> some View {
