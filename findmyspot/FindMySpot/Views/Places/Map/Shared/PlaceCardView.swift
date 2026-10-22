@@ -81,7 +81,7 @@ struct PlaceCardView: View {
 
     private var content: some View {
         HStack(alignment: .top, spacing: AppSpacing.lg) {
-            thumbnail
+            PlaceThumbnail(imageURL: imageURL)
 
             VStack(alignment: .leading, spacing: AppSpacing.sm) {
                 Text(place.name)
@@ -107,46 +107,6 @@ struct PlaceCardView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-
-    private var thumbnail: some View {
-        Group {
-            if let imageURL {
-                AsyncImage(url: imageURL) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-
-                    case .empty, .failure:
-                        imagePlaceholder
-
-                    @unknown default:
-                        imagePlaceholder
-                    }
-                }
-            } else {
-                imagePlaceholder
-            }
-        }
-        .frame(
-            width: AppLayout.thumbnailSize,
-            height: AppLayout.thumbnailSize
-        )
-        .clipped()
-        .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
-        .accessibilityHidden(true)
-    }
-
-    private var imagePlaceholder: some View {
-        ZStack {
-            AppColors.surfaceSecondary
-
-            Image(systemName: AppIcons.places)
-                .font(AppTypography.titleLarge)
-                .foregroundStyle(AppColors.textSecondary)
         }
     }
 }
