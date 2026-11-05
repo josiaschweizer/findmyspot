@@ -32,17 +32,17 @@ struct AddPlaceDetailsStep: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.xl) {
             AddPlaceSectionTitle(
-                eyebrow: "02 · DIE DETAILS",
-                title: "Ausstattung & Lage"
+                eyebrow: "02 · THE DETAILS",
+                title: "Amenities & setting"
             )
 
-            AddPlaceChipSection(title: "Aktivitäten") {
+            AddPlaceChipSection(title: "Acitivites") {
                 if viewModel.isLoadingActivities {
                     ProgressView()
                 } else if let message = viewModel.activitiesErrorMessage {
                     AppErrorMessage(message: message)
                 } else if viewModel.activities.isEmpty {
-                    Text("Keine Aktivitäten verfügbar.")
+                    Text("No activities available.")
                         .font(AppTypography.body)
                         .foregroundStyle(AppColors.textSecondary)
                 } else {
@@ -59,7 +59,7 @@ struct AddPlaceDetailsStep: View {
                 }
             }
 
-            AddPlaceChipSection(title: "Eigenschaften") {
+            AddPlaceChipSection(title: "Features") {
                 ForEach(AddPlaceFeature.allCases) { feature in
                     SelectableChip(
                         title: feature.title,

@@ -20,15 +20,15 @@ enum AddPlaceFeature: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .quiet: "Ruhig"
-        case .seating: "Sitzplätze"
-        case .wifi: "WLAN"
-        case .powerOutlet: "Steckdose"
-        case .weatherProtection: "Wetterschutz"
+        case .quiet: "Quiet"
+        case .seating: "Seating"
+        case .wifi: "Wi-Fi"
+        case .powerOutlet: "Power outlet"
+        case .weatherProtection: "Weather protection"
         case .toilet: "WC"
-        case .accessible: "Barrierearm"
-        case .greenery: "Im Grünen"
-        case .view: "Aussicht"
+        case .accessible: "Accessible"
+        case .greenery: "Surrounded by nature"
+        case .view: "View"
         }
     }
 }
