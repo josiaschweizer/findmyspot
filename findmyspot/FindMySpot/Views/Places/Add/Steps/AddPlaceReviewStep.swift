@@ -16,8 +16,8 @@ struct AddPlaceReviewStep: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.lg) {
             AddPlaceSectionTitle(
-                eyebrow: "03 · FAST GESCHAFFT",
-                title: "Angaben prüfen"
+                eyebrow: "03 · ALMOST DONE",
+                title: "Review details"
             )
 
             VStack(alignment: .leading, spacing: AppSpacing.md) {

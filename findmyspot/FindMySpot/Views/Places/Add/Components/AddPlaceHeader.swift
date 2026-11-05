@@ -31,13 +31,13 @@ struct AddPlaceHeader: View {
                 }
                 .buttonStyle(.plain)
 
-                Text("Ort hinzufügen · \(step + 1) von 3")
+                Text("Add place · \(step + 1) of 3")
                     .font(AppTypography.body)
                     .foregroundStyle(AppColors.textSecondary)
 
                 Spacer()
 
-                Button("Abbrechen", action: onCancel)
+                Button("Cancel", action: onCancel)
                     .font(AppTypography.label)
                     .buttonStyle(.plain)
             }

@@ -47,12 +47,12 @@ struct AddPlaceFlowView: View {
         .background(AppColors.background.ignoresSafeArea())
         .foregroundStyle(AppColors.textPrimary)
         .alert(
-            "Ort konnte nicht hinzugefügt werden",
+            "Place couldn't be added",
             isPresented: errorBinding
         ) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(viewModel.errorMessage ?? "Bitte versuche es erneut.")
+            Text(viewModel.errorMessage ?? "Please try again.")
         }
     }
 
@@ -77,9 +77,9 @@ struct AddPlaceFlowView: View {
 
     private var buttonTitle: String {
         switch step {
-        case 0: "Weiter zur Ausstattung"
-        case 1: "Weiter zur Prüfung"
-        default: "Ort hinzufügen"
+        case 0: "Continue to amenities"
+        case 1: "Continue to review"
+        default: "Add place"
         }
     }
 
@@ -108,7 +108,7 @@ struct AddPlaceFlowView: View {
             }
 
             await onPlaceCreated()
-            notifier.success("Ort wurde hinzugefügt.")
+            notifier.success("Place added.")
             dismiss()
         }
     }

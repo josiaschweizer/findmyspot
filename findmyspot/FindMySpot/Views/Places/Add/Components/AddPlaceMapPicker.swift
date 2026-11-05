@@ -14,16 +14,16 @@ struct AddPlaceMapPicker: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            Text("Position auf der Karte")
+            Text("Location on the map")
                 .font(AppTypography.titleSmall)
 
-            Text("Tippe auf die Karte, um den Pin zu setzen.")
+            Text("Tap the map to place the pin.")
                 .font(AppTypography.body)
                 .foregroundStyle(AppColors.textSecondary)
 
             MapReader { proxy in
                 Map(position: $cameraPosition) {
-                    Marker("Neuer Ort", coordinate: coordinate)
+                    Marker("New place", coordinate: coordinate)
                         .tint(AddPlaceStyle.marker)
                 }
                 .mapStyle(.standard(pointsOfInterest: .excludingAll))

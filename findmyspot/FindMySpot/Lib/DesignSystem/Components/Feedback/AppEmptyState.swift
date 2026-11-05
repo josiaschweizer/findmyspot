@@ -68,9 +68,9 @@ struct AppEmptyState: View {
 #Preview {
     AppEmptyState(
         icon: "heart",
-        title: "Noch keine Favoriten",
-        message: "Markiere einen Ort mit dem Herzen",
-        actionTitle: "Zurücksetzen"
+        title: "No favorites yet",
+        message: "Mark a place with a heart",
+        actionTitle: "Reset"
     ) {
 
     }

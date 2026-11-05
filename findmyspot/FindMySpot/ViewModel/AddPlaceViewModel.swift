@@ -120,7 +120,7 @@ final class AddPlaceViewModel {
             return trimmedDetails
         }
 
-        return "\(trimmedDetails)\n\nGeeignet für: \(activities.joined(separator: ", "))"
+        return "\(trimmedDetails)\n\nSuietable for: \(activities.joined(separator: ", "))"
     }
 
     private var inferredCategoryId: String {
